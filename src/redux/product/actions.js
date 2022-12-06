@@ -17,11 +17,11 @@ export const getProducts = () => {
 export const getProductById = (id) => {
   return (dispatch) =>
     axios
-      .get(`http://localhost:3000/api/v1/products/:${id}`)
+      .get(`http://localhost:3000/api/v1/product/${id}`)
       .then((response) => {
         dispatch({
           type: types.GET_PRODUCT_BY_ID,
-          payload: response.data.results,
+          payload: response.data,
         });
       })
       .catch((error) => console.log(error));
