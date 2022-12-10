@@ -23,12 +23,10 @@ export const Cards = () => {
     dispatch(actionsProducts.getProductByCategory(e.target.value));
   }
   function handleSelectOrden(e) {
-    console.log("AAAA", e.target.value);
     dispatch(actionsProducts.sortByTimePreparation(e.target.value));
   }
 
   function handleSelectPrice(e) {
-    console.log("AAAA", e.target.value);
     dispatch(actionsProducts.sortProductsByPrice(e.target.value));
   }
 
@@ -61,7 +59,7 @@ export const Cards = () => {
           </select>
         </div>
         <br />
-        {/* <div>
+        <div>
           <select
             className={style.cards__select}
             onChange={(e) => handleSelectCategory(e)}
@@ -81,9 +79,9 @@ export const Cards = () => {
               })}
           </select>
         </div>
-            <br /> */}
+        <br />
         <div>
-          {products.length &&
+          {products.length > 0 &&
             products.map((p) => (
               <Card
                 key={p.id}

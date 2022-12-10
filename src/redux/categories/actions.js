@@ -18,7 +18,7 @@ export const filterByCategory = (category) => {
   return (dispatch) =>
     axios
       .get(
-        `http://localhost:3000/api/v1/products/filterByCategory?category=${category}`
+        `http://localhost:3000/api/v1/products/filter/filterByCategory?category=${category}`
       )
       .then((response) => {
         dispatch({
