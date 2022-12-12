@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 /* import s from "./Landing.module.css"; */
 import "../styles/Landing.css";
 
+import { useAuth0 } from "@auth0/auth0-react";
+
 /* export function Landing() {
   return (
     <Fragment>
@@ -13,7 +15,10 @@ import "../styles/Landing.css";
 } */
 
 export function Landing() {
-   return (
+
+  const { loginWithRedirect } = useAuth0();
+
+  return (
     <div className="root">
       <div className="carrousel">
         <div className="item" id="item1">
@@ -88,9 +93,8 @@ export function Landing() {
           <Link to="/home">
             <button className="button1">SOY VISITANTE</button>
           </Link>
-          <Link to="/login">
-            <button className="button2">SOY CLIENTE</button>
-          </Link>
+            <button onClick ={() => loginWithRedirect()} className="button2">SOY CLIENTE</button>
+          
         </div>
       </div>
     </div>

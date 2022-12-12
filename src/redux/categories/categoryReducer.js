@@ -14,12 +14,6 @@ export const categoryReducer = (state = initialState, action) => {
         changes: true,
       };
 
-    case types.FILTER_BY_CATEGORY:
-      return {
-        ...state,
-        categories: action.payload,
-      };
-
     default:
       return state;
   }
