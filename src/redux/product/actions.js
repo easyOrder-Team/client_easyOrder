@@ -58,7 +58,7 @@ export const filterByCategory = (category) => {
 export const sortProductsByPrice = (price, category) => {
   return (dispatch) =>
     axios
-      .get(`http://localhost:3000/api/v1/products/priceOrder`)
+      .get(`http://localhost:3000/api/v1/products/filter/priceOrder`)
       .then((response) => {
         dispatch({
           type: types.SORT_PRODUCTS_BY_PRICE,
