@@ -8,6 +8,7 @@ const store = createStore(
   combineReducers({
     productReducer,
     products: productReducer,
+    productsCart: productReducer,
     categories: categoryReducer,
   }),
   composeWithDevTools(applyMiddleware(thunk))

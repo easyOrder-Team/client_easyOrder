@@ -88,6 +88,20 @@ export const clearProduct = () => {
   };
 };
 
+
+export const addProductCart = (product) => {
+  console.log(product);
+  return {
+    type: types.ADD_PRODUCT_CART,
+    payload: product,
+  };
+};
+
+export const clearCart = () => {
+  return {
+    type: types.CLEAR_CART,
+  }
+};
 export const deleteProduct = (id) => {
   return (dispatch) => {
     axios

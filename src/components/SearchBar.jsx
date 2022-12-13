@@ -15,7 +15,6 @@ export const SearchBar = () => {
     setInput(e.target.value);
   };
 
-  console.log(input);
   const handleSubmit = (e) => {
     e.preventDefault();
     if (input !== "") {

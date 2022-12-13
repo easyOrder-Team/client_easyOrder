@@ -19,6 +19,12 @@
   align-items: center;
   justify-content: space-between;
   align-content: space-between;
+  color: var(--text-color);
+}
+
+b{
+  color: var(--title-color);
+  font-size: 1.2rem;
 }
 
 .card__info {
@@ -36,6 +42,7 @@
   margin: 0.3rem;
   font-family: "Comfortaa", cursive;
   text-align: left;
+  color: var(--text-color);
 }
 
 .card__description__B {
