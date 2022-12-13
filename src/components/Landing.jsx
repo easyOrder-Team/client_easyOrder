@@ -15,7 +15,6 @@ import { useAuth0 } from "@auth0/auth0-react";
 } */
 
 export function Landing() {
-
   const { loginWithRedirect } = useAuth0();
 
   return (
@@ -93,8 +92,9 @@ export function Landing() {
           <Link to="/home">
             <button className="button1">SOY VISITANTE</button>
           </Link>
-            <button onClick ={() => loginWithRedirect()} className="button2">SOY CLIENTE</button>
-          
+          <button onClick={() => loginWithRedirect()} className="button2">
+            SOY CLIENTE
+          </button>
         </div>
       </div>
     </div>

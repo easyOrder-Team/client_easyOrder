@@ -5,7 +5,7 @@ import * as actionsCategory from "../redux/categories/actions";
 import * as actionsProducts from "../redux/product/actions";
 
 import style from "../styles/Cards.module.css";
-import { Card, NavBar } from ".";
+import { Card, NavBar, Pagination } from ".";
 
 export const Cards = () => {
   const dispatch = useDispatch();
@@ -17,6 +17,18 @@ export const Cards = () => {
   const [price, setPrice] = useState("");
   const [time, setTime] = useState("");
   const [cate, setCate] = useState("");
+
+  const [currentPage, setCurrentPage] = useState(1);
+  const [productsPerPage] = useState(9);
+  const indexOfLastProduct = currentPage * productsPerPage; // 9
+  const indexOfFirstProduct = indexOfLastProduct - productsPerPage; // 0
+  const currentProduct = products.slice(
+    indexOfFirstProduct,
+    indexOfLastProduct
+  );
+  const paginate = (number) => {
+    setCurrentPage(number);
+  };
 
   useEffect(() => {
     dispatch(actionsCategory.getCategories());
