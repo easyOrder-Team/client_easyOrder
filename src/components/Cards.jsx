@@ -19,8 +19,13 @@ export const Cards = () => {
   const [cate, setCate] = useState("");
 
   const [currentPage, setCurrentPage] = useState(1);
+<<<<<<< HEAD
   const [productsPerPage] = useState(6);
   const indexOfLastProduct = currentPage * productsPerPage; // 9
+=======
+  const [productsPerPage] = useState(5);
+  const indexOfLastProduct = currentPage * productsPerPage; // 6
+>>>>>>> 151c2307b29a50918feabefa53ed1397bc0f3308
   const indexOfFirstProduct = indexOfLastProduct - productsPerPage; // 0
   const currentProduct = products.slice(
     indexOfFirstProduct,
@@ -54,7 +59,10 @@ export const Cards = () => {
     navigate(`/cards/${e.target.value}`);
     dispatch(actionsProducts.filterByCategory(e.target.value));
   };
+<<<<<<< HEAD
   console.log("current", currentProduct);
+=======
+>>>>>>> 151c2307b29a50918feabefa53ed1397bc0f3308
   return (
     <div>
       <div>
@@ -70,7 +78,7 @@ export const Cards = () => {
             handleSelectPrice(e);
           }}
         >
-          <option value="">Ordén por precio</option>
+          <option value="">Orden por precio</option>
           <option value="menor-mayor">Menor a mayor</option>
           <option value="mayor-menor">Mayor a menor</option>
         </select>
@@ -110,6 +118,7 @@ export const Cards = () => {
         </select>
       </div>
       <br />
+<<<<<<< HEAD
       <div>
         {currentProduct.length > 6 && (
           <Pagination
@@ -143,6 +152,12 @@ export const Cards = () => {
       {/* <div>
         {products.length ? (
           products.map((p) => (
+=======
+
+      <div>
+        {currentProduct.length ? (
+          currentProduct.map((p) => (
+>>>>>>> 151c2307b29a50918feabefa53ed1397bc0f3308
             <Link key={p.id} to={`/details/${p.id}`}>
               <Card
                 image={p.image}
@@ -157,7 +172,17 @@ export const Cards = () => {
             <div className="spinner"></div>
           </div>
         )}
+<<<<<<< HEAD
       </div> */}
+=======
+      </div>
+      <Pagination
+        productsPerPage={productsPerPage}
+        products={products.length}
+        paginate={paginate}
+        currentPage={currentPage}
+      />
+>>>>>>> 151c2307b29a50918feabefa53ed1397bc0f3308
     </div>
   );
 };
