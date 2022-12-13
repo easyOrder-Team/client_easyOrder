@@ -27,12 +27,12 @@ export const NavBar = () => {
             close
           </a>
 
-          <div class={s.modalDiv}>
-            <span class={`material-symbols-outlined ${s.modalSpan}`}>
+          <div className={s.modalDiv}>
+            <span className={`material-symbols-outlined ${s.modalSpan}`}>
               manage_accounts
             </span>
             <button
-              class={s.modalButton}
+              className={s.modalButton}
               onClick={() =>
                 isAuthenticated ? navigate("/profile"): loginWithRedirect()
               }
@@ -41,16 +41,16 @@ export const NavBar = () => {
             </button>
           </div>
 
-          <div class={s.modalDiv}>
-            <span class={`material-symbols-outlined ${s.modalSpan}`} onClick={() => navigate("/home")}>home</span>
-            <button class={s.modalButton}>Inicio</button>
+          <div className={s.modalDiv}>
+            <span className={`material-symbols-outlined ${s.modalSpan}`} onClick={() => navigate("/home")}>home</span>
+            <button className={s.modalButton}>Inicio</button>
           </div>
-          <div class={s.modalDiv}>
-            <span class={`material-symbols-outlined ${s.modalSpan}`}>
+          <div className={s.modalDiv}>
+            <span className={`material-symbols-outlined ${s.modalSpan}`}>
               {isAuthenticated ? "logout" : "login"}{" "}
             </span>
             <button
-              class={s.modalButton}
+              className={s.modalButton}
               onClick={() => (isAuthenticated ? logout() : loginWithRedirect())}
             >
               {isAuthenticated ? "Salir" : "Entrar"}
@@ -107,12 +107,12 @@ export const NavBar = () => {
             close
           </a>
 
-          <div class={s.modalDiv}>
-            <span class={`material-symbols-outlined ${s.modalSpan}`}>
+          <div className={s.modalDiv}>
+            <span className={`material-symbols-outlined ${s.modalSpan}`}>
               manage_accounts
             </span>
             <button
-              class={s.modalButton}
+              className={s.modalButton}
               onClick={() =>
                 isAuthenticated ? navigate("/profile"): loginWithRedirect()
               }
@@ -121,16 +121,16 @@ export const NavBar = () => {
             </button>
           </div>
 
-          <div class={s.modalDiv} onClick={() => navigate("/home")}>
-            <span class={`material-symbols-outlined ${s.modalSpan}`} >home</span>
-            <button class={s.modalButton}>Inicio</button>
+          <div className={s.modalDiv} onClick={() => navigate("/home")}>
+            <span className={`material-symbols-outlined ${s.modalSpan}`} >home</span>
+            <button className={s.modalButton}>Inicio</button>
           </div>
-          <div class={s.modalDiv}>
-            <span class={`material-symbols-outlined ${s.modalSpan}`}>
+          <div className={s.modalDiv}>
+            <span className={`material-symbols-outlined ${s.modalSpan}`}>
               {isAuthenticated ? "logout" : "login"}{" "}
             </span>
             <button
-              class={s.modalButton}
+              className={s.modalButton}
               onClick={() => (isAuthenticated ? logout() : loginWithRedirect())}
             >
               {isAuthenticated ? "Salir" : "Entrar"}
