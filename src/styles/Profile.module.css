@@ -1,0 +1,73 @@
+.globalContainer{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+
+}
+.profileImage{
+    width: 20%;
+}
+.userName{
+    font-weight: bold;
+}
+.containerOptions{
+    margin-top: 10%;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.userOptions{
+    width: 100%;
+    height: 10%;
+    display: flex;
+    flex-direction: row;
+    padding: 0% 8%;
+}
+.buttons{
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+    border: transparent;
+    border-bottom: 1px solid var(--main-color);
+    margin: 2%;
+    font-family: "Comfortaa", cursive;
+    font-weight: bold;
+    border-radius: 10%;
+   
+}
+
+.containerOptionsDiv{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    padding: 5%;
+   
+    
+}
+.containerContraseña{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 60%;
+    
+}
+.h1{
+    font-size: 100%;
+}
+.p{
+    font-size: 80%;
+    padding: 5%;
+}
+.buttonLink{
+    margin-top: 10%;
+    width: 80%;
+    height: 15%;
+    background-color: var(--main-color);
+    color: white;
+    border-color: transparent;
+    border-radius: 10px;
+}

@@ -10,8 +10,9 @@ import {
   Details,
   Profile,
   Cart,
-
+  CreateProfile,
 } from "./components";
+
 import * as actions from "./redux/product/actions";
 import * as actionsCategory from "./redux/categories/actions";
 import { useEffect } from "react";
@@ -30,6 +31,7 @@ function App() {
         <Route path="/createProduct" element={<CreateProduct />} />
         <Route path="resultsearch" element={<ResultSearch />} />
         <Route path="/details/:id" element={<Details />} />
+        <Route path="/createProfile" element={<CreateProfile />} />
         <Route path="/cart" element={<Cart />} />
       </Routes>
     </div>

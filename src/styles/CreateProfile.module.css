@@ -1,0 +1,222 @@
+html,
+body,
+#root,
+.App {
+  min-height: 100vh !important;
+}
+#containerGlobalForm {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.containerNav{
+    width: 100%;
+    padding: 20px;
+}
+.logo{
+  width: 30%;
+}
+.titulo{
+  margin-top: 10%;
+  width: 100%;
+  text-align: center;
+}
+.containerForm {
+  width: 100%;
+  height: 100%;
+}
+.form {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
+}
+.containerImage {
+  width: 100%;
+  height: 30%;
+}
+
+.imageProfile {
+  width: 50%;
+}
+.containerInfo {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 100%;
+  height: 100%;
+  padding: 40px;
+  padding-top: 0px;
+
+
+}
+.containerLabel {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 100%;
+  margin-top: 10px;
+}
+
+.labels {
+  color: rgb(0, 0, 0);
+  font-size: 12px;
+  font-weight: bold;
+  margin-bottom: 5px;
+  margin-top: 10px;
+  text-align: left;
+}
+.labelPrecio {
+  width: 50%;
+  text-align: left;
+}
+.labelMin{
+    color: gray;
+}
+
+.containerButton {
+  text-align: right;
+  margin-top: 15px;
+}
+
+input {
+  font-family: "Comfortaa", cursive;
+  /* border: transparent; */
+  border: 1px solid rgb(213, 213, 213);
+  border-radius: 10px;
+  height: 20px;
+  padding: 0px 5px;
+}
+.inputCelular{
+  width: 60%;
+}
+.inputImageProfile {
+  margin-top: 5px;  
+  border: transparent;
+  border-radius: 0px;
+  font-family: "Comfortaa", cursive !important;
+  font-size: 1rem;
+  padding: 0px;
+  width: 60%;
+}
+
+#file-upload-button {
+  font-family: "Comfortaa", cursive !important;
+}
+.inputDescription {
+  padding: 0px 5px;
+  border-color: rgb(213, 213, 213);
+  width: 100%;
+  height: 40px;
+  border-radius: 10px;
+  font-family: "Comfortaa", cursive;
+}
+
+.inputName {
+  width: 100%;
+}
+.inputPrice {
+  color: var(--main-color);
+  font-weight: bold;
+  text-align: right;
+  width: 50%;
+}
+.inputTime {
+  text-align: center;
+  width: 40px;
+  margin-right: 10px;
+}
+.globalContainerInputFile{
+  margin-top: 20px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.containerInputFile{  
+    width: 70%;
+    height: 2rem;
+    background-color: white;
+    border: 1px solid  #f39d12c5;
+    position: relative;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+   
+} 
+
+.containerLabelImage{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+}
+.inputFileImage{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+}
+.p{
+    text-align: center;
+    color: var(--secondary-color);
+    font-weight: bold;
+    font-size: 1rem;
+}
+.containerName_price {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.containerPrice {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  width: 100%;
+  height: 100%;
+}
+.containerDisponible {
+  width: 40%;
+}
+#selectDisponible {
+  height: 20px;
+  font-family: "Comfortaa", cursive;
+  border-color: rgb(213, 213, 213);
+  border-radius: 10px;
+  width: 80%;
+}
+.buttonCrear {
+  width: 100%;
+  height: 3rem;
+  font-family: "Comfortaa", cursive;
+  background-color: var(--main-color);
+  color: var(--light-color);
+  border: transparent;
+  border-radius: 5px;
+  font-weight: bold;
+}
+.buttonCrearNoHover{
+  background-color: gray;
+  width: 100%;
+  height: 3rem;
+  font-family: "Comfortaa", cursive;
+  color: var(--light-color);
+  border: transparent;
+  border-radius: 5px;
+  font-weight: bold;
+}
+
