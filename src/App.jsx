@@ -10,7 +10,7 @@ import {
   Details,
   Profile,
   Cart,
-  CreateProfile
+  CreateProfile,
 } from "./components";
 import { PagePay } from "./components/PagePay";
 import * as actions from "./redux/product/actions";
