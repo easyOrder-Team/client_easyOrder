@@ -101,3 +101,13 @@
 .btn2:hover{
     cursor: pointer;
 }
+
+.payBtn{
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 14rem;
+    padding: 1rem;
+}
+
+
