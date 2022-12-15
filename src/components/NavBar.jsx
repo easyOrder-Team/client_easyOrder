@@ -11,7 +11,11 @@ export const NavBar = () => {
 
   const navigate = useNavigate();
   let location = useLocation().pathname;
-  if (location !== "/createProduct" && !location.includes("/cards")) {
+  if (
+    location !== "/createProduct" &&
+    !location.includes("/cards") &&
+    location !== "/profile"
+  ) {
     return (
       <div>
         <div
@@ -34,7 +38,7 @@ export const NavBar = () => {
             <button
               className={s.modalButton}
               onClick={() =>
-                isAuthenticated ? navigate("/profile"): loginWithRedirect()
+                isAuthenticated ? navigate("/profile") : loginWithRedirect()
               }
             >
               Perfil
@@ -42,7 +46,12 @@ export const NavBar = () => {
           </div>
 
           <div className={s.modalDiv}>
-            <span className={`material-symbols-outlined ${s.modalSpan}`} onClick={() => navigate("/home")}>home</span>
+            <span
+              className={`material-symbols-outlined ${s.modalSpan}`}
+              onClick={() => navigate("/home")}
+            >
+              home
+            </span>
             <button className={s.modalButton}>Inicio</button>
           </div>
           <div className={s.modalDiv}>
@@ -61,14 +70,17 @@ export const NavBar = () => {
           <div className={s.navbar__content}>
             <div className={s.logo}>
               <Link to={"/home"}>
-                <h5>Easy</h5>
-                <h5>Order</h5>
+                <img
+                  src="https://res.cloudinary.com/dypjcpbis/image/upload/v1670886694/EasyOrder_BD/Recurso_1_l9yefi.svg"
+                  alt="logo_EasyOrder.svg"
+                />
               </Link>
             </div>
             <div className={s.navbar__allicons}>
               <span className="material-symbols-outlined">notifications</span>
-              <span className="material-symbols-outlined">shopping_cart</span>
-
+              <Link to={"/cart"}>
+                <span className="material-symbols-outlined">shopping_cart</span>
+              </Link>
               <span
                 onClick={() =>
                   isAuthenticated ? navigate("/profile") : loginWithRedirect()
@@ -114,7 +126,7 @@ export const NavBar = () => {
             <button
               className={s.modalButton}
               onClick={() =>
-                isAuthenticated ? navigate("/profile"): loginWithRedirect()
+                isAuthenticated ? navigate("/profile") : loginWithRedirect()
               }
             >
               Perfil
@@ -122,7 +134,9 @@ export const NavBar = () => {
           </div>
 
           <div className={s.modalDiv} onClick={() => navigate("/home")}>
-            <span className={`material-symbols-outlined ${s.modalSpan}`} >home</span>
+            <span className={`material-symbols-outlined ${s.modalSpan}`}>
+              home
+            </span>
             <button className={s.modalButton}>Inicio</button>
           </div>
           <div className={s.modalDiv}>
@@ -141,14 +155,17 @@ export const NavBar = () => {
           <div className={s.navbar__content}>
             <div className={s.logo}>
               <Link to={"/home"}>
-                <h5>Easy</h5>
-                <h5>Order</h5>
+                <img
+                  src="https://res.cloudinary.com/dypjcpbis/image/upload/v1670886694/EasyOrder_BD/Recurso_1_l9yefi.svg"
+                  alt="logo_EasyOrder.svg"
+                />
               </Link>
             </div>
             <div className={s.navbar__allicons}>
               <span className="material-symbols-outlined">notifications</span>
-              <span className="material-symbols-outlined">shopping_cart</span>
-
+              <Link to={"/cart"}>
+                <span className="material-symbols-outlined">shopping_cart</span>
+              </Link>
               <span
                 onClick={() =>
                   isAuthenticated ? navigate("/profile") : loginWithRedirect()

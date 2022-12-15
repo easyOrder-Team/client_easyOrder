@@ -11,6 +11,7 @@
   width: 100%;
   display: flex;
   justify-content: space-between;
+  align-items: center;
   padding-bottom: 2rem;
 }
 .navbar__allcontent {
@@ -30,6 +31,12 @@ span {
 .logo {
   display: flex;
   justify-content: flex-start;
+  
+}
+.logo img{
+  display: flex;
+  justify-content: flex-start;
+  width: 25%;
 }
 .modalMenu{
   width: 100%;
