@@ -101,7 +101,6 @@ export const clearCart = () => {
     type: types.CLEAR_CART,
   };
 };
-
 export const deleteProduct = (id) => {
   return (dispatch) => {
     axios

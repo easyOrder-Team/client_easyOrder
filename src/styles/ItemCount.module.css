@@ -1,4 +1,4 @@
-button{
+.btn{
     border: none;
     color: var(--text-color);
     background-color: transparent;
