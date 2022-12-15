@@ -19,13 +19,8 @@ export const Cards = () => {
   const [cate, setCate] = useState("");
 
   const [currentPage, setCurrentPage] = useState(1);
-<<<<<<< HEAD
-  const [productsPerPage] = useState(6);
-  const indexOfLastProduct = currentPage * productsPerPage; // 9
-=======
   const [productsPerPage] = useState(5);
   const indexOfLastProduct = currentPage * productsPerPage; // 6
->>>>>>> 151c2307b29a50918feabefa53ed1397bc0f3308
   const indexOfFirstProduct = indexOfLastProduct - productsPerPage; // 0
   const currentProduct = products.slice(
     indexOfFirstProduct,
@@ -39,7 +34,6 @@ export const Cards = () => {
     dispatch(actionsCategory.getCategories());
     dispatch(actionsProducts.filterByCategory(category));
     dispatch(actionsCategory.getCategories());
-    // dispatch(actionsProducts.getProducts());
   }, []);
 
   const handleSelectOrden = (e) => {
@@ -59,10 +53,6 @@ export const Cards = () => {
     navigate(`/cards/${e.target.value}`);
     dispatch(actionsProducts.filterByCategory(e.target.value));
   };
-<<<<<<< HEAD
-  console.log("current", currentProduct);
-=======
->>>>>>> 151c2307b29a50918feabefa53ed1397bc0f3308
   return (
     <div>
       <div>
@@ -118,46 +108,10 @@ export const Cards = () => {
         </select>
       </div>
       <br />
-<<<<<<< HEAD
-      <div>
-        {currentProduct.length > 6 && (
-          <Pagination
-            productsPerPage={productsPerPage}
-            products={products.length}
-            paginate={paginate}
-            currentPage={currentPage}
-          />
-        )}
-      </div>
-
-      <div>
-        {currentProduct.length > 0 ? (
-          currentProduct.map((p) => (
-            <Link key={p.id} to={`/details/${p.id}`}>
-              <Card
-                image={p.image}
-                name={p.name}
-                description={p.description}
-                price={p.price}
-              />
-            </Link>
-          ))
-        ) : (
-          <div className="containerSpin">
-            <div className="spinner"></div>
-          </div>
-        )}
-      </div>
-
-      {/* <div>
-        {products.length ? (
-          products.map((p) => (
-=======
 
       <div>
         {currentProduct.length ? (
           currentProduct.map((p) => (
->>>>>>> 151c2307b29a50918feabefa53ed1397bc0f3308
             <Link key={p.id} to={`/details/${p.id}`}>
               <Card
                 image={p.image}
@@ -172,9 +126,6 @@ export const Cards = () => {
             <div className="spinner"></div>
           </div>
         )}
-<<<<<<< HEAD
-      </div> */}
-=======
       </div>
       <Pagination
         productsPerPage={productsPerPage}
@@ -182,7 +133,6 @@ export const Cards = () => {
         paginate={paginate}
         currentPage={currentPage}
       />
->>>>>>> 151c2307b29a50918feabefa53ed1397bc0f3308
     </div>
   );
 };

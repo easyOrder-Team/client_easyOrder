@@ -16,9 +16,9 @@ export const Details = () => {
   }, []);
   const { detailProduct } = useSelector((state) => state.products);
 
-  //comentar o descomentar unas de las sisguientes líneas solo para ver el renderizado del botón delete(hay detalles)
-  const admins = ["henry"];
-  // const admins = [];
+  // //comentar o descomentar unas de las sisguientes líneas solo para ver el renderizado del botón delete(hay detalles)
+  // const admins = ["henry"];
+  // // const admins = [];
 
   return (
     <div>
@@ -57,7 +57,7 @@ export const Details = () => {
         <div className={style.conteiner_buttons}>
           <button className={style.btn1}>Add to cart</button>
           <button className={style.btn2}>Go pay</button>
-          {admins.length > 0 && <DeleteButton id={id} />}
+          {/* {admins.length > 0 && <DeleteButton id={id} />} */}
         </div>
       </div>
     </div>
