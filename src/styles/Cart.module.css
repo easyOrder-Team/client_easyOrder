@@ -74,6 +74,12 @@
     width: 100%;
 }
 
+.btnDelete {
+    border-color: transparent;
+    background-color: transparent;
+    padding-top: 1rem;
+}
+
 .btn1, .btn2{
     margin-top: 2rem;
     width: 95%;
