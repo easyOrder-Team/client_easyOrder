@@ -33,7 +33,6 @@ export const PagePay = () => {
   const handleClick = (e) => {
     e.preventDefault();
     console.log("regresar al cart");
-
     navigate("/cart");
   };
 
