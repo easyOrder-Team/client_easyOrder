@@ -31,9 +31,8 @@ export const OrderConfirmation = () => {
         />
         <h1 className={s.title}>¡PEDIDO EXITOSO!</h1>
         <p className={s.description}>
-          ¡Muchas gracias! Su pedido con la factura <b className={s.b}>{id}</b>{" "}
-          se ha realizado exitosamente, asímismo, queremos recordarte que tu
-          pedido consta de:{" "}
+          ¡Muchas gracias! Su pedido con la factura <b>{id}</b> se ha realizado
+          exitosamente, asímismo, queremos recordarte que tu pedido consta de:{" "}
         </p>
         {productsCart.map((p) => (
           <div key={p.id} className={s.container}>
