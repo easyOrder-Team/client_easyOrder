@@ -2,12 +2,14 @@ import React, { useState } from "react";
 import ReactDOM from "react-dom";
 import { useSelector } from "react-redux";
 import { NavBar } from ".";
+import { useNavigate } from "react-router-dom";
 import s from "../styles/Cart.module.css";
 const PayPalButton = window.paypal.Buttons.driver("react", { React, ReactDOM });
 export const PagePay = () => {
   let total = 0;
   const [price, setPrice] = useState(0);
   const { productsCart } = useSelector((state) => state.productsCart);
+  const navigate = useNavigate();
 
   const createOrder = (data, actions) => {
     return actions.order.create({
@@ -15,9 +17,8 @@ export const PagePay = () => {
         {
           amount: {
             value: total,
-            currency: 'MX'
+            currency: "MX",
           },
-          
         },
       ],
     });
@@ -25,16 +26,23 @@ export const PagePay = () => {
   const onApprove = (data, actions) => {
     actions.order.capture().then(function (details) {
       console.log(details);
+      navigate(`/confirmation/${details.id}`);
     });
   };
 
-  const priceTotalCalculator = (productPrice) => {
-    total = total + productPrice;
+  const handleClick = (e) => {
+    e.preventDefault();
+    console.log("regresar al cart");
+
+    navigate("/cart");
   };
 
   return (
-    <div>
-        <NavBar/>
+    <div className={s.root}>
+      <NavBar />
+      <div className={s.link} onClick={handleClick}>
+        Regresar al carrito de compras
+      </div>
       {productsCart.map((p) => (
         <div key={p.id} className={s.container}>
           <div className={s.img}>
