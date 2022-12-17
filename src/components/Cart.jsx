@@ -4,11 +4,13 @@ import { NavBar } from ".";
 import * as actions from "../redux/product/actions";
 import s from "../styles/Cart.module.css";
 import st from "../styles/ItemCount.module.css";
+import { useNavigate } from "react-router-dom";
 
 export const Cart = () => {
   const { productsCart } = useSelector((state) => state.productsCart);
   const [count, setCount] = useState(1);
   const [product, setProduct] = useState(productsCart);
+  const navigate = useNavigate();
 
   const dispatch = useDispatch();
   var total = 0;
@@ -42,6 +44,7 @@ export const Cart = () => {
   const handleToPay = (e) => {
     e.preventDefault();
     console.log("pagando...");
+    navigate("/pagepay");
     dispatch(actions.clearCart());
   };
 

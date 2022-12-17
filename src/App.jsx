@@ -17,6 +17,7 @@ import * as actions from "./redux/product/actions";
 import * as actionsCategory from "./redux/categories/actions";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
+import { PagePay } from "./components/PagePay";
 
 function App() {
   return (
@@ -33,6 +34,7 @@ function App() {
         <Route path="/details/:id" element={<Details />} />
         <Route path="/createProfile" element={<CreateProfile />} />
         <Route path="/cart" element={<Cart />} />
+        <Route path="/pagepay" element={<PagePay />} />
       </Routes>
     </div>
   );
