@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavBar } from ".";
-import * as actions from "../redux/product/actions";
+import { deleteProduct } from "../redux/product/actions";
 import s from "../styles/Cart.module.css";
 import st from "../styles/ItemCount.module.css";
 import { useNavigate } from "react-router-dom";
@@ -10,7 +10,7 @@ export const Cart = () => {
   const { productsCart } = useSelector((state) => state.productsCart);
   const [count, setCount] = useState(1);
   const [product, setProduct] = useState(productsCart);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   var total = 0;
 
@@ -40,10 +40,16 @@ export const Cart = () => {
     console.log("pedido exitoso");
   };
 
+  const handleDelete = (e) => {
+    e.preventDefault();
+    console.log("producto eliminado");
+    dispatch(deleteProduct(product));
+  };
+
   const handleToPay = (e) => {
     e.preventDefault();
     console.log("pagando...");
-    navigate('/payMercadoPago')
+    navigate("/pagepay");
   };
 
   return (
@@ -75,9 +81,14 @@ export const Cart = () => {
                 </div>
               </div>
             </div>
-            <div className={s.price}>
-              <span>${p.priceTotal}</span>
-              <p>{(total = total + p.priceTotal)}</p>
+            <div>
+              <div className={s.price}>
+                <span>${p.priceTotal}</span>
+                <p>{(total = total + p.priceTotal)}</p>
+              </div>
+              <button className={s.btnDelete} onClick={handleDelete}>
+                <span className="material-symbols-outlined">delete</span>
+              </button>
             </div>
             <br />
           </div>

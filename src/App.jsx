@@ -11,6 +11,7 @@ import {
   Profile,
   Cart,
   CreateProfile,
+  OrderConfirmation,
   Pasarela
 } from "./components";
 import { PagePay } from "./components/PagePay";
@@ -34,7 +35,8 @@ function App() {
         <Route path="/details/:id" element={<Details />} />
         <Route path="/createProfile" element={<CreateProfile />} />
         <Route path="/cart" element={<Cart />} />
-        <Route path="/pagepay" element={<PagePay/>} />
+        <Route path="/pagepay" element={<PagePay />} />
+        <Route path="/confirmation/:id" element={<OrderConfirmation />} />
         <Route path="/payMercadoPago" element={<Pasarela/>} />
       </Routes>
     </div>
