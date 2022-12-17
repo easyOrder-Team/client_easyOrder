@@ -28,9 +28,7 @@ export const PagePay = () => {
     });
   };
 
-  const priceTotalCalculator = (productPrice) => {
-    total = total + productPrice;
-  };
+  
 
   return (
     <div>
