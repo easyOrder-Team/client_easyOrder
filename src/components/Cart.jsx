@@ -43,7 +43,7 @@ export const Cart = () => {
   const handleToPay = (e) => {
     e.preventDefault();
     console.log("pagando...");
-    navigate('/pagepay')
+    navigate('/payMercadoPago')
   };
 
   return (

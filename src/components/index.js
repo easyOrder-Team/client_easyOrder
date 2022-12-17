@@ -12,3 +12,4 @@ export * from "./ResultSearch";
 export * from "./CreateProduct";
 export * from "./Profile"
 export * from "./CreateProfile"
+export * from "./PayMercadoPago"
