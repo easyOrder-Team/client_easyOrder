@@ -2,12 +2,20 @@ import React, { useState } from "react";
 import ReactDOM from "react-dom";
 import { useSelector } from "react-redux";
 import { NavBar } from ".";
+<<<<<<< HEAD
+=======
+import { useNavigate } from "react-router-dom";
+>>>>>>> 5f833155734ec255e0e4bdc3b4975c4ed6640893
 import s from "../styles/Cart.module.css";
 const PayPalButton = window.paypal.Buttons.driver("react", { React, ReactDOM });
 export const PagePay = () => {
   let total = 0;
   const [price, setPrice] = useState(0);
   const { productsCart } = useSelector((state) => state.productsCart);
+<<<<<<< HEAD
+=======
+  const navigate = useNavigate();
+>>>>>>> 5f833155734ec255e0e4bdc3b4975c4ed6640893
 
   const createOrder = (data, actions) => {
     return actions.order.create({
@@ -15,9 +23,14 @@ export const PagePay = () => {
         {
           amount: {
             value: total,
+<<<<<<< HEAD
             currency: 'MX'
           },
 
+=======
+            currency: "MX",
+          },
+>>>>>>> 5f833155734ec255e0e4bdc3b4975c4ed6640893
         },
       ],
     });
@@ -25,6 +38,7 @@ export const PagePay = () => {
   const onApprove = (data, actions) => {
     actions.order.capture().then(function (details) {
       console.log(details);
+<<<<<<< HEAD
     });
   };
 
@@ -35,6 +49,24 @@ export const PagePay = () => {
   return (
     <div>
         <NavBar/>
+=======
+      navigate(`/confirmation/${details.id}`);
+    });
+  };
+
+  const handleClick = (e) => {
+    e.preventDefault();
+    console.log("regresar al cart");
+    navigate("/cart");
+  };
+
+  return (
+    <div className={s.root}>
+      <NavBar />
+      <div className={s.link} onClick={handleClick}>
+        Regresar al carrito de compras
+      </div>
+>>>>>>> 5f833155734ec255e0e4bdc3b4975c4ed6640893
       {productsCart.map((p) => (
         <div key={p.id} className={s.container}>
           <div className={s.img}>
@@ -67,4 +99,8 @@ export const PagePay = () => {
       </div>
     </div>
   );
+<<<<<<< HEAD
 };
+=======
+};
+>>>>>>> 5f833155734ec255e0e4bdc3b4975c4ed6640893

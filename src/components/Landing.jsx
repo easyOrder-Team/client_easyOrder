@@ -21,9 +21,7 @@ export function Landing() {
     <div className="root">
       <div className="carrousel">
         <div className="item" id="item1">
-          <div className="img" id="img1">
-            1
-          </div>
+          <div className="img" id="img1"></div>
           <div className="arrows">
             <a href="#item3">
               <span className="material-symbols-outlined">arrow_back_ios</span>
@@ -37,9 +35,7 @@ export function Landing() {
         </div>
 
         <div className="item" id="item2">
-          <div className="img" id="img2">
-            2
-          </div>
+          <div className="img" id="img2"></div>
           <div className="arrows">
             <a href="#item1">
               <span className="material-symbols-outlined">arrow_back_ios</span>
@@ -53,9 +49,7 @@ export function Landing() {
         </div>
 
         <div className="item" id="item3">
-          <div className="img" id="img3">
-            3
-          </div>
+          <div className="img" id="img3"></div>
           <div className="arrows">
             <a href="#item2">
               <span className="material-symbols-outlined">arrow_back_ios</span>
