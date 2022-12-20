@@ -3,12 +3,14 @@ import ReactDOM from "react-dom";
 import { useSelector } from "react-redux";
 import { NavBar } from ".";
 import s from "../styles/Cart.module.css";
+import { useNavigate } from "react-router-dom";
 const PayPalButton = window.paypal.Buttons.driver("react", { React, ReactDOM });
 
 export const PagePay = () => {
   let total = 0;
   const [price, setPrice] = useState(0);
   const { productsCart } = useSelector((state) => state.productsCart);
+  const navigate = useNavigate();
 
   const createOrder = (data, actions) => {
     return actions.order.create({
@@ -31,6 +33,12 @@ export const PagePay = () => {
 
   const priceTotalCalculator = (productPrice) => {
     total = total + productPrice;
+  };
+
+  const handleClick = (e) => {
+    e.preventDefault();
+    console.log("regresar al cart");
+    navigate("/cart");
   };
 
   return (

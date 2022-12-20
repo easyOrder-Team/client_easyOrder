@@ -10,12 +10,8 @@ import {
   Details,
   Cart,
   OrderConfirmation,
-<<<<<<< HEAD
-  Pasarela,
-=======
   PasarelaMercadoPago,
   Scanner,
->>>>>>> acff1e5a06ac8b28ea47024aef762d783dde7307
 } from "./components";
 import { PagePay } from "./components/PagePay"
 import { Profile } from "./components/Profile"
