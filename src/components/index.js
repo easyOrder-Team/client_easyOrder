@@ -11,4 +11,6 @@ export * from "./SearchBar";
 export * from "./ResultSearch";
 export * from "./CreateProduct";
 export * from "./OrderConfirmation";
-export * from "./PayMercadoPago"
+export * from "./PayMercadoPago";
+export * from "./CreateProduct";
+export * from "./Profile";
