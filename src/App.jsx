@@ -23,7 +23,7 @@ function App() {
   return (
     <div className="App">
       <Routes>
-        <Route path="/" element={<Landing />} />
+        <Route path="/:site" element={<Landing />} />
         <Route path="/cards/:category" element={<Cards />} />
         <Route path="/cards" element={<Cards />} />
         <Route path="/login" element={<Login />} />

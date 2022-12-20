@@ -77,18 +77,18 @@ export const CreateProfile = () => {
     }
   };
 
-  useEffect(() => {
-    let validator;
-    Object.values(data).forEach((element) => {
-      if (element.length === 0) validator = true;
-    });
+  // useEffect(() => {
+  //   let validator;
+  //   Object.values(data).forEach((element) => {
+  //     if (element.length === 0) validator = true;
+  //   });
 
-    if (validator === true) {
-      setActiveButton(true);
-    } else {
-      setActiveButton(false);
-    }
-  }, [data]);
+  //   if (validator === true) {
+  //     setActiveButton(true);
+  //   } else {
+  //     setActiveButton(false);
+  //   }
+  // }, [data]);
 
   const uploadImage = async (e) => {
     const files = e.target.files;
@@ -119,9 +119,8 @@ export const CreateProfile = () => {
         "Content-Type": "application/json",
       },
     })
-      .then((response) => response.json())
       .then((response) => {
-        if (response === "Created") {
+        if (response.status === 201) {
           navigate("/home");
         }
       })
@@ -204,13 +203,10 @@ export const CreateProfile = () => {
   
               <div className={styleCreateProfile.containerButton}>
                 <input
-                  disabled={activeButton}
+                  
                   type="submit"
                   value="Aceptar"
-                  className={
-                    activeButton
-                      ? styleCreateProfile.buttonCrearNoHover
-                      : styleCreateProfile.buttonCrear
+                  className={ styleCreateProfile.buttonCrear
                   }
                 />
               </div>

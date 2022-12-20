@@ -61,7 +61,7 @@ export const Profile = () => {
       </div>
     );
   } else {
-    if (user.sub.includes("auth0")) {
+    if (isAuthenticated && user.sub.includes("auth0")) {
       return (
         isAuthenticated && (
           <div className={profileStyle.globalContainer}>

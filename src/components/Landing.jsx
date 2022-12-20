@@ -1,21 +1,35 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { json, Link, useParams } from "react-router-dom";
+import {useDispatch, useSelector} from 'react-redux';
 /* import s from "./Landing.module.css"; */
 import "../styles/Landing.css";
-
+import * as actionsProfile from "../redux/profile/actions";
 import { useAuth0 } from "@auth0/auth0-react";
-
-/* export function Landing() {
-  return (
-    <Fragment>
-      <h1>Landing</h1>
-      <h2>Hola</h2>
-    </Fragment>
-  );
-} */
+import { useEffect } from "react";
 
 export function Landing() {
+  // const [table, setTable] = useState('')
+  const dispatch = useDispatch()
+  const {site} = useParams()
   const { loginWithRedirect } = useAuth0();
+
+  // useEffect(() => {
+  //   const getLS = () => {
+  //     const tableLS = JSON.parse(localStorage.getItem('site')) ?? '';
+  //     setTable(tableLS)
+  //   }
+  //   getLS();
+  // },[])
+
+  useEffect(() => {
+    localStorage.setItem('site', JSON.stringify(parseInt(site)))
+    let numMesa = localStorage.getItem('site')
+    console.log(numMesa)
+  },[])
+
+  useEffect(() => {
+    dispatch(actionsProfile.getSite(site))
+  },[site])
 
   return (
     <div className="root">

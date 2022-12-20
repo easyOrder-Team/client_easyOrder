@@ -93,6 +93,7 @@
     color: var(--light-color);
     border: none;
     border-radius: .4rem;
+    transition: 0.5s;
 }
 .btn2{
     background-color:var(--secondary-color);
@@ -102,9 +103,11 @@
 
 .btn1:hover{
     cursor: pointer;
+    transform: scale(1.01);
 }
 .btn2:hover{
     cursor: pointer;
+    transform: scale(1.01);
 }
 .btn3:hover{
     cursor: pointer;
