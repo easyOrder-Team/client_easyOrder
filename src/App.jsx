@@ -8,18 +8,17 @@ import {
   ResultSearch,
   CreateProduct,
   Details,
-  Profile,
   Cart,
-  CreateProfile,
   OrderConfirmation,
-  Pasarela
+  Pasarela,
 } from "./components";
-import { PagePay } from "./components/PagePay";
+import { PagePay } from "./components/PagePay"
+import { Profile } from "./components/Profile"
 import * as actions from "./redux/product/actions";
 import * as actionsCategory from "./redux/categories/actions";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { PagePay } from "./components/PagePay";
+import { CreateProfile } from "./components/CreateProfile";
 
 function App() {
   return (
@@ -34,9 +33,9 @@ function App() {
         <Route path="/createProduct" element={<CreateProduct />} />
         <Route path="resultsearch" element={<ResultSearch />} />
         <Route path="/details/:id" element={<Details />} />
-        <Route path="/createProfile" element={<CreateProfile />} />
+        <Route path="/createProfile" element={<CreateProfile/>} />
         <Route path="/cart" element={<Cart />} />
-        <Route path="/pagepay" element={<PagePay />} />
+        <Route path="/pagepay" element={<PagePay/>} />
         <Route path="/confirmation/:id" element={<OrderConfirmation />} />
         <Route path="/payMercadoPago" element={<Pasarela/>} />
       </Routes>
