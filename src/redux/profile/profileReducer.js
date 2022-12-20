@@ -2,6 +2,7 @@ import * as types from "../types";
 
 const initialState = {
   profile: {},
+  site: ''
 };
 
 export const profileReducer = (state = initialState, action) => {
@@ -11,7 +12,11 @@ export const profileReducer = (state = initialState, action) => {
         ...state,
         profile: action.payload,
       };
-
+    case types.SAVESITE:
+      return{
+        ...state,
+        site: action.payload
+      }
     default:
       return state;
   }

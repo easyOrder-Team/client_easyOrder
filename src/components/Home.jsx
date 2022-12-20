@@ -10,6 +10,7 @@ export const Home = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(actions.clearProduct());
+    console.log(localStorage.getItem('site'))
   }, []);
   return (
     <div>
