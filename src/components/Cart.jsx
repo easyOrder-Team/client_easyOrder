@@ -53,7 +53,7 @@ export const Cart = () => {
   };
 
   return (
-    <div>
+    <div className={s.globalContainerCart}>
       <NavBar />
       {productsCart.length >= 1 &&
         product.map((p) => (

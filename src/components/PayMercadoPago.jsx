@@ -2,9 +2,10 @@ import React from "react";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
 
-export const Pasarela = () => {
+export const PasarelaMercadoPago= () => {
   const productsCart = useSelector((state) => state.productsCart.productsCart);
   useEffect(() => {
+    
     if (productsCart) {
       fetch(`http://localhost:3000/api/v1/mercadoPago?products=${JSON.stringify(productsCart)}`)
         .then((response) => response.json())

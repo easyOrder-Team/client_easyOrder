@@ -14,7 +14,9 @@ export const NavBar = () => {
   if (
     location !== "/createProduct" &&
     !location.includes("/cards") &&
-    location !== "/profile"
+    location !== "/profile" &&
+    location !== "/scannQR" &&
+    location !== "/selectPayMethod" 
   ) {
     return (
       <div>

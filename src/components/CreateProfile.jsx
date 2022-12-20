@@ -25,13 +25,13 @@ export const CreateProfile = () => {
     }
   }, [user]);
 
-  useEffect(()=>{
-    if(typeof profile === 'object'){
-      if(Object.entries(profile).length>0){
-        navigate("/home")
+  useEffect(() => {
+    if (typeof profile === "object") {
+      if (Object.entries(profile).length > 0) {
+        navigate("/home");
       }
     }
-  },[profile])
+  }, [profile]);
 
   const [localCategories, setLocalCategories] = useState([]);
   const [options, setOptions] = useState([]);
@@ -119,9 +119,8 @@ export const CreateProfile = () => {
         "Content-Type": "application/json",
       },
     })
-      .then((response) => response.json())
       .then((response) => {
-        if (response === "Created") {
+        if (response.status === 201) {
           navigate("/home");
         }
       })
@@ -133,8 +132,7 @@ export const CreateProfile = () => {
         <div className="spinner"></div>
       </div>
     );
-  }else if(typeof profile !== 'object'){
-
+  } else if (typeof profile !== "object") {
     return (
       <div id={styleCreateProfile.containerGlobalForm}>
         <div className={styleCreateProfile.containerNav}>
@@ -201,7 +199,7 @@ export const CreateProfile = () => {
                 value={data.phone}
                 onChange={(e) => checkCel(e)}
               ></input>
-  
+
               <div className={styleCreateProfile.containerButton}>
                 <input
                   disabled={activeButton}
