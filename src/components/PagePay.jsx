@@ -37,7 +37,7 @@ export const PagePay = () => {
   };
 
   return (
-    <div className={s.root}>
+    <div className={s.globalContainerCart}>
       <NavBar />
       <div className={s.link} onClick={handleClick}>
         Regresar al carrito de compras
@@ -67,6 +67,13 @@ export const PagePay = () => {
         </div>
       </div>
       <div className={s.payBtn}>
+        <button className={s.payBtnMercadopago} onClick={()=>navigate("/payMercadoPago")} >
+          <img
+            className={s.logos}
+            src="https://logodownload.org/wp-content/uploads/2019/06/mercado-pago-logo-4.png"
+            alt=""
+          />
+        </button>
         <PayPalButton
           createOrder={(data, actions) => createOrder(data, actions)}
           onApprove={(data, actions) => onApprove(data, actions)}

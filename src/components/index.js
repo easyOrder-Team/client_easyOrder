@@ -14,5 +14,4 @@ export * from "./CreateProfile";
 export * from "./Profile";
 export * from "./OrderConfirmation";
 export * from "./PayMercadoPago"
-export * from "./SelectPayMethod"
 export * from "./QR_scanner"

@@ -49,11 +49,11 @@ export const Cart = () => {
   const handleToPay = (e) => {
     e.preventDefault();
     console.log("pagando...");
-    navigate("/selectPayMethod");
+    navigate("/pagepay");
   };
 
   return (
-    <div>
+    <div className={s.globalContainerCart}>
       <NavBar />
       {productsCart.length >= 1 &&
         product.map((p) => (
