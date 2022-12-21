@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { clearCart } from "../redux/product/actions";
 import s from "../styles/OrderConfirmation.module.css";
 import * as actions from "../redux/product/actions";
+import * as actionsPayment from "../redux/payment/actions";
 
 export const OrderConfirmation = () => {
   let total = 0;
@@ -15,14 +16,17 @@ export const OrderConfirmation = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { id } = useParams();
-  const products = JSON.parse(localStorage.getItem('products'));
-  
+  const products = JSON.parse(localStorage.getItem("products"));
+
   useEffect(() => {
-    if(productsCart.length === 0 && products){          
-      products.map((product) =>{
+    dispatch(actionsPayment.getPaymentInfo(id));
+  }, []);
+  useEffect(() => {
+    if (productsCart.length === 0 && products) {
+      products.map((product) => {
         dispatch(actions.addProductCart(product));
-      })
-    }    
+      });
+    }
   }, [products]);
 
   const handleClick = (e) => {
