@@ -24,6 +24,8 @@ export const Cart = () => {
     products: product,
   });
 
+ 
+
   useEffect(() => {
     actualizarTotal()
     setOrder({...order, products: productsCart, total: total})
