@@ -159,24 +159,24 @@ export const Profile = () => {
             </div>
             <div className={profileStyle.containerOptions}>
               <div className={profileStyle.userOptions}>
-                <button
+              <button
                   className={profileStyle.buttons}
                   name="pedidos"
-                  onClick={(e) => setVentana(e.name)}
+                  onClick={() => setVentana("pedidos")}
                 >
                   Pedidos
                 </button>
                 <button
                   className={profileStyle.buttons}
                   name="reservas"
-                  onClick={(e) => setVentana(e.name)}
+                  onClick={() => setVentana("reservas")}
                 >
                   Reservas
                 </button>
                 <button
                   className={profileStyle.buttons}
                   name="reseñas"
-                  onClick={(e) => setVentana(e.name)}
+                  onClick={() => setVentana("reseñas")}
                 >
                   Reseñas
                 </button>

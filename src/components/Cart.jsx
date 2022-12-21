@@ -24,6 +24,8 @@ export const Cart = () => {
     products: product,
   });
 
+ 
+
   useEffect(() => {
     actualizarTotal()
     setOrder({...order, products: productsCart, total: total})
@@ -83,7 +85,7 @@ export const Cart = () => {
   };
 
   return (
-    <div>
+    <div className={s.globalContainerCart}>
       <NavBar />
       {productsCart.length >= 1 &&
         product.map((p) => (

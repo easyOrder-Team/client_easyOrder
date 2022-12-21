@@ -12,6 +12,9 @@ import {
   Cart,
   CreateProfile,
   OrderConfirmation,
+  PasarelaMercadoPago,
+  Scanner,
+  Redirect
 } from "./components";
 import { PagePay } from "./components/PagePay";
 import * as actions from "./redux/product/actions";
@@ -36,6 +39,9 @@ function App() {
         <Route path="/cart" element={<Cart />} />
         <Route path="/pagepay" element={<PagePay />} />
         <Route path="/confirmation/:id" element={<OrderConfirmation />} />
+        <Route path="/confirmation" element={<Redirect />} />
+        <Route path="/payMercadoPago" element={<PasarelaMercadoPago />} />
+        <Route path="/scannQR" element={<Scanner />} />
       </Routes>
     </div>
   );

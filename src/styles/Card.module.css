@@ -20,6 +20,7 @@
   justify-content: space-between;
   align-content: space-between;
   color: var(--text-color);
+  width: 100%;
 }
 
 b{
