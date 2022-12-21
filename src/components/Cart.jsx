@@ -5,14 +5,32 @@ import { deleteProduct } from "../redux/product/actions";
 import s from "../styles/Cart.module.css";
 import st from "../styles/ItemCount.module.css";
 import { useNavigate } from "react-router-dom";
+import * as orderActions from '../redux/order/actions'
+import { useEffect } from "react";
 
 export const Cart = () => {
-  const { productsCart } = useSelector((state) => state.productsCart);
-  const [count, setCount] = useState(1);
-  const [product, setProduct] = useState(productsCart);
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  var total = 0;
+  var aux = 0;
+
+  const state = useSelector((state) => state.profileReducer);
+  const { productsCart } = useSelector((state) => state.productsCart);
+  const [total, setTotal] = useState(0);
+  const [product, setProduct] = useState(productsCart);
+  const [order, setOrder] = useState({
+    id_mesa: parseInt(localStorage.getItem("site")),
+    id_profile: state.profile.id_profile,
+    total: total,
+    products: product,
+  });
+
+ 
+
+  useEffect(() => {
+    actualizarTotal()
+    setOrder({...order, products: productsCart, total: total})
+  },[total])
+
 
   const resta = (e) => {
     console.log(e.target.value);
@@ -24,6 +42,7 @@ export const Cart = () => {
     console.log(e.target.value);
     const piMas = product.findIndex((p) => p.id === e.target.value);
     actualizarCart(e.target.value, piMas, true);
+    actualizarTotal()
   };
 
   const actualizarCart = (id, i, sumar) => {
@@ -33,11 +52,23 @@ export const Cart = () => {
     actual.priceTotal = actual.price * actual.count;
     newState[i] = actual;
     setProduct([...newState]);
+    setOrder({...order, products: productsCart, total: total })
+    actualizarTotal()
   };
+
+  const actualizarTotal = () => {
+    aux = 0
+    for (let i = 0; i < product.length; i++) {
+      aux = aux + product[i].priceTotal
+    }
+    setTotal(aux)
+  }
 
   const handleClick = (e) => {
     e.preventDefault();
     console.log("pedido exitoso");
+   console.log(localStorage.getItem('site'));
+    dispatch(orderActions.saveOrder(order))
   };
 
   const handleDelete = (e) => {
@@ -84,7 +115,7 @@ export const Cart = () => {
             <div>
               <div className={s.price}>
                 <span>${p.priceTotal}</span>
-                <p>{(total = total + p.priceTotal)}</p>
+                <p>{(total)}</p>
               </div>
               <button className={s.btnDelete} onClick={handleDelete}>
                 <span className="material-symbols-outlined">delete</span>

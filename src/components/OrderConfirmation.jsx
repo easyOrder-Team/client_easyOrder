@@ -1,10 +1,12 @@
 import React, { useState } from "react";
+import { useEffect } from "react";
 import ReactDOM from "react-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { clearCart } from "../redux/product/actions";
 import s from "../styles/OrderConfirmation.module.css";
+import * as actions from "../redux/product/actions";
 
 export const OrderConfirmation = () => {
   let total = 0;
@@ -13,9 +15,19 @@ export const OrderConfirmation = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { id } = useParams();
+  const products = JSON.parse(localStorage.getItem('products'));
+  
+  useEffect(() => {
+    if(productsCart.length === 0 && products){          
+      products.map((product) =>{
+        dispatch(actions.addProductCart(product));
+      })
+    }    
+  }, [products]);
 
   const handleClick = (e) => {
     e.preventDefault();
+    localStorage.clear();
     console.log("regresar al home");
     dispatch(clearCart());
     navigate("/home");

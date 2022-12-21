@@ -15,3 +15,4 @@ export * from "./Profile";
 export * from "./OrderConfirmation";
 export * from "./PayMercadoPago"
 export * from "./QR_scanner"
+export * from "./RedirectPayMercado"
