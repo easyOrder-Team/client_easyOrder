@@ -24,3 +24,7 @@ export const SAVESITE = 'SAVESITE';
 //orders
 export const CREATE_ORDER = 'CREATE_ORDER'
 export const SAVE_ORDER = 'SAVE_ORDER'
+export const GET_ORDER = 'GET_ORDER'
+//check
+export const CREATE_CHECK = 'CREATE_CHECK';
+export const SAVE_CHECK = 'SAVE_CHECK';

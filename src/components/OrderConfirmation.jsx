@@ -1,10 +1,14 @@
 import React, { useState } from "react";
+import { useEffect } from "react";
 import ReactDOM from "react-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { clearCart } from "../redux/product/actions";
 import s from "../styles/OrderConfirmation.module.css";
+import * as orderActions from '../redux/order/actions';
+import * as checkActions from '../redux/check/actions';
+
 
 export const OrderConfirmation = () => {
   let total = 0;
@@ -13,11 +17,23 @@ export const OrderConfirmation = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { id } = useParams();
+  const order = useSelector(state => state.orderReducer)
+  const profile = useSelector(state => state.profile)
+  const bill = useSelector(state => state.checkReducer.check)
+  // useEffect(() => {
+  //   dispatch(orderActions.getAllOrder())
+  // },[order])
+  useEffect(() => {
+    // dispatch(orderActions.getAllOrder())
+  },[])
 
   const handleClick = (e) => {
     e.preventDefault();
+    let check = { id_check: bill.id, name: bill.payer.name.given_name, lastName: bill.payer.name.surname, date: bill.create_time, total: bill.purchase_units[0].amount.value, email: bill.payer.email_address, id_order: order.order.id_orders}
+    console.log(check)
     console.log("regresar al home");
     dispatch(clearCart());
+    dispatch(checkActions.createCheck(check))
     navigate("/home");
   };
 

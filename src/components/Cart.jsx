@@ -77,6 +77,7 @@ export const Cart = () => {
 
   const handleToPay = (e) => {
     e.preventDefault();
+    dispatch(orderActions.createOrder(order))
     console.log("pagando...");
     navigate("/pagepay");
   };

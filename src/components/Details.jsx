@@ -29,7 +29,7 @@ export const Details = () => {
   const handleClick = (e) => {
     e.preventDefault();
     const productSelected = {
-      id,
+      id: parseInt(detailProduct[0].id),
       image: detailProduct[0].image,
       name: detailProduct[0].name,
       price: detailProduct[0].price,
