@@ -12,11 +12,11 @@ import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 
 export const Profile = () => {
-  const profile = useSelector((state) => state.profileReducer.profile);
+  const { profile } = useSelector((state) => state.profile);
   const { user, isAuthenticated, isLoading } = useAuth0();
   const [ventana, setVentana] = useState("pedidos");
   const dispatch = useDispatch();
-  const navigate =  useNavigate()
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (isAuthenticated) {
@@ -27,7 +27,9 @@ export const Profile = () => {
   const changePassword = () => {
     let options = {
       method: "POST",
-      url: `https://${import.meta.env.VITE_AUTH0_DOMAIN}/dbconnections/change_password`,
+      url: `https://${
+        import.meta.env.VITE_AUTH0_DOMAIN
+      }/dbconnections/change_password`,
       headers: { "content-type": "application/json" },
       data: {
         client_id: import.meta.env.VITE_AUTH0_CLIENT_I,
@@ -126,7 +128,10 @@ export const Profile = () => {
                       Te enviaremos un link al correo electronico donde podras
                       entrar a realizar el cambio de contraseña
                     </p>
-                    <button onClick={changePassword} className={profileStyle.buttonLink}>
+                    <button
+                      onClick={changePassword}
+                      className={profileStyle.buttonLink}
+                    >
                       Enviar Link
                     </button>
                   </div>

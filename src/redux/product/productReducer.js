@@ -16,9 +16,7 @@ export const productReducer = (state = initialState, action) => {
       };
 
     case types.SORT_BY_TIME_PREPARATION:
-      let responsePrep = action.payload.response;
-      let time = action.payload.time;
-      let categoryPrep = action.payload.category;
+      let { responsePrep, time, categoryPrep } = action.payload.response;
       let supportTime = [];
 
       if (time === "min-max") {
@@ -74,9 +72,7 @@ export const productReducer = (state = initialState, action) => {
       };
 
     case types.SORT_PRODUCTS_BY_PRICE:
-      let response = action.payload.response;
-      let price = action.payload.price;
-      let category = action.payload.category;
+      let { response, price, category } = action.payload.response;
       let supportPrice = [];
 
       if (price === "menor-mayor") {
@@ -120,16 +116,6 @@ export const productReducer = (state = initialState, action) => {
       let { id, count } = action.payload;
       const exist = state.productsCart.some((p) => p.id === id);
       if (exist) {
-        /*  const product = state.productsCart.findIndex((p) => p.id === id);
-        let current = state.productsCart[product];
-        let copyProductCart = state.productsCart;
-        current.count = count + current.count;
-        current.priceTotal = current.price * current.count;
-        copyProductCart[product] = current; 
-        return {
-          ...state,
-          productsCart: copyProductCart,
-        };*/
         let newProductCart = state.productsCart.map((p) => {
           if (p.id === id) {
             return {
@@ -160,6 +146,7 @@ export const productReducer = (state = initialState, action) => {
         ...state,
         productsCart: [],
       };
+
     default:
       return state;
   }

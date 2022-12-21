@@ -1,7 +1,6 @@
 import React from "react";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import search from "../images/Search.svg";
 import s from "../styles/SearchBar.module.css";
 import * as actions from "../redux/product/actions";
 import { useNavigate } from "react-router-dom";

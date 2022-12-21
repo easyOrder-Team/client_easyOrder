@@ -7,7 +7,7 @@ const PayPalButton = window.paypal.Buttons.driver("react", { React, ReactDOM });
 export const PagePay = () => {
   let total = 0;
   const [price, setPrice] = useState(0);
-  const { productsCart } = useSelector((state) => state.productsCart);
+  const { productsCart } = useSelector((state) => state.products);
 
   const createOrder = (data, actions) => {
     return actions.order.create({
@@ -15,9 +15,8 @@ export const PagePay = () => {
         {
           amount: {
             value: total,
-            currency: 'MX'
+            currency: "MX",
           },
-          
         },
       ],
     });
@@ -34,7 +33,7 @@ export const PagePay = () => {
 
   return (
     <div>
-        <NavBar/>
+      <NavBar />
       {productsCart.map((p) => (
         <div key={p.id} className={s.container}>
           <div className={s.img}>

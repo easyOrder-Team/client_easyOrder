@@ -9,6 +9,8 @@ import { NavBar } from ".";
 export const Details = () => {
   const { id } = useParams();
   const navegate = useNavigate();
+  const { detailProduct } = useSelector((state) => state.products);
+
   const [count, setCount] = useState(1);
 
   const dispatch = useDispatch();
@@ -24,7 +26,6 @@ export const Details = () => {
   const suma = () => {
     setCount(count + 1);
   };
-  console.log(count);
 
   const handleClick = (e) => {
     e.preventDefault();
@@ -44,8 +45,6 @@ export const Details = () => {
     e.preventDefault();
     navegate("/cart");
   };
-
-  const { detailProduct } = useSelector((state) => state.products);
 
   return (
     <div>

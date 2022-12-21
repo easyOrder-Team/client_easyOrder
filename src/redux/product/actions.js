@@ -27,7 +27,6 @@ export const sortByTimePreparation = (time, category) => {
 };
 
 export const getProductByName = (name) => {
-  console.log(name);
   return (dispatch) =>
     axios
       .get(`http://localhost:3000/api/v1/products?name=${name}`)
@@ -64,7 +63,6 @@ export const sortProductsByPrice = (price, category) => {
           type: types.SORT_PRODUCTS_BY_PRICE,
           payload: { response: response.data, price, category },
         });
-        supportPrice = [];
       })
       .catch((error) => console.log(error));
 };
@@ -89,7 +87,6 @@ export const clearProduct = () => {
 };
 
 export const addProductCart = (product) => {
-  console.log(product);
   return {
     type: types.ADD_PRODUCT_CART,
     payload: product,
