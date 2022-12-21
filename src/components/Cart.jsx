@@ -1,15 +1,14 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { NavBar } from ".";
-import * as actions from "../redux/product/actions";
 import s from "../styles/Cart.module.css";
 import st from "../styles/ItemCount.module.css";
 import { useNavigate } from "react-router-dom";
 
 export const Cart = () => {
   const { productsCart } = useSelector((state) => state.products);
-  const [count, setCount] = useState(1);
-  const [product, setProduct] = useState(productsCart);
+  // const [count, setCount] = useState(1);
+  // const [product, setProduct] = useState(productsCart);
   const [storage, setStorage] = useState([]);
 
   const createStorage = () => {
@@ -53,7 +52,8 @@ export const Cart = () => {
     actual.count = sumar ? actual.count + 1 : actual.count - 1;
     actual.priceTotal = actual.price * actual.count;
     newState[i] = actual;
-    setProduct([...newState]);
+    // setProduct([...newState]);
+    setStorage([...newState]);
   };
 
   const handleClick = (e) => {
@@ -64,7 +64,7 @@ export const Cart = () => {
   const handleToPay = (e) => {
     e.preventDefault();
     console.log("pagando...");
-    localStorage.removeItem("cart");
+    localStorage.removeItem("cart"); //elimina localStorage
     navigate("/pagepay");
   };
 
