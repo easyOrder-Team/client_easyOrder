@@ -6,9 +6,8 @@ import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { clearCart } from "../redux/product/actions";
 import s from "../styles/OrderConfirmation.module.css";
-import * as orderActions from '../redux/order/actions';
-import * as checkActions from '../redux/check/actions';
-
+import * as actions from "../redux/product/actions";
+import * as actionsPayment from "../redux/payment/actions";
 
 export const OrderConfirmation = () => {
   let total = 0;
@@ -17,15 +16,18 @@ export const OrderConfirmation = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { id } = useParams();
-  const order = useSelector(state => state.orderReducer)
-  const profile = useSelector(state => state.profile)
-  const bill = useSelector(state => state.checkReducer.check)
-  // useEffect(() => {
-  //   dispatch(orderActions.getAllOrder())
-  // },[order])
+  const products = JSON.parse(localStorage.getItem("products"));
+
   useEffect(() => {
-    // dispatch(orderActions.getAllOrder())
-  },[])
+    dispatch(actionsPayment.getPaymentInfo(id));
+  }, []);
+  useEffect(() => {
+    if (productsCart.length === 0 && products) {
+      products.map((product) => {
+        dispatch(actions.addProductCart(product));
+      });
+    }
+  }, [products]);
 
   const handleClick = (e) => {
     e.preventDefault();

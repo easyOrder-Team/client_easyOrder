@@ -6,6 +6,7 @@ import { productReducer } from "../product/productReducer";
 import { profileReducer } from "../profile/profileReducer";
 import { orderReducer } from "../order/orderReducer";
 import { checkReducer } from "../check/checkReducer";
+import { paymentReducer } from "../payment/paymentReducer";
 
 const store = createStore(
   combineReducers({
@@ -15,7 +16,8 @@ const store = createStore(
     categories: categoryReducer,
     profileReducer,
     orderReducer,
-    checkReducer
+    checkReducer,
+    paymentReducer
   }),
   composeWithDevTools(applyMiddleware(thunk))
 );
