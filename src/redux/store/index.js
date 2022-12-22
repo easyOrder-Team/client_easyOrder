@@ -4,6 +4,7 @@ import thunk from "redux-thunk";
 import { categoryReducer } from "../categories/categoryReducer";
 import { productReducer } from "../product/productReducer";
 import { profileReducer } from "../profile/profileReducer";
+import { orderReducer } from "../order/orderReducer";
 
 const store = createStore(
   combineReducers({
@@ -11,7 +12,8 @@ const store = createStore(
     products: productReducer,
     productsCart: productReducer,
     categories: categoryReducer,
-    profileReducer
+    profileReducer,
+    orderReducer,
   }),
   composeWithDevTools(applyMiddleware(thunk))
 );

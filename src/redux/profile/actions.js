@@ -29,4 +29,8 @@ export const createProfile = () => {
       .catch((error) => console.log(error));
 };
 
+export const getSite = (id) => {
+  return {type: types.SAVESITE, payload: id}
+}
+
 

@@ -10,7 +10,12 @@ export * from "./Card";
 export * from "./SearchBar";
 export * from "./ResultSearch";
 export * from "./CreateProduct";
-export * from "./OrderConfirmation";
-export * from "./PayMercadoPago";
-export * from "./CreateProduct";
+export * from "./CreateProfile";
 export * from "./Profile";
+export * from "./OrderConfirmation";
+export * from "./PayMercadoPago"
+export * from "./QR_scanner"
+export * from "./RedirectPayMercado"
+
+
+
