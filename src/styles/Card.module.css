@@ -1,5 +1,5 @@
 .card__container {
-  background-color:var(--light-color);
+  background-color: var(--light-color);
   display: flex;
   margin: 1rem;
   border-radius: 0.5rem;
@@ -7,18 +7,25 @@
 }
 
 .card__img {
-  height:9rem;
+  height: 9rem;
   width: 9rem;
-  border-top-left-radius: .5rem;
-  border-bottom-left-radius: .5rem;
+  border-top-left-radius: 0.5rem;
+  border-bottom-left-radius: 0.5rem;
 }
 
 .card_all_info {
-  padding: .8rem;
+  padding: 0.8rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
   align-content: space-between;
+  color: var(--text-color);
+  width: 100%;
+}
+
+b{
+  color: var(--title-color);
+  font-size: 1.2rem;
 }
 
 .card__info {
@@ -36,7 +43,9 @@
   margin: 0.3rem;
   font-family: "Comfortaa", cursive;
   text-align: left;
+  color: var(--text-color);
 }
+
 .card__description__B {
   margin: 0.3rem;
   font-size: smaller;
@@ -59,9 +68,8 @@
   font-weight: 400;
   font-size: 1.2rem;
   text-align: right;
-
 }
 
-#color__span{
+#color__span {
   color: var(--main-color);
 }
