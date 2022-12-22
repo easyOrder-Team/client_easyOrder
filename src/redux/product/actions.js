@@ -102,15 +102,8 @@ export const clearCart = () => {
   };
 };
 export const deleteProduct = (id) => {
-  return (dispatch) => {
-    axios
-      .delete(`http://localhost:3000/api/v1/products/${id}`)
-      .then((response) => {
-        return {
-          type: types.DELETE_PRODUCT,
-          payload: id,
-        };
-      })
-      .catch((error) => console.log(error));
+  return {
+    type: types.DELETE_PRODUCT,
+    payload: id,
   };
 };
