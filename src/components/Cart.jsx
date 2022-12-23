@@ -7,52 +7,31 @@ import { useNavigate } from "react-router-dom";
 
 export const Cart = () => {
   const { productsCart } = useSelector((state) => state.products);
-  // const [count, setCount] = useState(1);
-  // const [product, setProduct] = useState(productsCart);
-  const [storage, setStorage] = useState([]);
-
-  const createStorage = () => {
-    if (productsCart.length !== 0) {
-      localStorage.setItem("cart", JSON.stringify(productsCart));
-    }
-    getStorage();
-  };
-
-  const getStorage = () => {
-    let localS = localStorage.getItem("cart");
-    setStorage(JSON.parse(localS));
-  };
-
-  useEffect(() => {
-    createStorage();
-  }, []);
+  const [count, setCount] = useState(1);
+  const [product, setProduct] = useState(productsCart);
 
   const navigate = useNavigate();
   var total = 0;
 
   const resta = (e) => {
     console.log(e.target.value);
-    const piMenos = storage.findIndex((p) => p.id === e.target.value);
-    // const piMenos = product.findIndex((p) => p.id === e.target.value);
+    const piMenos = product.findIndex((p) => p.id === e.target.value);
     actualizarCart(e.target.value, piMenos, false);
   };
 
   const suma = (e) => {
     console.log(e.target.value);
-    const piMas = storage.findIndex((p) => p.id === e.target.value);
-    // const piMas = product.findIndex((p) => p.id === e.target.value);
+    const piMas = product.findIndex((p) => p.id === e.target.value);
     actualizarCart(e.target.value, piMas, true);
   };
 
   const actualizarCart = (id, i, sumar) => {
-    let actual = storage[i];
-    let newState = storage;
-    // let actual = product[i];
-    // let newState = product;
+    let actual = product[i];
+    let newState = product;
     actual.count = sumar ? actual.count + 1 : actual.count - 1;
     actual.priceTotal = actual.price * actual.count;
     newState[i] = actual;
-    // setProduct([...newState]);
+    setProduct([...newState]);
     setStorage([...newState]);
   };
 
@@ -64,15 +43,14 @@ export const Cart = () => {
   const handleToPay = (e) => {
     e.preventDefault();
     console.log("pagando...");
-    localStorage.removeItem("cart"); //elimina localStorage
     navigate("/pagepay");
   };
 
   return (
     <div>
       <NavBar />
-      {storage.length &&
-        storage.map((p) => (
+      {product.length &&
+        product.map((p) => (
           <div key={p.id} className={s.container}>
             <div className={s.img}>
               <img src={p.image} alt={p.name} />

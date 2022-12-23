@@ -45,7 +45,6 @@ export const Details = () => {
     e.preventDefault();
     navegate("/cart");
   };
-
   return (
     <div>
       <NavBar />
