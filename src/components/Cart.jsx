@@ -1,18 +1,17 @@
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { NavBar } from ".";
 import s from "../styles/Cart.module.css";
 import st from "../styles/ItemCount.module.css";
 import { useNavigate } from "react-router-dom";
 import * as orderActions from "../redux/order/actions";
-import { useEffect } from "react";
 
 export const Cart = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   var aux = 0;
 
-  const { state } = useSelector((state) => state.profile);
+  const state = useSelector((state) => state.profileReducer.state);
   const { productsCart } = useSelector((state) => state.products);
   const [total, setTotal] = useState(0);
   const [product, setProduct] = useState(productsCart);

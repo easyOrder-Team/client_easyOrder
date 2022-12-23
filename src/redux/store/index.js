@@ -10,7 +10,7 @@ const store = createStore(
   combineReducers({
     products: productReducer,
     categories: categoryReducer,
-    profile: profileReducer,
+    profileReducer,
     orderReducer,
   }),
   composeWithDevTools(applyMiddleware(thunk))
