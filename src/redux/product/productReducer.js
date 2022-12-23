@@ -105,11 +105,9 @@ export const productReducer = (state = initialState, action) => {
       }
 
     case types.DELETE_PRODUCT:
-      let productDelete = state.products.filter((p) => p.id !== action.payload);
-
       return {
         ...state,
-        products: productDelete,
+        productsCart: state.productsCart.filter((p) => p.id !== action.payload),
       };
 
     case types.ADD_PRODUCT_CART:

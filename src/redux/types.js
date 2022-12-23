@@ -18,5 +18,9 @@ export const CREATE_PROFILE = "CREATE_PROFILE";
 export const ADD_PRODUCT_CART = "ADD_PRODUCT_CART";
 export const CLEAR_CART = "CLEAR_CART";
 //Users
-
+export const SAVESITE = 'SAVESITE';
 //Reservations
+
+//orders
+export const CREATE_ORDER = 'CREATE_ORDER'
+export const SAVE_ORDER = 'SAVE_ORDER'

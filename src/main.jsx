@@ -8,7 +8,7 @@ import { BrowserRouter } from "react-router-dom";
 import store from "./redux/store";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  
+    
     <Provider store={store}>
       <Auth0Provider
         domain={import.meta.env.VITE_AUTH0_DOMAIN}

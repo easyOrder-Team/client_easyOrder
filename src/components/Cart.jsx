@@ -4,14 +4,33 @@ import { NavBar } from ".";
 import s from "../styles/Cart.module.css";
 import st from "../styles/ItemCount.module.css";
 import { useNavigate } from "react-router-dom";
+import * as orderActions from "../redux/order/actions";
+import { useEffect } from "react";
 
 export const Cart = () => {
-  const { productsCart } = useSelector((state) => state.products);
-  const [count, setCount] = useState(1);
-  const [product, setProduct] = useState(productsCart);
-
   const navigate = useNavigate();
-  var total = 0;
+  const dispatch = useDispatch();
+  var aux = 0;
+
+  const { state } = useSelector((state) => state.profile);
+  const { productsCart } = useSelector((state) => state.products);
+  const [total, setTotal] = useState(0);
+  const [product, setProduct] = useState(productsCart);
+  const [order, setOrder] = useState({
+    id_mesa: parseInt(localStorage.getItem("site")),
+    id_profile: state.profile.id_profile,
+    total: total,
+    products: product,
+  });
+
+  useEffect(() => {
+    setProduct(productsCart);
+  }, [productsCart]);
+
+  useEffect(() => {
+    actualizarTotal();
+    setOrder({ ...order, products: productsCart, total: total });
+  }, [product, total]);
 
   const resta = (e) => {
     console.log(e.target.value);
@@ -23,6 +42,7 @@ export const Cart = () => {
     console.log(e.target.value);
     const piMas = product.findIndex((p) => p.id === e.target.value);
     actualizarCart(e.target.value, piMas, true);
+    actualizarTotal();
   };
 
   const actualizarCart = (id, i, sumar) => {
@@ -32,12 +52,30 @@ export const Cart = () => {
     actual.priceTotal = actual.price * actual.count;
     newState[i] = actual;
     setProduct([...newState]);
-    setStorage([...newState]);
+    setOrder({ ...order, products: productsCart, total: total });
+    actualizarTotal();
+  };
+
+  const actualizarTotal = () => {
+    aux = 0;
+    if (product.length !== 0) {
+      for (let i = 0; i < product.length; i++) {
+        aux = aux + product[i].priceTotal;
+      }
+      return setTotal(aux);
+    }
+    return setTotal(aux);
   };
 
   const handleClick = (e) => {
     e.preventDefault();
     console.log("pedido exitoso");
+    console.log(localStorage.getItem("site"));
+    dispatch(orderActions.saveOrder(order));
+  };
+
+  const handleDelete = (id) => {
+    dispatch(deleteProduct(id));
   };
 
   const handleToPay = (e) => {
@@ -47,7 +85,7 @@ export const Cart = () => {
   };
 
   return (
-    <div>
+    <div className={s.globalContainerCart}>
       <NavBar />
       {product.length &&
         product.map((p) => (
@@ -75,9 +113,17 @@ export const Cart = () => {
                 </div>
               </div>
             </div>
-            <div className={s.price}>
-              <span>${p.priceTotal}</span>
-              <p>{(total = total + p.priceTotal)}</p>
+            <div>
+              <div className={s.price}>
+                <span>${p.priceTotal}</span>
+                <p>{total}</p>
+              </div>
+              <button
+                className={s.btnDelete}
+                onClick={() => handleDelete(p.id)}
+              >
+                <span className="material-symbols-outlined">delete</span>
+              </button>
             </div>
             <br />
           </div>
