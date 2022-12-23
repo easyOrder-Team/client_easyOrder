@@ -7,6 +7,7 @@ import st from "../styles/ItemCount.module.css";
 import { useNavigate } from "react-router-dom";
 import * as orderActions from "../redux/order/actions";
 import { useEffect } from "react";
+import * as actions from "../redux/product/actions";
 
 export const Cart = () => {
   const navigate = useNavigate();
@@ -17,6 +18,20 @@ export const Cart = () => {
   const { productsCart } = useSelector((state) => state.productsCart);
   const [total, setTotal] = useState(0);
   const [product, setProduct] = useState(productsCart);
+
+  useEffect(() => {
+    const productsLS = JSON.parse(localStorage.getItem("product")) ?? [];
+    if (productsLS.length > 0 && productsCart.length === 0) {
+      dispatch(actions.addProductCart(productsLS));
+    }
+  }, []);
+
+  useEffect(() => {
+    if (product) {
+      localStorage.setItem("product", JSON.stringify(product));
+    }
+  }, [product]);
+
   const [order, setOrder] = useState({
     id_mesa: parseInt(localStorage.getItem("site")),
     id_profile: state.profile.id_profile,
@@ -25,6 +40,7 @@ export const Cart = () => {
   });
 
   useEffect(() => {
+    console.log("dispach1");
     setProduct(productsCart);
   }, [productsCart]);
 
