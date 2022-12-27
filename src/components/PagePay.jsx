@@ -8,7 +8,7 @@ const PayPalButton = window.paypal.Buttons.driver("react", { React, ReactDOM });
 export const PagePay = () => {
   let total = 0;
   const [price, setPrice] = useState(0);
-  const { productsCart } = useSelector((state) => state.productsCart);
+  const { productsCart } = useSelector((state) => state.productReducer);
   const navigate = useNavigate();
 
   const createOrder = (data, actions) => {

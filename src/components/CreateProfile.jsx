@@ -16,7 +16,7 @@ import axios from "axios";
 export const CreateProfile = () => {
   const { user, isAuthenticated, isLoading } = useAuth0();
 
-  const { profile } = useSelector((state) => state.profile);
+  const { profile } = useSelector((state) => state.profileReducer);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   useEffect(() => {
@@ -202,11 +202,9 @@ export const CreateProfile = () => {
 
               <div className={styleCreateProfile.containerButton}>
                 <input
-                  
                   type="submit"
                   value="Aceptar"
-                  className={ styleCreateProfile.buttonCrear
-                  }
+                  className={styleCreateProfile.buttonCrear}
                 />
               </div>
             </div>

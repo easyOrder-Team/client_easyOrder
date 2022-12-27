@@ -9,8 +9,8 @@ import { paymentReducer } from "../payment/paymentReducer";
 
 const store = createStore(
   combineReducers({
-    products: productReducer,
-    categories: categoryReducer,
+    productReducer,
+    categoryReducer,
     profileReducer,
     orderReducer,
     paymentReducer,

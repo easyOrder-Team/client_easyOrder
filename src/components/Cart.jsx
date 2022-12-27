@@ -5,7 +5,6 @@ import s from "../styles/Cart.module.css";
 import st from "../styles/ItemCount.module.css";
 import { useNavigate } from "react-router-dom";
 import * as orderActions from "../redux/order/actions";
-import { useEffect } from "react";
 
 import * as actions from "../redux/product/actions";
 
@@ -14,8 +13,8 @@ export const Cart = () => {
   const dispatch = useDispatch();
   var aux = 0;
 
-  const state = useSelector((state) => state.profileReducer.state);
-  const { productsCart } = useSelector((state) => state.products);
+  const { profile } = useSelector((state) => state.profileReducer);
+  const { productsCart } = useSelector((state) => state.productReducer);
   const [total, setTotal] = useState(0);
   const [product, setProduct] = useState(productsCart);
 
@@ -34,7 +33,7 @@ export const Cart = () => {
 
   const [order, setOrder] = useState({
     id_mesa: parseInt(localStorage.getItem("site")),
-    id_profile: state.profile.id_profile,
+    id_profile: profile.id_profile,
     total: total,
     products: product,
   });
@@ -50,13 +49,13 @@ export const Cart = () => {
   }, [product, total]);
 
   const resta = (e) => {
-    console.log(e.target.value);
+    // console.log(e.target.value);
     const piMenos = product.findIndex((p) => p.id === e.target.value);
     actualizarCart(e.target.value, piMenos, false);
   };
 
   const suma = (e) => {
-    console.log(e.target.value);
+    // console.log(e.target.value);
     const piMas = product.findIndex((p) => p.id === e.target.value);
     actualizarCart(e.target.value, piMas, true);
     actualizarTotal();
@@ -87,7 +86,7 @@ export const Cart = () => {
   const handleClick = (e) => {
     e.preventDefault();
     console.log("pedido exitoso");
-    console.log(localStorage.getItem("site"));
+    // console.log(localStorage.getItem("site"));
     dispatch(orderActions.saveOrder(order));
   };
 

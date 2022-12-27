@@ -9,7 +9,7 @@ import { NavBar } from ".";
 export const Details = () => {
   const { id } = useParams();
   const navegate = useNavigate();
-  const { detailProduct } = useSelector((state) => state.products);
+  const { detailProduct } = useSelector((state) => state.productReducer);
 
   const [count, setCount] = useState(1);
 

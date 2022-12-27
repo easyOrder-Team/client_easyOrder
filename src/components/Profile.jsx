@@ -12,7 +12,7 @@ import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 
 export const Profile = () => {
-  const { profile } = useSelector((state) => state.profile);
+  const { profile } = useSelector((state) => state.profileReducer);
   const { user, isAuthenticated, isLoading } = useAuth0();
   const [ventana, setVentana] = useState("pedidos");
   const dispatch = useDispatch();
@@ -164,7 +164,7 @@ export const Profile = () => {
             </div>
             <div className={profileStyle.containerOptions}>
               <div className={profileStyle.userOptions}>
-              <button
+                <button
                   className={profileStyle.buttons}
                   name="pedidos"
                   onClick={() => setVentana("pedidos")}
