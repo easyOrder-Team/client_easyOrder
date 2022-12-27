@@ -17,6 +17,21 @@ export const Cart = () => {
   const { productsCart } = useSelector((state) => state.productsCart);
   const [total, setTotal] = useState(0);
   const [product, setProduct] = useState(productsCart);
+
+  useEffect(() => {
+    const obtenerLS = () => {
+      const productsLS =
+        JSON.parse(localStorage.getItem("product")) ?? productsCart;
+      console.log(productsLS);
+      setProduct(productsLS);
+    };
+    obtenerLS();
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("product", JSON.stringify(product));
+  }, [product]);
+
   const [order, setOrder] = useState({
     id_mesa: parseInt(localStorage.getItem("site")),
     id_profile: state.profile.id_profile,
