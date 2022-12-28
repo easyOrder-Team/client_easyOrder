@@ -13,7 +13,7 @@ const store = createStore(
     productsCart: productReducer,
     categories: categoryReducer,
     profileReducer,
-    orderReducer
+    orderReducer,
   }),
   composeWithDevTools(applyMiddleware(thunk))
 );
