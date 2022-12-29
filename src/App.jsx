@@ -21,6 +21,7 @@ import * as actionsCategory from "./redux/categories/actions";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { CreateProfile } from "./components/CreateProfile";
+import OrderDetail from "./components/OrderDetail";
 
 function App() {
   return (
@@ -42,6 +43,7 @@ function App() {
         <Route path="/confirmation" element={<Redirect />} />
         <Route path="/payMercadoPago" element={<PasarelaMercadoPago />} />
         <Route path="/scannQR" element={<Scanner />} />
+        <Route path="/orderDetail" element={<OrderDetail />} />
       </Routes>
     </div>
   );

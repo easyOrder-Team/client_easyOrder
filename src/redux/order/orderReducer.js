@@ -1,7 +1,8 @@
 import * as types from "../types";
 
 const initialState = {
-  order: {}
+  order: {},
+  totalOrders: []
 };
 
 export const orderReducer = (state = initialState, action) => {
@@ -15,6 +16,12 @@ export const orderReducer = (state = initialState, action) => {
       return{
         ...state,
         order: {}
+      }
+    }
+    case types.GET_ORDERS_ID_PROFILE:{
+      return{
+        ...state,
+        totalOrders: action.payload
       }
     }
     default:

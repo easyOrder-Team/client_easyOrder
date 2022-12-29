@@ -17,3 +17,16 @@ export const createOrder = (order) => {
         })
         .catch((error) => console.log(error));
   };
+
+  export const getOrdersIdfUser = (id_profile) => {
+    return (dispatch) =>
+      axios
+        .get(`http://localhost:3000/api/v1/orders/${id_profile}`)
+        .then((response) => {
+          dispatch({
+            type: types.GET_ORDERS_ID_PROFILE,
+            payload: response.data,
+          });
+        })
+        .catch((error) => console.log(error));
+  };

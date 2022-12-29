@@ -10,6 +10,8 @@ import { useEffect } from "react";
 import axios from "axios";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
+import Pedidos from "./Pedidos";
+import * as actionsOrders from '../redux/order/actions'
 
 export const Profile = () => {
   const profile = useSelector((state) => state.profileReducer.profile);
@@ -18,9 +20,12 @@ export const Profile = () => {
   const dispatch = useDispatch();
   const navigate =  useNavigate()
 
+
   useEffect(() => {
     if (isAuthenticated) {
       dispatch(actionsProfile.getProfileById(user.email));
+      dispatch(actionsOrders.getOrdersIdfUser(user.email));
+
     }
   }, [user]);
 
@@ -133,7 +138,7 @@ export const Profile = () => {
                 </div>
               ) : (
                 <div className={profileStyle.containerOptionsDiv}>
-                  <h1>Pedidos</h1>
+                  <div>{<Pedidos/>}</div>
                 </div>
               )}
             </div>
@@ -191,7 +196,7 @@ export const Profile = () => {
                 </div>
               ) : (
                 <div className={profileStyle.containerOptionsDiv}>
-                  <h1>Pedidos</h1>
+                  <div>{<Pedidos/>}</div>
                 </div>
               )}
             </div>
