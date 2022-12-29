@@ -3,14 +3,18 @@ import s from "../styles/Home.module.css";
 import { NavBar } from ".";
 import { Link } from "react-router-dom";
 import { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector} from "react-redux";
 import * as actions from "../redux/product/actions";
+
 
 export const Home = () => {
   const dispatch = useDispatch();
+  const profile = useSelector((state) => state.profileReducer.profile);
   useEffect(() => {
     dispatch(actions.clearProduct());
     console.log(localStorage.getItem('site'))
+    if(profile.hasOwnProperty('id_profile'))
+    localStorage.setItem('profile', JSON.stringify(profile))
   }, []);
   return (
     <div>

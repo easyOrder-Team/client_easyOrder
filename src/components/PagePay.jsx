@@ -42,6 +42,12 @@ export const PagePay = () => {
     navigate("/cart");
   };
 
+  const handleClickMercadoPago = (e) => {
+    e.preventDefault()
+    localStorage.setItem('order', JSON.stringify(order))
+    navigate("/payMercadoPago")
+  }
+
   return (
     <div className={s.globalContainerCart}>
       <NavBar />
@@ -73,7 +79,7 @@ export const PagePay = () => {
         </div>
       </div>
       <div className={s.payBtn}>
-        <button className={s.payBtnMercadopago} onClick={()=>navigate("/payMercadoPago")} >
+        <button className={s.payBtnMercadopago} onClick={handleClickMercadoPago} >
           <img
             className={s.logos}
             src="https://logodownload.org/wp-content/uploads/2019/06/mercado-pago-logo-4.png"
