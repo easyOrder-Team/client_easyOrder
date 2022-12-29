@@ -13,6 +13,15 @@ export const Details = () => {
 
   const dispatch = useDispatch();
 
+  const formatoPesosMxn = (precio) => {
+    return precio
+      .toLocaleString("en-US", {
+        style: "currency",
+        currency: "MXN",
+      })
+      .slice(2, -3);
+  };
+
   useEffect(() => {
     dispatch(actions.getProductById(id));
   }, []);
@@ -60,7 +69,9 @@ export const Details = () => {
             />
             <div className={style.conteiner_Name}>
               <h2>{detailProduct[0].name}</h2>
-              <h2 className={style.price}>{"$ " + detailProduct[0].price}</h2>
+              <h2 className={style.price}>
+                {formatoPesosMxn(detailProduct[0].price)}
+              </h2>
             </div>
             <div>
               <p className={style.description}>
