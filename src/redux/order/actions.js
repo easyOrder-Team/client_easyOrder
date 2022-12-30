@@ -41,3 +41,17 @@ export const getAllOrder =  () => {
         })
         .catch((error) => console.log(error));
   };
+
+  export const getOrderById = (id_order) => {
+    return (dispatch) =>
+      axios
+        .get(`http://localhost:3000/api/v1/orders/orderbyid/${id_order}`)
+        .then((response) => {
+          console.log(response.data)
+          dispatch({
+            type: types.GET_ORDER_BY_ID,
+            payload: response.data,
+          });
+        })
+        .catch((error) => console.log(error));
+  };

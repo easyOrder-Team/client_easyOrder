@@ -2,7 +2,8 @@ import * as types from "../types";
 
 const initialState = {
   order: {},
-  totalOrders: []
+  totalOrders: [],
+  orderById: []
 };
 
 export const orderReducer = (state = initialState, action) => {
@@ -27,6 +28,12 @@ export const orderReducer = (state = initialState, action) => {
       return{
         ...state,
         totalOrders: action.payload
+      }
+    }
+    case types.GET_ORDER_BY_ID:{
+      return{
+        ...state,
+        orderById: action.payload
       }
     }
     default:

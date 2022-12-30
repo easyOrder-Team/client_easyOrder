@@ -43,7 +43,7 @@ function App() {
         <Route path="/confirmation" element={<Redirect />} />
         <Route path="/payMercadoPago" element={<PasarelaMercadoPago />} />
         <Route path="/scannQR" element={<Scanner />} />
-        <Route path="/orderDetail" element={<OrderDetail />} />
+        <Route path="/orderDetail/:id" element={<OrderDetail />} />
       </Routes>
     </div>
   );

@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { NavBar } from ".";
 import s from "../styles/Cart.module.css";
 import { useNavigate } from "react-router-dom";
-import s from "../styles/Cart.module.css";
 import * as checkActions from '../redux/check/actions'
 import * as orderActions from '../redux/order/actions';
 const PayPalButton = window.paypal.Buttons.driver("react", { React, ReactDOM });

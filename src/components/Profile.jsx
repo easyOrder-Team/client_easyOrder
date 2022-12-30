@@ -10,7 +10,7 @@ import { useEffect } from "react";
 import axios from "axios";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
-import Pedidos from "./Pedidos";
+import OrderHistory from "./OrderHistory";
 import * as actionsOrders from '../redux/order/actions'
 
 export const Profile = () => {
@@ -25,7 +25,6 @@ export const Profile = () => {
     if (isAuthenticated) {
       dispatch(actionsProfile.getProfileById(user.email));
       dispatch(actionsOrders.getOrdersIdfUser(user.email));
-
     }
   }, [user]);
 
@@ -138,7 +137,7 @@ export const Profile = () => {
                 </div>
               ) : (
                 <div className={profileStyle.containerOptionsDiv}>
-                  <div>{<Pedidos/>}</div>
+                  <div>{<OrderHistory/>}</div>
                 </div>
               )}
             </div>
@@ -196,7 +195,7 @@ export const Profile = () => {
                 </div>
               ) : (
                 <div className={profileStyle.containerOptionsDiv}>
-                  <div>{<Pedidos/>}</div>
+                  <div>{<OrderHistory/>}</div>
                 </div>
               )}
             </div>
