@@ -12,6 +12,9 @@ import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 import OrderHistory from "./OrderHistory";
 import * as actionsOrders from '../redux/order/actions'
+import Reservas from "./ReservationHistory";
+import * as actionsReservation from '../redux/reservation/actions';
+
 
 export const Profile = () => {
   const profile = useSelector((state) => state.profileReducer.profile);
@@ -21,10 +24,13 @@ export const Profile = () => {
   const navigate =  useNavigate()
 
 
+  
   useEffect(() => {
     if (isAuthenticated) {
       dispatch(actionsProfile.getProfileById(user.email));
       dispatch(actionsOrders.getOrdersIdfUser(user.email));
+      dispatch(actionsReservation.getReservationById(user.email));
+
     }
   }, [user]);
 
@@ -116,7 +122,7 @@ export const Profile = () => {
 
               {ventana === "reservas" ? (
                 <div className={profileStyle.containerOptionsDiv}>
-                  <h1>Reservas</h1>
+                  <div><Reservas/></div>
                 </div>
               ) : ventana === "reseñas" ? (
                 <div className={profileStyle.containerOptionsDiv}>
@@ -187,7 +193,7 @@ export const Profile = () => {
               </div>
               {ventana === "reservas" ? (
                 <div className={profileStyle.containerOptionsDiv}>
-                  <h1>Reservas</h1>
+                  <div><Reservas/></div>
                 </div>
               ) : ventana === "reseñas" ? (
                 <div className={profileStyle.containerOptionsDiv}>

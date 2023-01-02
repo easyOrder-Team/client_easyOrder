@@ -7,7 +7,6 @@ import style from "../styles/OrderDetail.module.css";
 
 const OrderDetail = () => {
   const { id } = useParams();
-  console.log(id)
   const dispatch = useDispatch()
   const { orderById } = useSelector((state) => state.orderReducer);
 
@@ -16,8 +15,6 @@ const OrderDetail = () => {
 
   }, [orderById]);
 
-
-  console.log(orderById)
 
   return (
     <div>

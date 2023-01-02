@@ -7,6 +7,8 @@ import { profileReducer } from "../profile/profileReducer";
 import { orderReducer } from "../order/orderReducer";
 import { checkReducer } from "../check/checkReducer";
 import { paymentReducer } from "../payment/paymentReducer";
+import { reservationReducer } from "../reservation/reservationReducer";
+
 
 const store = createStore(
   combineReducers({
@@ -18,6 +20,7 @@ const store = createStore(
     orderReducer,
     checkReducer,
     paymentReducer,
+    reservationReducer,
   }),
   composeWithDevTools(applyMiddleware(thunk))
 );
