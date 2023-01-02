@@ -19,6 +19,15 @@ export const Cart = () => {
   const [total, setTotal] = useState(0);
   const [product, setProduct] = useState(productsCart);
 
+  const formatoPesosMxn = (precio) => {
+    return precio
+      .toLocaleString("en", {
+        style: "currency",
+        currency: "MXN",
+      })
+      .slice(2, -3);
+  };
+
   useEffect(() => {
     const productsLS = JSON.parse(localStorage.getItem("product")) ?? [];
     if (productsLS.length > 0 && productsCart.length === 0) {
@@ -132,7 +141,7 @@ export const Cart = () => {
             </div>
             <div>
               <div className={s.price}>
-                <span>${p.priceTotal}</span>
+                <span>{formatoPesosMxn(p.priceTotal)}</span>
                 <p>{total}</p>
               </div>
               <button
@@ -150,7 +159,7 @@ export const Cart = () => {
           <h3>Total</h3>
         </div>
         <div>
-          <span>${total}</span>
+          <span>{formatoPesosMxn(total)}</span>
         </div>
       </div>
 
