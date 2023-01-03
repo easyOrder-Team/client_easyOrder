@@ -9,7 +9,7 @@ import * as actions from "../redux/product/actions";
 
 export const Home = () => {
   const dispatch = useDispatch();
-  const profile = useSelector((state) => state.profileReducer.profile);
+  const {profile} = useSelector((state) => state.profileReducer);
   useEffect(() => {
     dispatch(actions.clearProduct());
     console.log(localStorage.getItem('site'))

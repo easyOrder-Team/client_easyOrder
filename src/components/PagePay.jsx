@@ -12,8 +12,8 @@ export const PagePay = () => {
   let total = 0;
   const dispatch = useDispatch()
   const [price, setPrice] = useState(0);
-  const { productsCart } = useSelector((state) => state.productsCart);
-  const order = useSelector(state => state.orderReducer)
+  const { productsCart } = useSelector((state) => state.productReducer);
+  const {order} = useSelector(state => state.orderReducer)
   const navigate = useNavigate();
 
   const createOrder = (data, actions) => {

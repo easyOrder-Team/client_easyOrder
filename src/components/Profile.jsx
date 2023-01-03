@@ -17,7 +17,7 @@ import * as actionsReservation from '../redux/reservation/actions';
 
 
 export const Profile = () => {
-  const profile = useSelector((state) => state.profileReducer.profile);
+  const {profile} = useSelector((state) => state.profileReducer);
   const { user, isAuthenticated, isLoading } = useAuth0();
   const [ventana, setVentana] = useState("pedidos");
   const dispatch = useDispatch();

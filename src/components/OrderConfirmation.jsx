@@ -14,7 +14,7 @@ import * as checkActions from "../redux/check/actions";
 export const OrderConfirmation = () => {
   let total = 0;
   const [price, setPrice] = useState(0);
-  const { productsCart } = useSelector((state) => state.productsCart);
+  const { productsCart } = useSelector((state) => state.productReducer);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { id } = useParams();
