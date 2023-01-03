@@ -36,3 +36,6 @@ export const SAVE_CHECK = 'SAVE_CHECK';
 
 //pago
 export const GET_INFO_PAYMENT = 'GET_INFO_PAYMENT'
+
+//review
+export const CREATE_REVIEW = 'CREATE_REVIEW'
