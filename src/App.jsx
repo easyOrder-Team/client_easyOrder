@@ -12,7 +12,8 @@ import {
   OrderConfirmation,
   PasarelaMercadoPago,
   Scanner,
-  Redirect
+  Redirect,
+  Review
 } from "./components";
 import { PagePay } from "./components/PagePay"
 import { Profile } from "./components/Profile"
@@ -43,6 +44,7 @@ function App() {
         <Route path="/confirmation" element={<Redirect />} />
         <Route path="/payMercadoPago" element={<PasarelaMercadoPago />} />
         <Route path="/scannQR" element={<Scanner />} />
+        <Route path="/review" element = {<Review/>}/>
         <Route path="/orderDetail/:id" element={<OrderDetail />} />
       </Routes>
     </div>

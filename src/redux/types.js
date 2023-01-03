@@ -36,9 +36,16 @@ export const CREATE_CHECK = 'CREATE_CHECK';
 export const SAVE_CHECK = 'SAVE_CHECK';
 
 //pago
+<<<<<<< HEAD
 export const GET_INFO_PAYMENT = 'GET_INFO_PAYMENT';
 export const GET_ORDERS_ID_PROFILE = 'GET_ORDERS_ID_PROFILE';
 
 //reservas
 export const GET_RESERVAS_ACT_BY_ID_PROFILE = "GET_RESERVAS_ACT_BY_ID_PROFILE";
 export const DELETE_RESERVATION = "DELETE_RESERVATION"
+=======
+export const GET_INFO_PAYMENT = 'GET_INFO_PAYMENT'
+
+//review
+export const CREATE_REVIEW = 'CREATE_REVIEW'
+>>>>>>> 0f63991bd0b3daf577f6f3460cc1d0840267b619
