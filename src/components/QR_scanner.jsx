@@ -1,6 +1,6 @@
 import React from "react";
 import { useEffect, useState } from "react";
-import QrReader from "react-qr-scanner";
+//import QrReader from "react-qr-scanner";
 import scann from "../styles/QR_scanner.module.css";
 import { NavBar } from "./index";
 export const Scanner = () => {
