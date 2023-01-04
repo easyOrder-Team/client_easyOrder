@@ -2,6 +2,15 @@ import React from "react";
 import style from "../styles/Card.module.css";
 
 export const Card = ({ name, price, image, description }) => {
+  const formatoPesosMxn = (precio) => {
+    return precio
+      .toLocaleString("en", {
+        style: "currency",
+        currency: "MXN",
+      })
+      .slice(2, -3);
+  };
+
   return (
     <div className={style.card__container}>
       <div>
@@ -20,7 +29,7 @@ export const Card = ({ name, price, image, description }) => {
         </div>
 
         <div className={style.card_description_C}>
-          <div>{`$ ${price}`}</div>
+          <div>{formatoPesosMxn(price)}</div>
           <div>
             <span id={style.color__span} className="material-symbols-outlined">
               add_circle

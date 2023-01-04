@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { NavBar } from ".";
+import { NavBar, Mensaje } from ".";
 import { deleteProduct } from "../redux/product/actions";
 import s from "../styles/Cart.module.css";
 import st from "../styles/ItemCount.module.css";
@@ -18,6 +18,26 @@ export const Cart = () => {
   const { productsCart } = useSelector((state) => state.productReducer);
   const [total, setTotal] = useState(0);
   const [product, setProduct] = useState(productsCart);
+  const [mensaje, setMensaje] = useState("");
+  const [order, setOrder] = useState({
+    id_mesa: parseInt(localStorage.getItem("site")),
+    id_profile: state.profile.id_profile,
+    total: total,
+    products: product,
+  });
+  const [count, setCount] = useState(
+    JSON.parse(localStorage.getItem("contador")) ?? []
+  );
+  const [tempTotal, setTemTotal] = useState(0);
+
+  const formatoPesosMxn = (precio) => {
+    return precio
+      .toLocaleString("en", {
+        style: "currency",
+        currency: "MXN",
+      })
+      .slice(2, -3);
+  };
 
   useEffect(() => {
     const productsLS = JSON.parse(localStorage.getItem("product")) ?? [];
@@ -31,16 +51,7 @@ export const Cart = () => {
       localStorage.setItem("product", JSON.stringify(product));
     }
   }, [product]);
-
-  const [order, setOrder] = useState({
-    id_mesa: parseInt(localStorage.getItem("site")),
-    id_profile: state.profile.id_profile,
-    total: total,
-    products: product,
-  });
-
   useEffect(() => {
-    console.log("dispach1");
     setProduct(productsCart);
   }, [productsCart]);
 
@@ -48,6 +59,14 @@ export const Cart = () => {
     actualizarTotal();
     setOrder({ ...order, products: productsCart, total: total });
   }, [product, total]);
+
+  useEffect(() => {
+    setTemTotal(JSON.parse(localStorage.getItem("tempTotal")) ?? []);
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("tempTotal", JSON.stringify(tempTotal));
+  }, [tempTotal]);
 
   const resta = (e) => {
     console.log(e.target.value);
@@ -86,10 +105,36 @@ export const Cart = () => {
 
   const handleClick = (e) => {
     e.preventDefault();
-    console.log("pedido exitoso");
-    console.log(localStorage.getItem("site"));
     dispatch(orderActions.saveOrder(order));
+    if (product.length === 0) {
+      setMensaje("No hay productos en el carrito");
+      setCount(0);
+    } else if (count === 0) {
+      localStorage.setItem("tempTotal", JSON.stringify(total));
+      setTemTotal(total);
+      console.log(tempTotal);
+      setMensaje("Se ha realizado su pedido");
+    } else if (total === tempTotal && count !== 0) {
+      setMensaje("Pedido ya realizado");
+      console.log(tempTotal, total, count);
+    } else if (total !== tempTotal && count >= 0) {
+      setMensaje("Pedido Actualizado");
+      setTemTotal(total);
+      console.log(tempTotal, total, count);
+    } else if (total === 0 && tempTotal === 0) {
+      setCount(0);
+    } else {
+      setMensaje("");
+    }
+    setTimeout(() => {
+      setMensaje("");
+    }, 2000);
+    setCount(parseInt(count + 1));
   };
+
+  useEffect(() => {
+    localStorage.setItem("contador", JSON.stringify(parseInt(count)));
+  }, [handleClick]);
 
   const handleDelete = (id) => {
     dispatch(deleteProduct(id));
@@ -97,9 +142,9 @@ export const Cart = () => {
 
   const handleToPay = (e) => {
     e.preventDefault();
-    dispatch(orderActions.createOrder(order))
-    console.log("pagando...");
     navigate("/pagepay");
+    localStorage.setItem("contador", JSON.stringify(parseInt(0)));
+    setCount(0);
   };
 
   return (
@@ -133,7 +178,7 @@ export const Cart = () => {
             </div>
             <div>
               <div className={s.price}>
-                <span>${p.priceTotal}</span>
+                <span>{formatoPesosMxn(p.priceTotal)}</span>
                 <p>{total}</p>
               </div>
               <button
@@ -151,9 +196,11 @@ export const Cart = () => {
           <h3>Total</h3>
         </div>
         <div>
-          <span>${total}</span>
+          <span>{formatoPesosMxn(total)}</span>
         </div>
       </div>
+
+      {mensaje && <Mensaje tipo="success">{mensaje}</Mensaje>}
 
       <div className={s.conteiner_buttons}>
         <button className={s.btn1} onClick={handleClick}>
