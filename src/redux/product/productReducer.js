@@ -5,6 +5,7 @@ const initialState = {
   detailProduct: {},
   changes: false,
   productsCart: [],
+  response: "",
 };
 
 export const productReducer = (state = initialState, action) => {
@@ -16,7 +17,7 @@ export const productReducer = (state = initialState, action) => {
       };
 
     case types.SORT_BY_TIME_PREPARATION:
-      let { responsePrep, time, categoryPrep } = action.payload.response;
+      let { responsePrep, time, categoryPrep } = action.payload;
       let supportTime = [];
 
       if (time === "min-max") {
@@ -72,37 +73,20 @@ export const productReducer = (state = initialState, action) => {
       };
 
     case types.SORT_PRODUCTS_BY_PRICE:
-      let { response, price, category } = action.payload.response;
+      let { response, category } = action.payload;
       let supportPrice = [];
 
-      if (price === "menor-mayor") {
-        response.forEach((p) => {
-          p.category.forEach((c) => {
-            if (c.name.toLowerCase() === category.toLowerCase()) {
-              supportPrice.push(p);
-            }
-          });
+      response.forEach((p) => {
+        p.category.forEach((c) => {
+          if (c.name.toLowerCase() === category.toLowerCase()) {
+            supportPrice.push(p);
+          }
         });
-        return {
-          ...state,
-          products: supportPrice,
-        };
-      }
-      if (price === "mayor-menor") {
-        let reverse = [...response].reverse();
-        reverse.forEach((p) => {
-          p.category.forEach((c) => {
-            if (c.name.toLowerCase() === category.toLowerCase()) {
-              supportPrice.push(p);
-            }
-          });
-        });
-
-        return {
-          ...state,
-          products: supportPrice,
-        };
-      }
+      });
+      return {
+        ...state,
+        products: supportPrice,
+      };
 
     case types.DELETE_PRODUCT:
       return {
@@ -150,6 +134,18 @@ export const productReducer = (state = initialState, action) => {
       return {
         ...state,
         productsCart: [],
+      };
+
+    case types.CREATE_PRODUCT:
+      console.log("createRed", action.payload);
+      return {
+        ...state,
+        response: action.payload,
+      };
+
+    case types.UPDATE_PRODUCT:
+      return {
+        ...state,
       };
 
     default:

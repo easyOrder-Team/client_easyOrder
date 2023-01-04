@@ -14,7 +14,9 @@ import {
   OrderConfirmation,
   PasarelaMercadoPago,
   Scanner,
-  Redirect
+  Redirect,
+  UpdateProduct,
+  CreateProducts,
 } from "./components";
 import { PagePay } from "./components/PagePay";
 import * as actions from "./redux/product/actions";
@@ -33,6 +35,7 @@ function App() {
         <Route path="/profile" element={<Profile />} />
         <Route path="/home" element={<Home />} />
         <Route path="/createProduct" element={<CreateProduct />} />
+        <Route path="/createProducts" element={<CreateProducts />} />
         <Route path="resultsearch" element={<ResultSearch />} />
         <Route path="/details/:id" element={<Details />} />
         <Route path="/createProfile" element={<CreateProfile />} />
@@ -42,6 +45,7 @@ function App() {
         <Route path="/confirmation" element={<Redirect />} />
         <Route path="/payMercadoPago" element={<PasarelaMercadoPago />} />
         <Route path="/scannQR" element={<Scanner />} />
+        <Route path="/updateProduct/:id" element={<UpdateProduct />} />
       </Routes>
     </div>
   );

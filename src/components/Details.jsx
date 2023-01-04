@@ -15,6 +15,8 @@ export const Details = () => {
 
   const dispatch = useDispatch();
 
+  let isAdmin = true;
+
   useEffect(() => {
     dispatch(actions.getProductById(id));
   }, []);
@@ -45,6 +47,16 @@ export const Details = () => {
     e.preventDefault();
     navegate("/cart");
   };
+
+  const handleEdit = (e) => {
+    e.preventDefault();
+    navegate(`/updateProduct/${id}`);
+  };
+  const handleDelete = (e) => {
+    e.preventDefault();
+    console.log("Borraddoooo");
+  };
+
   return (
     <div>
       <NavBar />
@@ -91,15 +103,27 @@ export const Details = () => {
             <br />
           </div>
         ) : null}
-        <div className={style.conteiner_buttons}>
-          <button className={style.btn1} onClick={handleClick}>
-            Add to cart
-          </button>
 
-          <button className={style.btn2} onClick={handleToCart}>
-            Go pay
-          </button>
-        </div>
+        {isAdmin ? (
+          <div className={style.conteiner_buttons}>
+            <button className={style.btn1} onClick={handleEdit}>
+              Edit Product
+            </button>
+            <button className={style.btn2} onClick={handleDelete}>
+              Delete Product
+            </button>
+          </div>
+        ) : (
+          <div className={style.conteiner_buttons}>
+            <button className={style.btn1} onClick={handleClick}>
+              Add to cart
+            </button>
+
+            <button className={style.btn2} onClick={handleToCart}>
+              Go pay
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );
