@@ -8,6 +8,8 @@ import { orderReducer } from "../order/orderReducer";
 import { checkReducer } from "../check/checkReducer";
 import { paymentReducer } from "../payment/paymentReducer";
 import { reservationReducer } from "../reservation/reservationReducer";
+import { reviewReducer } from "../review/reviewReducer";
+
 
 
 const store = createStore(
@@ -19,6 +21,7 @@ const store = createStore(
     checkReducer,
     paymentReducer,
     reservationReducer,
+    reviewReducer,
   }),
   composeWithDevTools(applyMiddleware(thunk))
 );

@@ -16,10 +16,4 @@ export * from "./OrderConfirmation";
 export * from "./PayMercadoPago"
 export * from "./QR_scanner"
 export * from "./RedirectPayMercado"
-<<<<<<< HEAD
-
-
-
-=======
 export * from "./Review"
->>>>>>> 0f63991bd0b3daf577f6f3460cc1d0840267b619

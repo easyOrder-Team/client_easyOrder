@@ -15,14 +15,6 @@ export const getReservationById = (id) => {
         .catch((error) => console.log(error));
   };
 
-  // export const deleteReservation = (id) => {
-  //   console.log(id)
-  //   return {
-  //     type: types.DELETE_RESERVATION,
-  //     payload: id,
-  //   };
-  // };
-  
   export const deleteReservation = (id) => {
     return (dispatch) =>
       axios

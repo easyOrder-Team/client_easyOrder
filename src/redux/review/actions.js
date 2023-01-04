@@ -12,3 +12,17 @@ export const createReview = (review) => {
         })
         .catch((error) => console.log(error));
   };
+
+  export const getReviewById = (id) => {
+    return (dispatch) =>
+      axios
+        .get(`http://localhost:3000/api/v1/review/${id}`)
+        .then((response) => {
+          console.log(response.data)
+          dispatch({
+            type: types.GET_REVIEW_BY_ID,
+            payload: response.data,
+          });
+        })
+        .catch((error) => console.log(error));
+  };

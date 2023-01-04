@@ -14,6 +14,9 @@ import OrderHistory from "./OrderHistory";
 import * as actionsOrders from '../redux/order/actions'
 import Reservas from "./ReservationHistory";
 import * as actionsReservation from '../redux/reservation/actions';
+import ReviewHistory from "./ReviewHistory";
+import * as actionsReview from '../redux/review/actions';
+
 
 
 export const Profile = () => {
@@ -30,7 +33,7 @@ export const Profile = () => {
       dispatch(actionsProfile.getProfileById(user.email));
       dispatch(actionsOrders.getOrdersIdfUser(user.email));
       dispatch(actionsReservation.getReservationById(user.email));
-
+      dispatch(actionsReview.getReviewById(user.email));
     }
   }, [user]);
 
@@ -126,7 +129,7 @@ export const Profile = () => {
                 </div>
               ) : ventana === "reseñas" ? (
                 <div className={profileStyle.containerOptionsDiv}>
-                  <h1>Reseñas</h1>
+                  <div><ReviewHistory/></div>
                 </div>
               ) : ventana === "contraseña" ? (
                 <div className={profileStyle.containerOptionsDiv}>
@@ -197,7 +200,7 @@ export const Profile = () => {
                 </div>
               ) : ventana === "reseñas" ? (
                 <div className={profileStyle.containerOptionsDiv}>
-                  <h1>Reseñas</h1>
+                  <div><ReviewHistory/></div>
                 </div>
               ) : (
                 <div className={profileStyle.containerOptionsDiv}>
