@@ -11,10 +11,15 @@ export const orderReducer = (state = initialState, action) => {
         ...state,
         order: action.payload
     }
-    case types.CREATE_ORDER:{
+    case types.CREATE_ORDER:
+      return {
+        ...state, 
+        order: action.payload
+      }
+    case types.GET_ORDER:{
       return{
         ...state,
-        order: {}
+        order:  action.payload
       }
     }
     default:
