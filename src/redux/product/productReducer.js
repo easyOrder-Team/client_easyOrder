@@ -5,6 +5,7 @@ const initialState = {
   detailProduct: {},
   changes: false,
   productsCart: [],
+  productsList: [],
 };
 
 export const productReducer = (state = initialState, action) => {
@@ -13,6 +14,7 @@ export const productReducer = (state = initialState, action) => {
       return {
         ...state,
         products: action.payload,
+        productsList: action.payload,
       };
 
     case types.SORT_BY_TIME_PREPARATION:
