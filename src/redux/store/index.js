@@ -9,6 +9,7 @@ import { orderReducer } from "../order/orderReducer";
 const store = createStore(
   combineReducers({
     productReducer,
+    productsList: productReducer,
     products: productReducer,
     productsCart: productReducer,
     categories: categoryReducer,

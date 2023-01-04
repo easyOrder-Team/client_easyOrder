@@ -46,7 +46,10 @@ export const Details = () => {
       count,
     };
     dispatch(actions.addProductCart(productSelected));
-    setCount(1);
+    setTimeout(() => {
+      window.history.back();
+      setCount(1);
+    }, 500);
   };
 
   const handleToCart = (e) => {
@@ -55,7 +58,6 @@ export const Details = () => {
   };
 
   const { detailProduct } = useSelector((state) => state.products);
-
   return (
     <div>
       <NavBar />

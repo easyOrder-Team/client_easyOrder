@@ -61,7 +61,7 @@ export const SearchBar = () => {
   };
   //---------------------- el estado product se borrará por completo ---------------------------------------------------------------------
   const onSuggestionsClearRequested = () => {
-    setProductsList([]);
+    setProductsList(allProducts);
   };
   //---------------------- el estado product almacenará la opción seleccionada -----------------------------------------------------------
   const getSuggestionValue = (suggestion) => {

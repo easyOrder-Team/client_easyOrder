@@ -8,7 +8,7 @@ import * as actions from "../redux/product/actions";
 
 export const Home = () => {
   const dispatch = useDispatch();
-  const { products } = useSelector((state) => state.products);
+  const { productsList } = useSelector((state) => state.productsList);
 
   useEffect(() => {
     dispatch(actions.clearProduct());
@@ -21,7 +21,7 @@ export const Home = () => {
 
   return (
     <div>
-      {products.length != 0 ? (
+      {productsList?.length != 0 ? (
         <div>
           <div>
             <NavBar />
