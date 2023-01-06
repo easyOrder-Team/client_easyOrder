@@ -4,14 +4,25 @@ import { useNavigate, useParams } from "react-router-dom";
 import * as actions from "../redux/product/actions";
 import style from "../styles/Details.module.css";
 import s from "../styles/ItemCount.module.css";
-import { NavBar } from ".";
+import m from "../styles/Mensaje.module.css";
+import { NavBar, Mensaje } from ".";
 
 export const Details = () => {
   const { id } = useParams();
   const navegate = useNavigate();
   const [count, setCount] = useState(1);
+  const [mensaje, setMensaje] = useState("");
 
   const dispatch = useDispatch();
+
+  const formatoPesosMxn = (precio) => {
+    return precio
+      .toLocaleString("en-US", {
+        style: "currency",
+        currency: "MXN",
+      })
+      .slice(2, -3);
+  };
 
   useEffect(() => {
     dispatch(actions.getProductById(id));
@@ -36,6 +47,10 @@ export const Details = () => {
       priceTotal: detailProduct[0].price * count,
       count,
     };
+    setMensaje("Producto agregado al carrito");
+    setTimeout(() => {
+      setMensaje("");
+    }, 2000);
     dispatch(actions.addProductCart(productSelected));
     setCount(1);
   };
@@ -60,7 +75,9 @@ export const Details = () => {
             />
             <div className={style.conteiner_Name}>
               <h2>{detailProduct[0].name}</h2>
-              <h2 className={style.price}>{"$ " + detailProduct[0].price}</h2>
+              <h2 className={style.price}>
+                {formatoPesosMxn(detailProduct[0].price)}
+              </h2>
             </div>
             <div>
               <p className={style.description}>
@@ -90,9 +107,11 @@ export const Details = () => {
               </button>
             </div>
             <br />
+            {mensaje && <Mensaje tipo="success">{mensaje}</Mensaje>}
             <br />
           </div>
         ) : null}
+
         <div className={style.conteiner_buttons}>
           <button className={style.btn1} onClick={handleClick}>
             Add to cart
