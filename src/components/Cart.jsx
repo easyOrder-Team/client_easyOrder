@@ -199,10 +199,11 @@ export const Cart = () => {
               <h3>Total</h3>
             </div>
             <div>
-              <span>${total}</span>
+              <span>{formatoPesosMxn(total)}</span>
             </div>
           </div>
         </div>
+        {mensaje && <Mensaje tipo="success">{mensaje}</Mensaje>}
 
         <div className={s.conteiner_buttons}>
           <button className={s.btn1} onClick={handleClick}>
