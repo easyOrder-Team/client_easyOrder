@@ -17,4 +17,6 @@ export * from "./PayMercadoPago";
 export * from "./QR_scanner";
 export * from "./RedirectPayMercado";
 export * from "./Mensaje";
-export * from "./Review"
+export * from "./Review";
+export * from "./Admin";
+export * from "./Products";

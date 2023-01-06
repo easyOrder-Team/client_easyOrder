@@ -15,13 +15,6 @@ export const SearchBar = () => {
   const navigate = useNavigate();
   const { products } = useSelector((state) => state.products);
 
-  // useEffect(() => {
-  //   if (products.length == 0) {
-  //     dispatch(actions.getProducts());
-  //     console.log("PRODUCTS", products);
-  //   }
-  // }, [products]);
-
   const allProducts = products.map((p) => {
     return {
       name: p.name,
