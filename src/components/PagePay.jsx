@@ -13,7 +13,7 @@ export const PagePay = () => {
   const dispatch = useDispatch()
   const [price, setPrice] = useState(0);
   const { productsCart } = useSelector((state) => state.productReducer);
-  const {order} = useSelector(state => state.orderReducer)
+  const { order } = useSelector(state => state.orderReducer)
   const navigate = useNavigate();
 
   const createOrder = (data, actions) => {
@@ -33,6 +33,7 @@ export const PagePay = () => {
     actions.order.capture().then(function (details) {
       console.log(details);
       // dispatch(orderActions.getAllOrder())
+      localStorage.setItem('order', JSON.stringify(order))
       dispatch(checkActions.saveCheck(details))
       navigate(`/confirmation/${details.id}`);
     });
