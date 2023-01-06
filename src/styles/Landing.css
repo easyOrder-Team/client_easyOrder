@@ -6,6 +6,7 @@
 }
 
 .carrousel {
+  left: 0;
   width: 70%;
   max-width: 100em;
   height: 100%;
