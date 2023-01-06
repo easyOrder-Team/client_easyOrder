@@ -19,7 +19,7 @@ export const OrderConfirmation = () => {
   const navigate = useNavigate();
   const { id } = useParams();
   const products = JSON.parse(localStorage.getItem("products"));
-  const order = JSON.parse(localStorage.getItem('order'));;
+  const order = JSON.parse(localStorage.getItem('order'));
   const profile = JSON.parse(localStorage.getItem('profile'));
   const bill = useSelector((state) => state.checkReducer.check);
   const mercadoPagoBill = useSelector(
@@ -48,7 +48,7 @@ export const OrderConfirmation = () => {
         date: bill.create_time,
         total: bill.purchase_units[0].amount.value,
         email: bill.payer.email_address,
-        id_order: order.order.id_orders,
+        id_order: order.id_orders,
       };
       console.log(check);
       console.log("regresar al home");
@@ -63,12 +63,10 @@ export const OrderConfirmation = () => {
           date: mercadoPagoBill.date_approved,
           total: mercadoPagoBill.transaction_amount,
           email: profile.id_profile,
-          id_order: order.order.id_orders,
+          id_order: order.id_orders,
         };
 
-        console.log(check);
-        console.log(order.order.id_orders)
-        console.log("regresar al home");
+      
          dispatch(clearCart());
          dispatch(checkActions.createCheck(check));
       }

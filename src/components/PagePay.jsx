@@ -39,10 +39,7 @@ export const PagePay = () => {
     });
   };
 
-  const priceTotalCalculator = (productPrice) => {
-    total = total + productPrice;
-  };
-
+ 
   const handleClick = (e) => {
     e.preventDefault();
     console.log("regresar al cart");
@@ -90,7 +87,7 @@ export const PagePay = () => {
         <div className={s.payBtn}>
           <button
             className={s.payBtnMercadopago}
-            onClick={() => navigate("/payMercadoPago")}
+            onClick={handleClickMercadoPago}
           >
             <img
               className={s.logos}
@@ -107,3 +104,4 @@ export const PagePay = () => {
     </div>
   );
 };
+
