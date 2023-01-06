@@ -5,7 +5,7 @@ import search from "../images/Search.svg";
 import { useSelector } from "react-redux";
 import s from "../styles/SearchBar.module.css";
 import * as actions from "../redux/product/actions";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Autosuggest from "react-autosuggest";
 import { useEffect } from "react";
 import { all } from "axios";
