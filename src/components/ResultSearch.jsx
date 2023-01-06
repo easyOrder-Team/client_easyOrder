@@ -4,7 +4,7 @@ import { Card, NavBar, Details, Mensaje } from ".";
 import { Link } from "react-router-dom";
 
 export const ResultSearch = () => {
-  const { products } = useSelector((state) => state.products);
+  const { products } = useSelector((state) => state.productReducer);
   return (
     <div>
       <div>

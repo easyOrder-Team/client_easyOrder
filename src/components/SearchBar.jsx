@@ -14,7 +14,7 @@ import { notInitialized } from "react-redux/es/utils/useSyncExternalStore";
 export const SearchBar = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { productsList } = useSelector((state) => state.productsList);
+  const { productsList } = useSelector((state) => state.productReducer);
 
   const allProducts = productsList.map((p) => {
     return {

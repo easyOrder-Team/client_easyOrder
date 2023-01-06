@@ -10,17 +10,30 @@ import { useEffect } from "react";
 import axios from "axios";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
+import OrderHistory from "./OrderHistory";
+import * as actionsOrders from '../redux/order/actions'
+import Reservas from "./ReservationHistory";
+import * as actionsReservation from '../redux/reservation/actions';
+import ReviewHistory from "./ReviewHistory";
+import * as actionsReview from '../redux/review/actions';
+
+
 
 export const Profile = () => {
-  const profile = useSelector((state) => state.profileReducer.profile);
+  const {profile} = useSelector((state) => state.profileReducer);
   const { user, isAuthenticated, isLoading } = useAuth0();
   const [ventana, setVentana] = useState("pedidos");
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+
+  
   useEffect(() => {
     if (isAuthenticated) {
       dispatch(actionsProfile.getProfileById(user.email));
+      dispatch(actionsOrders.getOrdersIdfUser(user.email));
+      dispatch(actionsReservation.getReservationById(user.email));
+      dispatch(actionsReview.getReviewByIdProfile(user.email));
     }
   }, [user]);
 
@@ -114,11 +127,11 @@ export const Profile = () => {
 
               {ventana === "reservas" ? (
                 <div className={profileStyle.containerOptionsDiv}>
-                  <h1>Reservas</h1>
+                  <div><Reservas/></div>
                 </div>
               ) : ventana === "reseñas" ? (
                 <div className={profileStyle.containerOptionsDiv}>
-                  <h1>Reseñas</h1>
+                  <div><ReviewHistory/></div>
                 </div>
               ) : ventana === "contraseña" ? (
                 <div className={profileStyle.containerOptionsDiv}>
@@ -138,7 +151,7 @@ export const Profile = () => {
                 </div>
               ) : (
                 <div className={profileStyle.containerOptionsDiv}>
-                  <h1>Pedidos</h1>
+                  <div>{<OrderHistory/>}</div>
                 </div>
               )}
             </div>
@@ -188,15 +201,15 @@ export const Profile = () => {
               </div>
               {ventana === "reservas" ? (
                 <div className={profileStyle.containerOptionsDiv}>
-                  <h1>Reservas</h1>
+                  <div><Reservas/></div>
                 </div>
               ) : ventana === "reseñas" ? (
                 <div className={profileStyle.containerOptionsDiv}>
-                  <h1>Reseñas</h1>
+                  <div><ReviewHistory/></div>
                 </div>
               ) : (
                 <div className={profileStyle.containerOptionsDiv}>
-                  <h1>Pedidos</h1>
+                  <div>{<OrderHistory/>}</div>
                 </div>
               )}
             </div>

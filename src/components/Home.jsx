@@ -8,7 +8,7 @@ import * as actions from "../redux/product/actions";
 
 export const Home = () => {
   const dispatch = useDispatch();
-  const { productsList } = useSelector((state) => state.productsList);
+  const { productsList } = useSelector((state) => state.productReducer);
   const profile = useSelector((state) => state.profileReducer.profile);
   useEffect(() => {
     dispatch(actions.clearProduct());

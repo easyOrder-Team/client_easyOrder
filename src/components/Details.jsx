@@ -55,7 +55,7 @@ export const Details = () => {
     setTimeout(() => {
       window.history.back();
       setCount(1);
-    }, 500);
+    }, 1000);
   };
 
   const handleToCart = (e) => {
@@ -63,7 +63,7 @@ export const Details = () => {
     navegate("/cart");
   };
 
-  const { detailProduct } = useSelector((state) => state.products);
+  const { detailProduct } = useSelector((state) => state.productReducer);
   return (
     <div>
       <NavBar />
