@@ -14,8 +14,10 @@ import {
   Scanner,
   Redirect,
   Review,
-  // ReviewDetail,
-  // OrderDetail
+  ReviewDetail,
+  OrderDetail,
+  Admin,
+  Products
 } from "./components";
 import { PagePay } from "./components/PagePay"
 import { Profile } from "./components/Profile"
@@ -47,10 +49,11 @@ function App() {
         <Route path="/confirmation" element={<Redirect />} />
         <Route path="/payMercadoPago" element={<PasarelaMercadoPago />} />
         <Route path="/scannQR" element={<Scanner />} />
-        <Route path="/review" element = {<Review/>}/>
         <Route path="/orderDetail/:id" element={<OrderDetail />} />
         <Route path="/reviewDetail/:id" element={<ReviewDetail />} />
-
+        <Route path="/review" element={<Review />} />
+        <Route path="/admin" element={<Admin />} />
+        <Route path="/products" element={<Products />} />
       </Routes>
     </div>
   );
