@@ -33,7 +33,7 @@ export const Profile = () => {
       dispatch(actionsProfile.getProfileById(user.email));
       dispatch(actionsOrders.getOrdersIdfUser(user.email));
       dispatch(actionsReservation.getReservationById(user.email));
-      dispatch(actionsReview.getReviewById(user.email));
+      dispatch(actionsReview.getReviewByIdProfile(user.email));
     }
   }, [user]);
 

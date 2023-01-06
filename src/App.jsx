@@ -13,7 +13,9 @@ import {
   PasarelaMercadoPago,
   Scanner,
   Redirect,
-  Review
+  Review,
+  // ReviewDetail,
+  // OrderDetail
 } from "./components";
 import { PagePay } from "./components/PagePay"
 import { Profile } from "./components/Profile"
@@ -23,6 +25,7 @@ import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { CreateProfile } from "./components/CreateProfile";
 import OrderDetail from "./components/OrderDetail";
+import ReviewDetail from "./components/ReviewDetails";
 
 function App() {
   return (
@@ -46,6 +49,8 @@ function App() {
         <Route path="/scannQR" element={<Scanner />} />
         <Route path="/review" element = {<Review/>}/>
         <Route path="/orderDetail/:id" element={<OrderDetail />} />
+        <Route path="/reviewDetail/:id" element={<ReviewDetail />} />
+
       </Routes>
     </div>
   );
