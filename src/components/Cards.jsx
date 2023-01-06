@@ -10,8 +10,8 @@ import { Card, NavBar, Pagination } from ".";
 export const Cards = () => {
   const dispatch = useDispatch();
   const { category } = useParams();
-  const { products } = useSelector((state) => state.products);
-  const { categories } = useSelector((state) => state.categories);
+  const { products } = useSelector((state) => state.productReducer);
+  const { categories } = useSelector((state) => state.categoryReducer);
   const navigate = useNavigate();
 
   const [price, setPrice] = useState("");

@@ -28,3 +28,29 @@ export const getAllOrder =  () => {
     }) 
   })
 }
+
+  export const getOrdersIdfUser = (id_profile) => {
+    return (dispatch) =>
+      axios
+        .get(`http://localhost:3000/api/v1/orders/${id_profile}`)
+        .then((response) => {
+          dispatch({
+            type: types.GET_ORDERS_ID_PROFILE,
+            payload: response.data,
+          });
+        })
+        .catch((error) => console.log(error));
+  };
+
+  export const getOrderById = (id_order) => {
+    return (dispatch) =>
+      axios
+        .get(`http://localhost:3000/api/v1/orders/orderbyid/filter/${id_order}`)
+        .then((response) => {
+          dispatch({
+            type: types.GET_ORDER_BY_ID,
+            payload: response.data,
+          });
+        })
+        .catch((error) => console.log(error));
+  };

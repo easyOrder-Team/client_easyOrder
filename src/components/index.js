@@ -13,10 +13,13 @@ export * from "./CreateProduct";
 export * from "./CreateProfile";
 export * from "./Profile";
 export * from "./OrderConfirmation";
-export * from "./PayMercadoPago";
-export * from "./QR_scanner";
-export * from "./RedirectPayMercado";
-export * from "./Mensaje";
+export * from "./PayMercadoPago"
+export * from "./QR_scanner"
+export * from "./RedirectPayMercado"
 export * from "./Review";
+export * from "./OrderDetail";
+export * from "./ReviewDetails";
+export * from "./Mensaje";
+;
 export * from "./Admin";
 export * from "./Products";
