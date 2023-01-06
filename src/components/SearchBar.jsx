@@ -5,10 +5,11 @@ import search from "../images/Search.svg";
 import { useSelector } from "react-redux";
 import s from "../styles/SearchBar.module.css";
 import * as actions from "../redux/product/actions";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Autosuggest from "react-autosuggest";
 import { useEffect } from "react";
 import { all } from "axios";
+import { notInitialized } from "react-redux/es/utils/useSyncExternalStore";
 
 export const SearchBar = () => {
   const dispatch = useDispatch();
@@ -25,8 +26,11 @@ export const SearchBar = () => {
   const [options, setOptions] = useState(allProducts); // ----------> Estado que almacena todos los productos existentes
   const [inputValue, setInputValue] = useState(""); // ----------> Estado que setea el valor del input para luego compararlo con las opciones de arriba
   const [selectedProduct, setSelectedProduct] = useState({}); // ----------> Estado que almacena la opcion seleccionada
+
   //---------------------- verificación y normalización de valor ingresado -----------------------------------------------------------
   const filterProduct = (inputValue) => {
+    console.log("inputValue", inputValue);
+
     const clearedValue = inputValue.value.trim().toLowerCase(); // ----------> toma el valor ingresado y lo "limpia" eliminando espacios y mayusculas
     let data;
     let filteredProducts = options.filter((p) => {
@@ -70,6 +74,7 @@ export const SearchBar = () => {
       onClick={() => {
         selectProduct(suggestion);
       }}
+      className={s.theme}
     >
       {`${suggestion.name}`}
     </div>
@@ -80,6 +85,7 @@ export const SearchBar = () => {
   };
 
   const inputProps = {
+    className: s.input,
     placeholder: "Buscar un plato",
     value: inputValue,
     onChange,
@@ -94,10 +100,11 @@ export const SearchBar = () => {
       navigate("/resultsearch");
     }
   };
+
   return (
     <div className={s.container_search}>
       <form className={s.container} onSubmit={handleSubmit}>
-        <div className={s.containerInput}>
+        <div className={s.input}>
           <Autosuggest
             suggestions={options}
             onSuggestionsFetchRequested={onSuggestionsFetchRequested}
