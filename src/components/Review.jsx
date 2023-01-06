@@ -5,16 +5,10 @@ import s from "../styles/OrderConfirmation.module.css";
 import { useNavigate } from "react-router-dom";
 import { Stars } from "./stars";
 export const Review = () => {
-<<<<<<< HEAD
-  const { productsCart } = useSelector((state) => state.productsCart);
-  let idProfile = JSON.parse(localStorage.getItem("profile")).id_profile;
-
-=======
   
   const { productsCart } = useSelector((state) => state.productReducer);
   let idProfile = JSON.parse(localStorage.getItem("profile")).id_profile
   
->>>>>>> guillermolarrea
   return (
     <div className={s.root}>
       <div className={s.content}>
