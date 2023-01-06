@@ -70,13 +70,13 @@ export const Cart = () => {
 
   const resta = (e) => {
     console.log(e.target.value);
-    const piMenos = product.findIndex((p) => p.id === e.target.value);
+    const piMenos = product.findIndex((p) => p.id == e.target.value);
     actualizarCart(e.target.value, piMenos, false);
   };
 
   const suma = (e) => {
     console.log(e.target.value);
-    const piMas = product.findIndex((p) => p.id === e.target.value);
+    const piMas = product.findIndex((p) => p.id == e.target.value);
     actualizarCart(e.target.value, piMas, true);
     actualizarTotal();
   };

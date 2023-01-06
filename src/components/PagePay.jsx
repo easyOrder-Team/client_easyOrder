@@ -31,6 +31,7 @@ export const PagePay = () => {
     actions.order.capture().then(function (details) {
       console.log(details);
       // dispatch(orderActions.getAllOrder())
+      localStorage.setItem('order', JSON.stringify(order))
       dispatch(checkActions.saveCheck(details))
       navigate(`/confirmation/${details.id}`);
     });

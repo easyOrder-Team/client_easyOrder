@@ -19,7 +19,7 @@ export const OrderConfirmation = () => {
   const navigate = useNavigate();
   const { id } = useParams();
   const products = JSON.parse(localStorage.getItem("products"));
-  const order = JSON.parse(localStorage.getItem('order'));;
+  const order = JSON.parse(localStorage.getItem('order'));
   const profile = JSON.parse(localStorage.getItem('profile'));
   const bill = useSelector((state) => state.checkReducer.check);
   const mercadoPagoBill = useSelector(
