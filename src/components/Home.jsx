@@ -8,16 +8,16 @@ import * as actions from "../redux/product/actions";
 
 export const Home = () => {
   const dispatch = useDispatch();
-  const { products } = useSelector((state) => state.products);
-  const profile = useSelector(state => state.profileReducer.profile)
+  const { productsList } = useSelector((state) => state.productsList);
+  const profile = useSelector((state) => state.profileReducer.profile);
   useEffect(() => {
     dispatch(actions.clearProduct());
     console.log(localStorage.getItem("site"));
   }, []);
   useEffect(() => {
-    if(profile && profile.hasOwnProperty('id_profile'))
-     localStorage.setItem('profile', JSON.stringify(profile))
-  },[])
+    if (profile && profile.hasOwnProperty("id_profile"))
+      localStorage.setItem("profile", JSON.stringify(profile));
+  }, []);
 
   useEffect(() => {
     dispatch(actions.getProducts());
@@ -25,7 +25,7 @@ export const Home = () => {
 
   return (
     <div>
-      {products.length != 0 ? (
+      {productsList?.length != 0 ? (
         <div>
           <div>
             <NavBar />
