@@ -15,6 +15,7 @@ import { reviewReducer } from "../review/reviewReducer";
 const store = createStore(
   combineReducers({
     productReducer,
+    productsList: productReducer,
     categoryReducer,
     profileReducer,
     orderReducer,
