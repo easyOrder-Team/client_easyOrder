@@ -17,10 +17,7 @@ const store = createStore(
     categories: categoryReducer,
     profileReducer,
     orderReducer,
-<<<<<<< HEAD
-=======
     checkReducer,
->>>>>>> main
     paymentReducer
   }),
   composeWithDevTools(applyMiddleware(thunk))
