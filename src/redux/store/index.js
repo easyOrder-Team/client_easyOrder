@@ -7,17 +7,22 @@ import { profileReducer } from "../profile/profileReducer";
 import { orderReducer } from "../order/orderReducer";
 import { checkReducer } from "../check/checkReducer";
 import { paymentReducer } from "../payment/paymentReducer";
+import { reservationReducer } from "../reservation/reservationReducer";
+import { reviewReducer } from "../review/reviewReducer";
+
+
 
 const store = createStore(
   combineReducers({
     productReducer,
-    products: productReducer,
-    productsCart: productReducer,
-    categories: categoryReducer,
+    productsList: productReducer,
+    categoryReducer,
     profileReducer,
     orderReducer,
     checkReducer,
-    paymentReducer
+    paymentReducer,
+    reservationReducer,
+    reviewReducer,
   }),
   composeWithDevTools(applyMiddleware(thunk))
 );

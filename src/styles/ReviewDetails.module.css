@@ -1,0 +1,66 @@
+.img{
+    display: block;
+    min-width: 100%;
+    height: 13rem;
+    object-fit: cover;
+}  
+
+.conteiner{
+    display: block;
+    color: black;
+    width: 100%;
+    margin-top: 3em;
+    margin-left: auto;
+    margin-right: auto;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin-top: 0;
+}
+.conteiner_Name{
+    display: block;
+    text-align: center;
+    margin: 1rem;
+    align-items: center;
+}
+
+.price{
+    text-align: center;
+    margin: 1rem;
+    color: var(--main-color);
+    font-weight: 700;
+}
+
+.comment{
+    text-align: center;
+    color: var(--text-color);
+    margin: 1rem;
+    margin-bottom: 2rem;
+    font-size: medium;
+}
+.conteiner_buttons{
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.btn1{
+    width: 95%;
+    height: 4rem;
+    align-items: center;
+    justify-content: center;
+    will-change: 400;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    background-color: var(--main-color);
+    color: var(--light-color);
+    border: none;
+    border-radius: .4rem;
+}
+
+.btn1:hover{
+    cursor: pointer;
+}
+
+
+

@@ -1,0 +1,56 @@
+.globalContainerOrder{
+    min-height: 100%;
+}
+.container{
+    width: 100%;
+    height: 7rem;
+    display:grid;
+    grid-template-columns: 1fr 3fr;
+    padding: 1rem;
+    padding-left: 2rem;
+
+}
+.nameCantidada{
+    text-align: left;
+    /* padding-left: 1rem; */
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--title-color);
+    line-height: 1.6rem;
+    width: 100%;
+    height: 2rem;
+    text-align: left;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    margin-left: 0.8rem;
+    display: flex;
+    /* justify-content: space-between; */
+}
+
+.totala{
+    margin-left: 2rem;
+    font-size: 1.5rem;
+    width: 100%;
+    height: 2rem;
+    text-align: left;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    display: flex;
+    /* justify-content: space-between; */
+}
+
+.containerCard{
+    background-color: var(--light-color);
+    display: flex;
+    margin: 1rem;
+    border-radius: 0.5rem;
+    height: 9rem;
+}
+
+.card__img {
+    height: 7rem;
+    width: 7rem;
+    border-top-left-radius: 0.5rem;
+    border-bottom-left-radius: 0.5rem;
+  }
+  

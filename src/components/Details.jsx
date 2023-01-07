@@ -52,7 +52,10 @@ export const Details = () => {
       setMensaje("");
     }, 2000);
     dispatch(actions.addProductCart(productSelected));
-    setCount(1);
+    setTimeout(() => {
+      window.history.back();
+      setCount(1);
+    }, 1000);
   };
 
   const handleToCart = (e) => {
@@ -60,8 +63,7 @@ export const Details = () => {
     navegate("/cart");
   };
 
-  const { detailProduct } = useSelector((state) => state.products);
-
+  const { detailProduct } = useSelector((state) => state.productReducer);
   return (
     <div>
       <NavBar />

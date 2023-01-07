@@ -15,7 +15,7 @@ export const Cart = () => {
   var aux = 0;
 
   const state = useSelector((state) => state.profileReducer);
-  const { productsCart } = useSelector((state) => state.productsCart);
+  const { productsCart } = useSelector((state) => state.productReducer);
   const [total, setTotal] = useState(0);
   const [product, setProduct] = useState(productsCart);
   const [mensaje, setMensaje] = useState("");
@@ -70,13 +70,13 @@ export const Cart = () => {
 
   const resta = (e) => {
     console.log(e.target.value);
-    const piMenos = product.findIndex((p) => p.id === e.target.value);
+    const piMenos = product.findIndex((p) => p.id == e.target.value);
     actualizarCart(e.target.value, piMenos, false);
   };
 
   const suma = (e) => {
     console.log(e.target.value);
-    const piMas = product.findIndex((p) => p.id === e.target.value);
+    const piMas = product.findIndex((p) => p.id == e.target.value);
     actualizarCart(e.target.value, piMas, true);
     actualizarTotal();
   };
