@@ -6,6 +6,7 @@ const initialState = {
   changes: false,
   productsCart: [],
   productsList: [],
+  responses: "",
 };
 
 export const productReducer = (state = initialState, action) => {
@@ -156,6 +157,12 @@ export const productReducer = (state = initialState, action) => {
       return {
         ...state,
         productsCart: [],
+      };
+
+    case types.UPDATE_PRODUCT:
+      return {
+        ...state,
+        responses: action.payload,
       };
     default:
       return state;
