@@ -63,7 +63,7 @@ export const Details = () => {
     navegate("/cart");
   };
 
-  const { detailProduct } = useSelector((state) => state.products);
+  const { detailProduct } = useSelector((state) => state.productReducer);
   return (
     <div>
       <NavBar />

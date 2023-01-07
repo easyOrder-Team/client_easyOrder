@@ -14,7 +14,7 @@ import * as checkActions from "../redux/check/actions";
 export const OrderConfirmation = () => {
   let total = 0;
   const [price, setPrice] = useState(0);
-  const { productsCart } = useSelector((state) => state.productsCart);
+  const { productsCart } = useSelector((state) => state.productReducer);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { id } = useParams();
@@ -54,7 +54,7 @@ export const OrderConfirmation = () => {
         date: bill.create_time,
         total: bill.purchase_units[0].amount.value,
         email: bill.payer.email_address,
-        id_order: order.order.id_orders,
+        id_order: order.id_orders,
       };
       console.log(check);
       console.log("regresar al home");
@@ -70,7 +70,7 @@ export const OrderConfirmation = () => {
           date: mercadoPagoBill.date_approved,
           total: mercadoPagoBill.transaction_amount,
           email: profile.id_profile,
-          id_order: order.order.id_orders,
+          id_order: order.id_orders,
         };
 
         console.log(check);
