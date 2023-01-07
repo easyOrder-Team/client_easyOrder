@@ -16,7 +16,7 @@ import axios from "axios";
 export const CreateProfile = () => {
   const { user, isAuthenticated, isLoading } = useAuth0();
 
-  const profile = useSelector((state) => state.profileReducer.profile);
+  const {profile} = useSelector((state) => state.profileReducer);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   useEffect(() => {

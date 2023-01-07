@@ -5,6 +5,7 @@ const initialState = {
   detailProduct: {},
   changes: false,
   productsCart: [],
+  productsList: [],
 };
 
 export const productReducer = (state = initialState, action) => {
@@ -13,6 +14,7 @@ export const productReducer = (state = initialState, action) => {
       return {
         ...state,
         products: action.payload,
+        productsList: action.payload,
       };
 
     case types.SORT_BY_TIME_PREPARATION:
@@ -109,50 +111,45 @@ export const productReducer = (state = initialState, action) => {
       }
 
     case types.DELETE_PRODUCT:
-      let productDelete = state.products.filter((p) => p.id !== action.payload);
-
       return {
         ...state,
-        products: productDelete,
+        productsCart: state.productsCart.filter((p) => p.id !== action.payload),
       };
 
     case types.ADD_PRODUCT_CART:
-      let { id, count } = action.payload;
-      const exist = state.productsCart.some((p) => p.id === id);
-      if (exist) {
-        /*  const product = state.productsCart.findIndex((p) => p.id === id);
-        let current = state.productsCart[product];
-        let copyProductCart = state.productsCart;
-        current.count = count + current.count;
-        current.priceTotal = current.price * current.count;
-        copyProductCart[product] = current; 
+      if (action.payload.length > 0) {
         return {
           ...state,
-          productsCart: copyProductCart,
-        };*/
-        let newProductCart = state.productsCart.map((p) => {
-          if (p.id === id) {
-            return {
-              id: p.id,
-              count: p.count + count,
-              image: p.image,
-              name: p.name,
-              price: p.price,
-              priceTotal: p.price * (p.count + count),
-            };
-          } else {
-            return p;
-          }
-        });
-        return {
-          ...state,
-          productsCart: newProductCart,
+          productsCart: action.payload,
         };
       } else {
-        return {
-          ...state,
-          productsCart: [...state.productsCart, action.payload],
-        };
+        let { id, count } = action.payload;
+        const exist = state.productsCart.some((p) => p.id === id);
+        if (exist) {
+          let newProductCart = state.productsCart.map((p) => {
+            if (p.id === id) {
+              return {
+                id: p.id,
+                count: p.count + count,
+                image: p.image,
+                name: p.name,
+                price: p.price,
+                priceTotal: p.price * (p.count + count),
+              };
+            } else {
+              return p;
+            }
+          });
+          return {
+            ...state,
+            productsCart: newProductCart,
+          };
+        } else {
+          return {
+            ...state,
+            productsCart: [...state.productsCart, action.payload],
+          };
+        }
       }
 
     case types.CLEAR_CART:

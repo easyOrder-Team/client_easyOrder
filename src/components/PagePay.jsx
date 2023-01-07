@@ -1,14 +1,19 @@
 import React, { useState } from "react";
 import ReactDOM from "react-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { NavBar } from ".";
-import { useNavigate } from "react-router-dom";
 import s from "../styles/Cart.module.css";
+import { useNavigate } from "react-router-dom";
+import * as checkActions from '../redux/check/actions'
+import * as orderActions from '../redux/order/actions';
 const PayPalButton = window.paypal.Buttons.driver("react", { React, ReactDOM });
+
 export const PagePay = () => {
   let total = 0;
+  const dispatch = useDispatch()
   const [price, setPrice] = useState(0);
-  const { productsCart } = useSelector((state) => state.productsCart);
+  const { productsCart } = useSelector((state) => state.productReducer);
+  const { order } = useSelector(state => state.orderReducer)
   const navigate = useNavigate();
 
   const createOrder = (data, actions) => {
@@ -17,17 +22,25 @@ export const PagePay = () => {
         {
           amount: {
             value: total,
-            currency: "MX",
+            currency: 'MX'
           },
+
         },
       ],
     });
   };
-  const onApprove = (data, actions) => {
+  const onApprove = async (data, actions) => {
     actions.order.capture().then(function (details) {
       console.log(details);
+      // dispatch(orderActions.getAllOrder())
+      localStorage.setItem('order', JSON.stringify(order))
+      dispatch(checkActions.saveCheck(details))
       navigate(`/confirmation/${details.id}`);
     });
+  };
+
+  const priceTotalCalculator = (productPrice) => {
+    total = total + productPrice;
   };
 
   const handleClick = (e) => {
@@ -35,6 +48,12 @@ export const PagePay = () => {
     console.log("regresar al cart");
     navigate("/cart");
   };
+
+  const handleClickMercadoPago = (e) => {
+    e.preventDefault()
+    localStorage.setItem('order', JSON.stringify(order))
+    navigate("/payMercadoPago")
+  }
 
   return (
     <div className={s.globalContainerCart}>
@@ -67,7 +86,7 @@ export const PagePay = () => {
         </div>
       </div>
       <div className={s.payBtn}>
-        <button className={s.payBtnMercadopago} onClick={()=>navigate("/payMercadoPago")} >
+        <button className={s.payBtnMercadopago} onClick={handleClickMercadoPago} >
           <img
             className={s.logos}
             src="https://logodownload.org/wp-content/uploads/2019/06/mercado-pago-logo-4.png"

@@ -1,27 +1,33 @@
-import React from "react";
+import React, { useState } from "react";
 import { useSelector } from "react-redux";
-import { Card, NavBar, Details } from ".";
+import { Card, NavBar, Details, Mensaje } from ".";
 import { Link } from "react-router-dom";
 
 export const ResultSearch = () => {
-  const { products } = useSelector((state) => state.products);
-  console.log(products);
-
+  const { products } = useSelector((state) => state.productReducer);
   return (
     <div>
       <div>
         <NavBar />
       </div>
-      {products.map((p) => (
-        <Link key={p.id} to={`/details/${p.id}`}>
-          <Card
-            image={p.image}
-            name={p.name}
-            description={p.description}
-            price={p.price}
-          />
-        </Link>
-      ))}
+      {products.length !== 0 ? (
+        !products[0].hasOwnProperty("message") ? (
+          products.map((p) => (
+            <Link key={p.id} to={`/details/${p.id}`}>
+              <Card
+                image={p.image}
+                name={p.name}
+                description={p.description}
+                price={p.price}
+              />
+            </Link>
+          ))
+        ) : (
+          <Mensaje tipo="error">Producto no encontrado</Mensaje>
+        )
+      ) : (
+        <h1>Loading</h1>
+      )}
     </div>
   );
 };

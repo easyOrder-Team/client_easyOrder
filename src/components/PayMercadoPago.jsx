@@ -4,12 +4,11 @@ import { useSelector } from "react-redux";
 import { useAuth0 } from "@auth0/auth0-react";
 
 export const PasarelaMercadoPago= () => {
-  const productsCart = useSelector((state) => state.productsCart.productsCart);
-  const { user } = useAuth0();
+  const {productsCart} = useSelector((state) => state.productReducer);
+  const { user, isLoading } = useAuth0();
 
   useEffect(() => {
-    
-    if (productsCart) {
+    if (productsCart ) {
       localStorage.setItem('products', JSON.stringify(productsCart));
       fetch(`http://localhost:3000/api/v1/mercadoPago?products=${JSON.stringify(productsCart)}&email=${user.email}`)
         .then((response) => response.json())

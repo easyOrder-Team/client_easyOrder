@@ -7,29 +7,92 @@ import { useNavigate } from "react-router-dom";
 import { clearCart } from "../redux/product/actions";
 import s from "../styles/OrderConfirmation.module.css";
 import * as actions from "../redux/product/actions";
+import * as actionsPayment from "../redux/payment/actions";
+import * as orderActions from "../redux/order/actions";
+import * as checkActions from "../redux/check/actions";
 
 export const OrderConfirmation = () => {
   let total = 0;
   const [price, setPrice] = useState(0);
-  const { productsCart } = useSelector((state) => state.productsCart);
+  const { productsCart } = useSelector((state) => state.productReducer);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { id } = useParams();
-  const products = JSON.parse(localStorage.getItem('products'));
-  
+  const products = JSON.parse(localStorage.getItem("products"));
+  const order = JSON.parse(localStorage.getItem('order'));
+  const profile = JSON.parse(localStorage.getItem('profile'));
+  const bill = useSelector((state) => state.checkReducer.check);
+  const mercadoPagoBill = useSelector(
+    (state) => state.paymentReducer.infoPayment
+  );
+
   useEffect(() => {
-    if(productsCart.length === 0 && products){          
-      products.map((product) =>{
+    dispatch(actionsPayment.getPaymentInfo(id));
+  }, []);
+  useEffect(() => {
+    if (productsCart.length === 0 && products) {
+      products.map((product) => {
         dispatch(actions.addProductCart(product));
-      })
-    }    
+      });
+    }
   }, [products]);
 
+  const deleteLocaleStorage = () => {
+    localStorage.removeItem('contador')
+    localStorage.removeItem('tempTotal')
+    localStorage.removeItem('order')
+    localStorage.removeItem('product')
+  }
   const handleClick = (e) => {
     e.preventDefault();
-    localStorage.clear();
-    console.log("regresar al home");
-    dispatch(clearCart());
+    let check = {};
+    if (!mercadoPagoBill.hasOwnProperty('order')) {
+      check = {
+        id_check: bill.id,
+        name: bill.payer.name.given_name,
+        lastname: bill.payer.name.surname,
+        date: bill.create_time,
+        total: bill.purchase_units[0].amount.value,
+        email: bill.payer.email_address,
+        id_order: order.id_orders,
+      };
+      console.log(check);
+      console.log("regresar al home");
+      dispatch(clearCart());
+      deleteLocaleStorage()
+      dispatch(checkActions.createCheck(check));
+    }else{
+      if(mercadoPagoBill.payer.first_name === null){
+        check = {
+          id_check: `${id}`,
+          name: mercadoPagoBill.card.cardholder.name.split(' ')[0],
+          lastname: mercadoPagoBill.card.cardholder.name.split(' ')[1],
+          date: mercadoPagoBill.date_approved,
+          total: mercadoPagoBill.transaction_amount,
+          email: profile.id_profile,
+          id_order: order.id_orders,
+        };
+
+        console.log(check);
+        console.log(order.order.id_orders)
+        console.log("regresar al home");
+        dispatch(clearCart());
+        deleteLocaleStorage()
+        dispatch(checkActions.createCheck(check));
+      }
+      // check = {
+      //   id_check: id,
+      //   name: mercadoPagoBill,
+      //   lastName: bill.payer.name.surname,
+      //   date: bill.create_time,
+      //   total: bill.purchase_units[0].amount.value,
+      //   email: bill.payer.email_address,
+      //   id_order: order.order.id_orders,
+      // };
+
+    }
+
+
     navigate("/home");
   };
 
@@ -70,6 +133,7 @@ export const OrderConfirmation = () => {
             <span>${total}</span>
           </div>
         </div>
+        <button className= {s.btn1} onClick = {() => navigate('/review')}>Te gustaria puntuarnos?</button>
         <button className={s.btn1} onClick={handleClick}>
           CONTINUAR
         </button>

@@ -5,15 +5,24 @@ import { categoryReducer } from "../categories/categoryReducer";
 import { productReducer } from "../product/productReducer";
 import { profileReducer } from "../profile/profileReducer";
 import { orderReducer } from "../order/orderReducer";
+import { checkReducer } from "../check/checkReducer";
+import { paymentReducer } from "../payment/paymentReducer";
+import { reservationReducer } from "../reservation/reservationReducer";
+import { reviewReducer } from "../review/reviewReducer";
+
+
 
 const store = createStore(
   combineReducers({
     productReducer,
-    products: productReducer,
-    productsCart: productReducer,
-    categories: categoryReducer,
+    productsList: productReducer,
+    categoryReducer,
     profileReducer,
-    orderReducer
+    orderReducer,
+    checkReducer,
+    paymentReducer,
+    reservationReducer,
+    reviewReducer,
   }),
   composeWithDevTools(applyMiddleware(thunk))
 );
