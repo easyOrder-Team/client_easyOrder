@@ -1,6 +1,6 @@
 import React from "react";
 import { json, Link, useParams } from "react-router-dom";
-import {useDispatch, useSelector} from 'react-redux';
+import { useDispatch, useSelector } from "react-redux";
 /* import s from "./Landing.module.css"; */
 import "../styles/Landing.css";
 import * as actionsProfile from "../redux/profile/actions";
@@ -9,8 +9,8 @@ import { useEffect } from "react";
 
 export function Landing() {
   // const [table, setTable] = useState('')
-  const dispatch = useDispatch()
-  const {site} = useParams()
+  const dispatch = useDispatch();
+  const { site } = useParams();
   const { loginWithRedirect } = useAuth0();
 
   // useEffect(() => {
@@ -22,14 +22,14 @@ export function Landing() {
   // },[])
 
   useEffect(() => {
-    localStorage.setItem('site', JSON.stringify(parseInt(site)))
-    let numMesa = localStorage.getItem('site')
-    console.log(numMesa)
-  },[])
+    localStorage.setItem("site", JSON.stringify(parseInt(site)));
+    let numMesa = localStorage.getItem("site");
+    // console.log(numMesa)
+  }, []);
 
   useEffect(() => {
-    dispatch(actionsProfile.getSite(site))
-  },[site])
+    dispatch(actionsProfile.getSite(site));
+  }, [site]);
 
   return (
     <div className="root">

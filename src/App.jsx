@@ -16,6 +16,7 @@ import {
   Review,
   Admin,
   Products,
+  UpdateProduct,
 } from "./components";
 import { PagePay } from "./components/PagePay";
 import { Profile } from "./components/Profile";
@@ -52,6 +53,7 @@ function App() {
         <Route path="/review" element={<Review />} />
         <Route path="/admin" element={<Admin />} />
         <Route path="/products" element={<Products />} />
+        <Route path="/updateProduct/:id" element={<UpdateProduct />} />
       </Routes>
     </div>
   );

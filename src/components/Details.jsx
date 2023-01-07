@@ -10,6 +10,8 @@ import { NavBar, Mensaje } from ".";
 export const Details = () => {
   const { id } = useParams();
   const navegate = useNavigate();
+  const { detailProduct } = useSelector((state) => state.productReducer);
+
   const [count, setCount] = useState(1);
   const [mensaje, setMensaje] = useState("");
 
@@ -24,6 +26,8 @@ export const Details = () => {
       .slice(2, -3);
   };
 
+  let isAdmin = true;
+
   useEffect(() => {
     dispatch(actions.getProductById(id));
   }, []);
@@ -35,7 +39,6 @@ export const Details = () => {
   const suma = () => {
     setCount(count + 1);
   };
-  console.log(count);
 
   const handleClick = (e) => {
     e.preventDefault();
@@ -63,7 +66,11 @@ export const Details = () => {
     navegate("/cart");
   };
 
-  const { detailProduct } = useSelector((state) => state.productReducer);
+  const handleEdit = (e) => {
+    e.preventDefault();
+    navegate(`/updateProduct/${id}`);
+  };
+
   return (
     <div>
       <NavBar />
@@ -114,15 +121,24 @@ export const Details = () => {
           </div>
         ) : null}
 
-        <div className={style.conteiner_buttons}>
-          <button className={style.btn1} onClick={handleClick}>
-            Agregar al carrito
-          </button>
+        {isAdmin ? (
+          <div className={style.conteiner_buttons}>
+            <button className={style.btn1} onClick={handleEdit}>
+              Edit Product
+            </button>
+            <button className={style.btn2}>Delete Product</button>
+          </div>
+        ) : (
+          <div className={style.conteiner_buttons}>
+            <button className={style.btn1} onClick={handleClick}>
+              Agregar al carrito
+            </button>
 
-          <button className={style.btn2} onClick={handleToCart}>
-            Ir a pagar
-          </button>
-        </div>
+            <button className={style.btn2} onClick={handleToCart}>
+              Ir a pagar
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );
