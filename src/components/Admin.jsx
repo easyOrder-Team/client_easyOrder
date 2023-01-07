@@ -103,12 +103,12 @@ export const Admin = () => {
           </div>
         </div>
         <div>
-          <span class="material-symbols-outlined">account_circle</span>
+          <span className="material-symbols-outlined">account_circle</span>
           <h2>Username</h2>
           <h4>Admin</h4>
         </div>
         <div className={h.homecontainer}>
-          <Link to={"/CreateProduct"}>
+          <Link to={"/products"}>
             <div className={`${h.card} ${h.card__productos}`}>
               <h2>Productos</h2>
             </div>
