@@ -205,11 +205,11 @@ export const Cart = () => {
 
       <div className={s.conteiner_buttons}>
         <button className={s.btn1} onClick={handleClick}>
-          Make an Order
+          Realizar el pedido
         </button>
 
         <button className={s.btn2} onClick={handleToPay}>
-          Go pay
+          Ir a pagar
         </button>
       </div>
     </div>
