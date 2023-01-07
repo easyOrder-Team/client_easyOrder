@@ -39,7 +39,6 @@ function App() {
         <Route path="/profile" element={<Profile />} />
         <Route path="/home" element={<Home />} />
         <Route path="/createProduct" element={<CreateProduct />} />
-        <Route path="/createProducts" element={<CreateProducts />} />
         <Route path="resultsearch" element={<ResultSearch />} />
         <Route path="/details/:id" element={<Details />} />
         <Route path="/createProfile" element={<CreateProfile />} />

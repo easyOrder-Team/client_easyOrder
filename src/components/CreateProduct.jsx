@@ -25,12 +25,6 @@ export const CreateProduct = () => {
     categories: "",
   });
 
-  // get categories
-  const { categories } = useSelector((state) => state.categoryReducer);
-  useEffect(() => {
-    dispatch(getCategories());
-  }, []);
-
   useEffect(() => {
     if (localCategories.length > 0) {
       setData({

@@ -10,7 +10,6 @@ export * from "./Card";
 export * from "./SearchBar";
 export * from "./ResultSearch";
 export * from "./CreateProduct";
-export * from "./CreateProducts";
 export * from "./CreateProfile";
 export * from "./Profile";
 export * from "./OrderConfirmation";

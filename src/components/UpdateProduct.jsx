@@ -127,8 +127,9 @@ export const UpdateProduct = () => {
     modifyData(newData);
     dispatch(actionProducts.updateProduct(id, modifiedData));
     Swal.fire({
-      type: "success",
+      type: "warning",
       title: "OK!",
+      confirmButtonColor: "#f39c12",
       text: "El producto se ha actualizado correctamente",
     }).then((result) => {
       if (result.isConfirmed) {
