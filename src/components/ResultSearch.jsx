@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { Card, NavBar, Details, Mensaje } from ".";
 import { Link } from "react-router-dom";
+import { useState } from "react";
+import { useEffect } from "react";
 
 export const ResultSearch = () => {
   const { products } = useSelector((state) => state.productReducer);

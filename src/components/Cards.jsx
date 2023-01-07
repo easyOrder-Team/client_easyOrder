@@ -45,6 +45,7 @@ export const Cards = () => {
   const handleSelectPrice = (e) => {
     setTime("");
     setCate("");
+    console.log("SSSSS", JSON.parse(e.target.value));
     dispatch(actionsProducts.sortProductsByPrice(e.target.value, category));
   };
   const handleSelectCategory = (e) => {
@@ -69,8 +70,11 @@ export const Cards = () => {
           }}
         >
           <option value="">Orden por precio</option>
-          <option value="menor-mayor">Menor a mayor</option>
-          <option value="mayor-menor">Mayor a menor</option>
+          <option value="minor: 1, higher: 1000">0001 - 1000</option>
+          <option value={"minor: 1001, higher: 2000"}>1001 - 2000</option>
+          <option value={{ minor: 2001, higher: 3000 }}>2001 - 3000</option>
+          <option value={{ minor: 3001, higher: 4000 }}>3001 - 4000</option>
+          <option value={{ minor: 4001, higher: 5000 }}>4001 - 5000</option>
         </select>
       </div>
       <br />

@@ -1,16 +1,14 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Swal from "sweetalert2";
-import { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Select from "react-select";
-import { useSelector } from "react-redux";
 import { getCategories } from "../redux/categories/actions";
-import { useState } from "react";
 import styleForm from "../styles/Form.module.css";
 import tableroFood from "../images/tablero_food.jpg";
 import { selectStyle } from "../styles/StyleSelectForm";
 import { NavBar } from "../components";
 import { useNavigate } from "react-router-dom";
+import * as actionProducts from "../redux/product/actions";
 
 export const CreateProduct = () => {
   const dispatch = useDispatch();
@@ -26,6 +24,12 @@ export const CreateProduct = () => {
     prep_time: "",
     categories: "",
   });
+
+  // get categories
+  const { categories } = useSelector((state) => state.categoryReducer);
+  useEffect(() => {
+    dispatch(getCategories());
+  }, []);
 
   useEffect(() => {
     if (localCategories.length > 0) {
@@ -80,7 +84,7 @@ export const CreateProduct = () => {
     });
   };
 
-  let {categories} = useSelector((state) => state.categoryReducer);
+  let { categories } = useSelector((state) => state.categoryReducer);
 
   useEffect(() => {
     dispatch(getCategories());
@@ -100,31 +104,36 @@ export const CreateProduct = () => {
 
   const submit = (e) => {
     e.preventDefault();
-    fetch("http://localhost:3000/api/v1/products", {
-      method: "POST",
-      body: JSON.stringify(data),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    }).then((response) => {
-      if (response.statusText === "Created") {
-        Swal.fire({
-          title: "OK!",
-          text: "El producto se ha creado con exito",
-          icon: "success",
-        }).then((response) => {
-          if (response.isConfirmed) {
-            navigate("/home");
-          }
-        });
-      } else {
-        Swal.fire({
-          title: "Error!",
-          text: "El producto NO se ha podido crear",
-          icon: "error",
-        });
-      }
-    });
+    console.log("data", data);
+    dispatch(actionProducts.createProduct(data));
+    // let newData = JSON.stringify(data);
+    // dispatch(actionProducts.createProduct(newData));
+    // fetch("http://localhost:3000/api/v1/products", {
+    //   method: "POST",
+    //   body: JSON.stringify(data),
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //   },
+    // }
+    // ).then((response) => {
+    //   if (response.statusText === "Created") {
+    //     Swal.fire({
+    //       title: "OK!",
+    //       text: "El producto se ha creado con exito",
+    //       icon: "success",
+    //     }).then((response) => {
+    //       if (response.isConfirmed) {
+    //         navigate("/home");
+    //       }
+    //     });
+    //   } else {
+    //     Swal.fire({
+    //       title: "Error!",
+    //       text: "El producto NO se ha podido crear",
+    //       icon: "error",
+    //     });
+    //   }
+    // });
   };
   return (
     <div id={styleForm.containerGlobalForm}>
@@ -182,6 +191,7 @@ export const CreateProduct = () => {
                 onChange={(e) => checkText(e)}
               ></textarea>
             </div>
+
             <div className={styleForm.containerLabel}>
               <label className={styleForm.labels}>Categorias</label>
               <Select

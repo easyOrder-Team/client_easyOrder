@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavBar, Mensaje } from ".";
 import { deleteProduct } from "../redux/product/actions";
@@ -6,7 +6,7 @@ import s from "../styles/Cart.module.css";
 import st from "../styles/ItemCount.module.css";
 import { useNavigate } from "react-router-dom";
 import * as orderActions from "../redux/order/actions";
-import { useEffect } from "react";
+
 import * as actions from "../redux/product/actions";
 
 export const Cart = () => {
@@ -142,7 +142,7 @@ export const Cart = () => {
 
   const handleToPay = (e) => {
     e.preventDefault();
-    dispatch(orderActions.createOrder(order))
+    dispatch(orderActions.createOrder(order));
     navigate("/pagepay");
     localStorage.setItem("contador", JSON.stringify(parseInt(0)));
     setCount(0);
@@ -151,7 +151,7 @@ export const Cart = () => {
   return (
     <div className={s.globalContainerCart}>
       <NavBar />
-      {productsCart.length >= 1 &&
+      {product.length &&
         product.map((p) => (
           <div key={p.id} className={s.container}>
             <div className={s.img}>
