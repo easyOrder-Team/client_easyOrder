@@ -15,7 +15,7 @@ export const Cart = () => {
   var aux = 0;
 
   const state = useSelector((state) => state.profileReducer);
-  const { productsCart } = useSelector((state) => state.productsCart);
+  const { productsCart } = useSelector((state) => state.productReducer);
   const [total, setTotal] = useState(0);
   const [product, setProduct] = useState(productsCart);
   const [mensaje, setMensaje] = useState("");
