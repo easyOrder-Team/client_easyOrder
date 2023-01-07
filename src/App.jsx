@@ -14,13 +14,11 @@ import {
   Scanner,
   Redirect,
   Review,
-  ReviewDetail,
-  OrderDetail,
   Admin,
-  Products
+  Products,
 } from "./components";
-import { PagePay } from "./components/PagePay"
-import { Profile } from "./components/Profile"
+import { PagePay } from "./components/PagePay";
+import { Profile } from "./components/Profile";
 import * as actions from "./redux/product/actions";
 import * as actionsCategory from "./redux/categories/actions";
 import { useEffect } from "react";
@@ -42,9 +40,9 @@ function App() {
         <Route path="/createProduct" element={<CreateProduct />} />
         <Route path="resultsearch" element={<ResultSearch />} />
         <Route path="/details/:id" element={<Details />} />
-        <Route path="/createProfile" element={<CreateProfile/>} />
+        <Route path="/createProfile" element={<CreateProfile />} />
         <Route path="/cart" element={<Cart />} />
-        <Route path="/pagepay" element={<PagePay/>} />
+        <Route path="/pagepay" element={<PagePay />} />
         <Route path="/confirmation/:id" element={<OrderConfirmation />} />
         <Route path="/confirmation" element={<Redirect />} />
         <Route path="/payMercadoPago" element={<PasarelaMercadoPago />} />
