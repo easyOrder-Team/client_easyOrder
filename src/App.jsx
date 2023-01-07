@@ -14,8 +14,6 @@ import {
   Scanner,
   Redirect,
   Review,
-  ReviewDetail,
-  OrderDetail,
   Admin,
   Products
 } from "./components";
