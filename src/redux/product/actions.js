@@ -54,17 +54,34 @@ export const filterByCategory = (category) => {
       })
       .catch((error) => console.log(error));
 };
+//--------------------------- CODIGO PREVIO ---------------------------------------------
 
-export const sortProductsByPrice = (price, category) => {
+// export const sortProductsByPrice = (price, category) => {
+//   return (dispatch) =>
+//     axios
+//       .get(`http://localhost:3000/api/v1/products/filter/priceOrder`)
+//       .then((response) => {
+//         dispatch({
+//           type: types.SORT_PRODUCTS_BY_PRICE,
+//           payload: { response: response.data, price, category },
+//         });
+//         supportPrice = [];
+//       })
+//       .catch((error) => console.log(error));
+// };
+//
+//--------------------------- CODIGO LILA ---------------------------------------------
+export const sortProductsByPrice = (category, order) => {
   return (dispatch) =>
     axios
-      .get(`http://localhost:3000/api/v1/products/filter/priceOrder`)
+      .get(
+        `http://localhost:3000/api/v1/products/filter/priceOrder?category=${category}&order=${order}`
+      )
       .then((response) => {
         dispatch({
           type: types.SORT_PRODUCTS_BY_PRICE,
-          payload: { response: response.data, price, category },
+          payload: response.data,
         });
-        supportPrice = [];
       })
       .catch((error) => console.log(error));
 };

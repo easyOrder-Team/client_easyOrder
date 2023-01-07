@@ -45,8 +45,10 @@ export const Cards = () => {
   const handleSelectPrice = (e) => {
     setTime("");
     setCate("");
-    dispatch(actionsProducts.sortProductsByPrice(e.target.value, category));
+    const order = e.target.value;
+    dispatch(actionsProducts.sortProductsByPrice(category, order));
   };
+
   const handleSelectCategory = (e) => {
     setTime("");
     setPrice("");
@@ -69,8 +71,8 @@ export const Cards = () => {
           }}
         >
           <option value="">Orden por precio</option>
-          <option value="menor-mayor">Menor a mayor</option>
-          <option value="mayor-menor">Mayor a menor</option>
+          <option value="min-max">Menor a mayor</option>
+          <option value="max-min">Mayor a menor</option>
         </select>
       </div>
       <br />
