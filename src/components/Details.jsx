@@ -72,7 +72,7 @@ export const Details = () => {
                 <span className={`material-symbols-outlined ${style.timeSpan}`}>
                   schedule
                 </span>
-                <h3>Time</h3>
+                <h3>Tiempo</h3>
               </div>
               <div>
                 <p> {detailProduct[0].prep_time} min.</p>
@@ -95,11 +95,11 @@ export const Details = () => {
         ) : null}
         <div className={style.conteiner_buttons}>
           <button className={style.btn1} onClick={handleClick}>
-            Add to cart
+            Agregar al carrito
           </button>
 
           <button className={style.btn2} onClick={handleToCart}>
-            Go pay
+            Ir a pagar
           </button>
         </div>
       </div>

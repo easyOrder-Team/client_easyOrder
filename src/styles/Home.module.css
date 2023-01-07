@@ -6,7 +6,7 @@ html{
   box-sizing: inherit;
 }
 body{
-  font-size: 16px; 
+  font-size: 1rem; 
 }
 
 h2{
@@ -27,7 +27,7 @@ h2{
 	display: grid;
 	grid-template-rows: 512px 512px 512;
 	grid-template-columns: 50% 50% ;
-	grid-gap: 1rem;
+	grid-gap: 2rem;
   justify-content: center;
 }
 
@@ -45,9 +45,9 @@ h2{
 }
 
 .card:hover {
-  filter: brightness(1.75);
+  filter: brightness(1.375);
   scale: 1.0375;
-  animation-duration: 6s
+  animation-duration: 6s;
 
 }
 
