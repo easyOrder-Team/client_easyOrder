@@ -55,7 +55,7 @@ export const Details = () => {
     setTimeout(() => {
       window.history.back();
       setCount(1);
-    }, 500);
+    }, 1000);
   };
 
   const handleToCart = (e) => {

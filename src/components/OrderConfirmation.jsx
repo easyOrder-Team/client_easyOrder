@@ -37,6 +37,12 @@ export const OrderConfirmation = () => {
     }
   }, [products]);
 
+  const deleteLocaleStorage = () => {
+    localStorage.removeItem('contador')
+    localStorage.removeItem('tempTotal')
+    localStorage.removeItem('order')
+    localStorage.removeItem('product')
+  }
   const handleClick = (e) => {
     e.preventDefault();
     let check = {};
@@ -53,6 +59,7 @@ export const OrderConfirmation = () => {
       console.log(check);
       console.log("regresar al home");
       dispatch(clearCart());
+      deleteLocaleStorage()
       dispatch(checkActions.createCheck(check));
     }else{
       if(mercadoPagoBill.payer.first_name === null){
@@ -69,8 +76,9 @@ export const OrderConfirmation = () => {
         console.log(check);
         console.log(order.order.id_orders)
         console.log("regresar al home");
-         dispatch(clearCart());
-         dispatch(checkActions.createCheck(check));
+        dispatch(clearCart());
+        deleteLocaleStorage()
+        dispatch(checkActions.createCheck(check));
       }
       // check = {
       //   id_check: id,
