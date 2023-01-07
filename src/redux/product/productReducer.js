@@ -74,20 +74,48 @@ export const productReducer = (state = initialState, action) => {
         products: [],
       };
 
-    case types.SORT_PRODUCTS_BY_PRICE:
-      let { response, category } = action.payload;
-      let supportPrice = [];
 
-      response.forEach((p) => {
-        p.category.forEach((c) => {
-          if (c.name.toLowerCase() === category.toLowerCase()) {
-            supportPrice.push(p);
-          }
-        });
-      });
+    //--------------------------- CODIGO PREVIO ---------------------------------------------
+    // case types.SORT_PRODUCTS_BY_PRICE:
+    //   let response = action.payload.response;
+    //   let price = action.payload.price;
+    //   let category = action.payload.category;
+    //   let supportPrice = [];
+
+    //   if (price === "menor-mayor") {
+    //     response.forEach((p) => {
+    //       p.category.forEach((c) => {
+    //         if (c.name.toLowerCase() === category.toLowerCase()) {
+    //           supportPrice.push(p);
+    //         }
+    //       });
+    //     });
+    //     return {
+    //       ...state,
+    //       products: supportPrice,
+    //     };
+    //   }
+    //   if (price === "mayor-menor") {
+    //     let reverse = [...response].reverse();
+    //     reverse.forEach((p) => {
+    //       p.category.forEach((c) => {
+    //         if (c.name.toLowerCase() === category.toLowerCase()) {
+    //           supportPrice.push(p);
+    //         }
+    //       });
+    //     });
+
+    //     return {
+    //       ...state,
+    //       products: supportPrice,
+    //     };
+    //   }
+    //--------------------------- CODIGO LILA ---------------------------------------------
+
+    case types.SORT_PRODUCTS_BY_PRICE:
       return {
         ...state,
-        products: supportPrice,
+        products: action.payload,
       };
 
     case types.DELETE_PRODUCT:
