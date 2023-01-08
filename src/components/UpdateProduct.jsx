@@ -1,47 +1,57 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 import { useDispatch, useSelector } from "react-redux";
 import Select from "react-select";
 import { getCategories } from "../redux/categories/actions";
 import styleForm from "../styles/Form.module.css";
-import tableroFood from "../images/tablero_food.jpg";
 import { selectStyle } from "../styles/StyleSelectForm";
 import { NavBar } from "../components";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import * as actionProducts from "../redux/product/actions";
 
-export const CreateProduct = () => {
+export const UpdateProduct = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [localCategories, setLocalCategories] = useState([]);
   const [options, setOptions] = useState([]);
-  const [data, setData] = useState({
+  const [newData, setNewData] = useState({
     name: "",
     description: "",
     price: "",
     image: "",
     stock: "false",
     prep_time: "",
-    categories: "",
+    // categories: "",
   });
 
+  const { id } = useParams();
+  const { detailProduct } = useSelector((state) => state.productReducer);
   useEffect(() => {
-    if (localCategories.length > 0) {
-      setData({
-        ...data,
-        ["categories"]: localCategories.map((category) => category.value),
-      });
-    } else {
-      setData({
-        ...data,
-        ["categories"]: [],
-      });
-    }
-  }, [localCategories]);
+    dispatch(actionProducts.getProductById(id));
+  }, []);
+
+  let { categories } = useSelector((state) => state.categoryReducer);
+  useEffect(() => {
+    dispatch(getCategories());
+  }, []);
+
+  // useEffect(() => {
+  //   if (localCategories.length > 0) {
+  //     setNewData({
+  //       ...newData,
+  //       ["categories"]: localCategories.map((category) => category.value),
+  //     });
+  //   } else {
+  //     setNewData({
+  //       ...newData,
+  //       ["categories"]: [],
+  //     });
+  //   }
+  // }, [localCategories]);
 
   const handleInputChange = (e) => {
-    setData({
-      ...data,
+    setNewData({
+      ...newData,
       [e.target.name]: e.target.value,
     });
   };
@@ -72,17 +82,11 @@ export const CreateProduct = () => {
     );
 
     const url = await res.json();
-    setData({
-      ...data,
+    setNewData({
+      ...newData,
       ["image"]: url.secure_url,
     });
   };
-
-  let { categories } = useSelector((state) => state.categoryReducer);
-
-  useEffect(() => {
-    dispatch(getCategories());
-  }, []);
 
   useEffect(() => {
     if (categories.length > 0) {
@@ -96,39 +100,44 @@ export const CreateProduct = () => {
     }
   }, [categories]);
 
+  let modifiedData = {};
+  const modifyData = (newData) => {
+    newData.name === ""
+      ? (modifiedData.name = detailProduct[0].name)
+      : (modifiedData.name = newData.name);
+    newData.description === ""
+      ? (modifiedData.description = detailProduct[0].description)
+      : (modifiedData.description = newData.description);
+    newData.price === ""
+      ? (modifiedData.price = detailProduct[0].price)
+      : (modifiedData.price = newData.price);
+    newData.image === ""
+      ? (modifiedData.image = detailProduct[0].image)
+      : (modifiedData.image = newData.image);
+    newData.stock === ""
+      ? (modifiedData.stock = detailProduct[0].stock)
+      : (modifiedData.stock = newData.stock);
+    newData.prep_time === ""
+      ? (modifiedData.prep_time = detailProduct[0].prep_time)
+      : (modifiedData.prep_time = newData.prep_time);
+  };
+
   const submit = (e) => {
     e.preventDefault();
-    console.log("data", data);
-    dispatch(actionProducts.createProduct(data));
-    // let newData = JSON.stringify(data);
-    // dispatch(actionProducts.createProduct(newData));
-    // fetch("http://localhost:3000/api/v1/products", {
-    //   method: "POST",
-    //   body: JSON.stringify(data),
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    // }
-    // ).then((response) => {
-    //   if (response.statusText === "Created") {
-    //     Swal.fire({
-    //       title: "OK!",
-    //       text: "El producto se ha creado con exito",
-    //       icon: "success",
-    //     }).then((response) => {
-    //       if (response.isConfirmed) {
-    //         navigate("/home");
-    //       }
-    //     });
-    //   } else {
-    //     Swal.fire({
-    //       title: "Error!",
-    //       text: "El producto NO se ha podido crear",
-    //       icon: "error",
-    //     });
-    //   }
-    // });
+    modifyData(newData);
+    dispatch(actionProducts.updateProduct(id, modifiedData));
+    Swal.fire({
+      type: "warning",
+      title: "OK!",
+      confirmButtonColor: "#f39c12",
+      text: "El producto se ha actualizado correctamente",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        navigate(`/details/${id}`);
+      }
+    });
   };
+
   return (
     <div id={styleForm.containerGlobalForm}>
       <div className={styleForm.containerNav}>
@@ -139,7 +148,7 @@ export const CreateProduct = () => {
           <div className={styleForm.containerImage}>
             <img
               className={styleForm.img}
-              src={data.image ? data.image : tableroFood}
+              src={newData.image ? newData.image : detailProduct[0].image}
               alt=""
             />
           </div>
@@ -152,7 +161,8 @@ export const CreateProduct = () => {
                   className={styleForm.inputName}
                   type="text"
                   name="name"
-                  value={data.name}
+                  // value={newData.name}
+                  defaultValue={detailProduct[0].name}
                   onChange={(e) => checkText(e)}
                 ></input>
               </div>
@@ -168,7 +178,8 @@ export const CreateProduct = () => {
                     className={styleForm.inputPrice}
                     type="number"
                     name="price"
-                    value={data.price}
+                    // value={newData.price}
+                    defaultValue={detailProduct[0].price}
                     onChange={(e) => checkPriceAndTime(e)}
                   ></input>
                 </div>
@@ -181,20 +192,21 @@ export const CreateProduct = () => {
                 className={styleForm.inputDescription}
                 type="text"
                 name="description"
-                value={data.description}
+                // value={newData.description}
+                defaultValue={detailProduct[0].description}
                 onChange={(e) => checkText(e)}
               ></textarea>
             </div>
 
-            <div className={styleForm.containerLabel}>
-              <label className={styleForm.labels}>Categorias</label>
+            {/* <div className={styleForm.containerLabel}>
+              <label className={styleForm.labels}>Select new categories</label>
               <Select
                 styles={selectStyle}
                 isMulti
                 options={options}
                 onChange={(e) => setLocalCategories(e)}
               />
-            </div>
+            </div>  */}
 
             <div className={styleForm.containerName_price}>
               <div className={styleForm.containerLabel}>
@@ -206,7 +218,8 @@ export const CreateProduct = () => {
                     className={styleForm.inputTime}
                     type="text"
                     name="prep_time"
-                    value={data.prep_time}
+                    // value={newData.prep_time}
+                    defaultValue={detailProduct[0].prep_time}
                     onChange={(e) => checkPriceAndTime(e)}
                   ></input>
                   <label
@@ -226,11 +239,12 @@ export const CreateProduct = () => {
                 <select
                   name="stock"
                   id={styleForm.selectDisponible}
-                  value={data.stock}
+                  // value={newData.stock}
+                  defaultValue={detailProduct[0].stock}
                   onChange={(e) => handleInputChange(e)}
                 >
                   <option value="true">Si</option>
-                  <option value="false"> No</option>
+                  <option value="false">No</option>
                 </select>
               </div>
             </div>
@@ -243,13 +257,19 @@ export const CreateProduct = () => {
                   className={styleForm.inputFile}
                   type="file"
                   accept="image/png , image/jpeg"
+                  // defaultValue={detailProduct[0].image}
                   onChange={uploadImage}
                 ></input>
               </div>
             </div>
 
             <div className={styleForm.containerButton}>
-              <button className={styleForm.buttonCrear}>Crear Producto</button>
+              <button
+                className={styleForm.buttonCrear}
+                // onClick={() => navigate(`/details/${id}`)}
+              >
+                Update Product
+              </button>
             </div>
             <div className={styleForm.containerButton}>
               <button

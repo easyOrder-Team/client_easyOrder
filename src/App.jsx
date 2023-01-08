@@ -19,6 +19,7 @@ import {
   ProtectedRoute,
   // ReviewDetail,
   // OrderDetail
+  UpdateProduct,
 } from "./components";
 import { PagePay } from "./components/PagePay";
 import { Profile } from "./components/Profile";
@@ -64,6 +65,7 @@ function App() {
         <Route path="/review" element={<Review />} />
         <Route path="/orderDetail/:id" element={<OrderDetail />} />
         <Route path="/reviewDetail/:id" element={<ReviewDetail />} />
+        <Route path="/updateProduct/:id" element={<UpdateProduct />} />
       </Routes>
     </div>
   );

@@ -37,6 +37,12 @@ export const OrderConfirmation = () => {
     }
   }, [products]);
 
+  const deleteLocaleStorage = () => {
+    localStorage.removeItem('contador')
+    localStorage.removeItem('tempTotal')
+    localStorage.removeItem('order')
+    localStorage.removeItem('product')
+  }
   const handleClick = (e) => {
     e.preventDefault();
     dispatch(clearCart());
@@ -51,7 +57,8 @@ export const OrderConfirmation = () => {
         email: bill.payer.email_address,
         id_order: order.id_orders,
       };
-     
+      dispatch(clearCart());
+      deleteLocaleStorage()
       dispatch(checkActions.createCheck(check));
     } else {
       if (mercadoPagoBill.payer.first_name === null) {
@@ -64,8 +71,8 @@ export const OrderConfirmation = () => {
           email: profile.id_profile,
           id_order: order.id_orders,
         };
-
-       
+        dispatch(clearCart());
+        deleteLocaleStorage()
         dispatch(checkActions.createCheck(check));
       }
       // check = {
