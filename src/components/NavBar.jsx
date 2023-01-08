@@ -16,7 +16,7 @@ export const NavBar = () => {
     !location.includes("/cards") &&
     location !== "/profile" &&
     location !== "/scannQR" &&
-    location !== "/selectPayMethod" 
+    location !== "/selectPayMethod"
   ) {
     return (
       <div>
@@ -73,9 +73,17 @@ export const NavBar = () => {
             <div className={s.logo}>
               <Link to={"/home"}>
                 <img
-                  src="https://res.cloudinary.com/dypjcpbis/image/upload/v1670886694/EasyOrder_BD/Recurso_1_l9yefi.svg"
+                  className={s.logoLight}
+                  src="https://res.cloudinary.com/dbvh03usi/image/upload/v1673154193/logoLight_c7oy7u.svg"
                   alt="logo_EasyOrder.svg"
                 />
+                <img
+                  className={s.logoDark}
+                  src="https://res.cloudinary.com/dbvh03usi/image/upload/v1673154201/logoDark_ri39pc.svg"
+                  alt="logo_EasyOrder.svg"
+                />
+                {/* <img className={s.logo_light} scr={logoLight}></img> */}
+                {/* <img className={s.logo_dark} scr={logoDark}></img> */}
               </Link>
             </div>
             <div className={s.navbar__allicons}>

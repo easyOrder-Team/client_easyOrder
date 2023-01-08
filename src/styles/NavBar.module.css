@@ -33,10 +33,13 @@ span {
   justify-content: flex-start;
   
 }
-.logo img{
+.logoLight{
   display: flex;
   justify-content: flex-start;
   width: 25%;
+}
+.logoDark{
+  display:none;
 }
 .modalMenu{
   width: 100%;
@@ -105,3 +108,13 @@ span {
   text-align: left;
 }
 
+@media (prefers-color-scheme: light) {
+  .logoLight{
+    display:none;
+  }
+  .logoDark{
+    display: flex;
+    justify-content: flex-start;
+    width: 25%;
+  }
+}
