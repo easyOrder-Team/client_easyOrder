@@ -20,6 +20,6 @@ export * from "./Review";
 export * from "./OrderDetail";
 export * from "./ReviewDetails";
 export * from "./Mensaje";
-;
 export * from "./Admin";
 export * from "./Products";
+export * from "./ProtectedRoute"

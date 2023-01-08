@@ -16,6 +16,7 @@ import {
   Review,
   Admin,
   Products,
+  ProtectedRoute,
   // ReviewDetail,
   // OrderDetail
 } from "./components";
@@ -28,8 +29,10 @@ import { useDispatch } from "react-redux";
 import { CreateProfile } from "./components/CreateProfile";
 import OrderDetail from "./components/OrderDetail";
 import ReviewDetail from "./components/ReviewDetails";
+import { useAuth0 } from "@auth0/auth0-react";
 
 function App() {
+  const { user, isAuthenticated, isLoading } = useAuth0();
   return (
     <div className="App">
       <Routes>
@@ -44,7 +47,14 @@ function App() {
         <Route path="/details/:id" element={<Details />} />
         <Route path="/createProfile" element={<CreateProfile />} />
         <Route path="/cart" element={<Cart />} />
-        <Route path="/pagepay" element={<PagePay />} />
+        <Route
+          path="/pagepay"
+          element={
+            <ProtectedRoute isAuthenticated={isAuthenticated}>
+              <PagePay />
+            </ProtectedRoute>
+          }
+        />
         <Route path="/confirmation/:id" element={<OrderConfirmation />} />
         <Route path="/confirmation" element={<Redirect />} />
         <Route path="/payMercadoPago" element={<PasarelaMercadoPago />} />

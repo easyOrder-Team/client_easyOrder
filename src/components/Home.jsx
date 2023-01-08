@@ -69,7 +69,9 @@ export const Home = () => {
           </div>
         </div>
       ) : (
-        <div>Loading...</div>
+        <div className="containerSpin">
+          <div className="spinner"></div>
+        </div>
       )}
     </div>
   );
