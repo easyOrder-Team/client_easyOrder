@@ -1,11 +1,20 @@
-.input {
-  height: 100% !important;
+.container {
+  display: flex;
+  align-items: center;
+  padding: 0.6rem;
+  height: 3.75rem;
   background-color: var(--light-color);
+  border-radius: 2rem;
+}
+
+.input {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100% !important;
   border: none;
-  border-radius: 0;
-  border-end-start-radius: 2rem;
-  border-start-start-radius: 2rem;
   padding-left: 1.2rem;
+  background-color: transparent;
 }
 
 .input:focus {
@@ -19,19 +28,15 @@
 
 .btn {
   border: none;
-  padding: 0.2rem;
-  background-color: var(--light-color);
-  border-end-end-radius: 20rem;
-  border-start-end-radius: 20rem;
+  padding-right: 0.5rem;
   height: 100%;
+  background-color: transparent;
 }
 
-.container {
-  display: flex;
-  align-items: center;
-  padding: 0.6rem;
-  height: 4rem;
+.btn:hover {
+  filter: brightness(1.1);
 }
+
 
 ::placeholder {
   color: var(--text-color);

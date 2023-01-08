@@ -65,7 +65,7 @@ export const Details = () => {
 
   const { detailProduct } = useSelector((state) => state.productReducer);
   return (
-    <div>
+    <div className={style.root}>
       <NavBar />
       <div className={style.conteiner}>
         {detailProduct.length ? (
@@ -83,7 +83,7 @@ export const Details = () => {
             </div>
             <div>
               <p className={style.description}>
-                Description: {detailProduct[0].description}
+                Descripción: {detailProduct[0].description}
               </p>
             </div>
             <div>

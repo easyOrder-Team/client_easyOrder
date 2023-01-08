@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 import * as orderActions from "../redux/order/actions";
 import { useEffect } from "react";
 import * as actions from "../redux/product/actions";
+import remove from "../images/remove.svg";
 
 export const Cart = () => {
   const navigate = useNavigate();
@@ -160,7 +161,7 @@ export const Cart = () => {
             <div className={s.nameCantidad}>
               <h2>{p.name}</h2>
               <div className={s.cantidad}>
-                <h3>Amount: </h3>
+                <h3>Cantidad: </h3>
                 <div className={st.counter}>
                   <button
                     disabled={p.count <= 1}
@@ -168,7 +169,7 @@ export const Cart = () => {
                     onClick={resta}
                     value={p.id}
                   >
-                    -
+                    {/* <img src={remove} alt="Eliminar" /> */}-
                   </button>
                   <span>{p.count}</span>
                   <button value={p.id} className={st.btn} onClick={suma}>
@@ -186,7 +187,9 @@ export const Cart = () => {
                 className={s.btnDelete}
                 onClick={() => handleDelete(p.id)}
               >
-                <span className="material-symbols-outlined">delete</span>
+                <span className={`material-symbols-outlined ${s.delete}`}>
+                  delete
+                </span>
               </button>
             </div>
             <br />
