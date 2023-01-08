@@ -4,9 +4,10 @@ import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { getCategories } from "../redux/categories/actions";
 import { useState } from "react";
-import { NavBar } from "../components";
+import Swal from "sweetalert2";
+import axios from "axios";
 
-export const CreateProduct = () => {
+export const CreateCategory = () => {
   const dispatch = useDispatch();
   const { categories } = useSelector((state) => state.categoryReducer);
   const [category, setCategory] = useState("");
@@ -15,29 +16,76 @@ export const CreateProduct = () => {
     dispatch(getCategories());
   }, []);
 
-  useEffect(() => {
-    if (categories.length > 0) {
-      const options = categories.map((category) => {
-        return {
-          value: category.name_c,
-          label: category.name_c,
-        };
+  const handleSubmit = () => {
+    e.preventDefault();
+    const options = {
+      method: "POST",
+      body: JSON.stringify(category),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+    const match = [];
+    if (categories.length !== 0) {
+      categories.map((c) => {
+        if (c === category) {
+          match.push(c);
+        }
       });
-      setOptions(options);
     }
-  }, [categories]);
-
-  const handleInputChange = (e) => {
-    setData({
-      ...data,
-      [e.target.name]: e.target.value,
-    });
+    if (match.length === 0) {
+      fetch(`http://localhost:3000/api/v1/products/category`, {
+        method: "POST",
+        body: category,
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }).then((r) => {
+        if (r.statusText === "Created") {
+          Swal.fire({
+            title: "OK!",
+            text: "La categoria se ha creado con exito",
+            icon: "success",
+          }).then((r) => {
+            if (r.isConfirmed) {
+              navigate("/createProduct");
+            }
+          });
+        } else {
+          Swal.fire({
+            title: "Error!",
+            text: "La categoria no se ha podido crear",
+            icon: "error",
+          });
+        }
+      });
+    } else {
+      Swal.fire({
+        title: "Error!",
+        text: `Ya existe la categoría ${category} `,
+        icon: "error",
+      });
+    }
   };
 
-  const submit = (e) => {};
+  const handleChange = (e) => {
+    setCategory(e.target.value);
+  };
+
   return (
-    <div id={styleForm.containerGlobalForm}>
-      <form className={styleForm.form} onSubmit={(e) => submit(e)}></form>
+    <div>
+      <form onSubmit={handleSubmit}>
+        <label>Nueva categoria</label>
+        <input
+          type="text"
+          name="name"
+          value={category}
+          onChange={handleChange}
+        ></input>
+        <div>
+          <button type="submit">Crear categoria</button>
+        </div>
+      </form>
     </div>
   );
 };

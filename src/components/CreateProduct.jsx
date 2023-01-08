@@ -80,7 +80,7 @@ export const CreateProduct = () => {
     });
   };
 
-  let {categories} = useSelector((state) => state.categoryReducer);
+  let { categories } = useSelector((state) => state.categoryReducer);
 
   useEffect(() => {
     dispatch(getCategories());
