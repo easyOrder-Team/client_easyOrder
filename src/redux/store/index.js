@@ -10,8 +10,6 @@ import { paymentReducer } from "../payment/paymentReducer";
 import { reservationReducer } from "../reservation/reservationReducer";
 import { reviewReducer } from "../review/reviewReducer";
 
-
-
 const store = createStore(
   combineReducers({
     productReducer,

@@ -14,20 +14,19 @@ export const getProducts = () => {
       .catch((error) => console.log(error));
 };
 
-export const sortByTimePreparation = (time, category) => {
+export const sortByTimePreparation = (time, categoryPrep) => {
   return (dispatch) =>
     axios
       .get(`http://localhost:3000/api/v1/products/filter/timePreparationOrder`)
       .then((response) => {
         dispatch({
           type: types.SORT_BY_TIME_PREPARATION,
-          payload: { response: response.data, time, category },
+          payload: { responsePrep: response.data, time, categoryPrep },
         });
       });
 };
 
 export const getProductByName = (name) => {
-  console.log(name);
   return (dispatch) =>
     axios
       .get(`http://localhost:3000/api/v1/products?name=${name}`)
@@ -56,6 +55,7 @@ export const filterByCategory = (category) => {
 };
 //--------------------------- CODIGO PREVIO ---------------------------------------------
 
+
 // export const sortProductsByPrice = (price, category) => {
 //   return (dispatch) =>
 //     axios
@@ -78,6 +78,7 @@ export const sortProductsByPrice = (category, order) => {
         `http://localhost:3000/api/v1/products/filter/priceOrder?category=${category}&order=${order}`
       )
       .then((response) => {
+        console.log("respuestaaaa", response.data);
         dispatch({
           type: types.SORT_PRODUCTS_BY_PRICE,
           payload: response.data,
@@ -106,7 +107,6 @@ export const clearProduct = () => {
 };
 
 export const addProductCart = (product) => {
-  console.log(product);
   return {
     type: types.ADD_PRODUCT_CART,
     payload: product,
@@ -118,9 +118,24 @@ export const clearCart = () => {
     type: types.CLEAR_CART,
   };
 };
+
 export const deleteProduct = (id) => {
   return {
     type: types.DELETE_PRODUCT,
     payload: id,
   };
+};
+
+export const updateProduct = (id, data) => {
+  return (dispatch) =>
+    axios
+      .put(`http://localhost:3000/api/v1/products/update/${id}`, data)
+
+      .then((response) => {
+        dispatch({
+          type: types.UPDATE_PRODUCT,
+          payload: response.data,
+        });
+      })
+      .catch((error) => console.log(error));
 };

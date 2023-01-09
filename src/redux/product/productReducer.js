@@ -6,6 +6,7 @@ const initialState = {
   changes: false,
   productsCart: [],
   productsList: [],
+  responses: "",
 };
 
 export const productReducer = (state = initialState, action) => {
@@ -18,9 +19,7 @@ export const productReducer = (state = initialState, action) => {
       };
 
     case types.SORT_BY_TIME_PREPARATION:
-      let responsePrep = action.payload.response;
-      let time = action.payload.time;
-      let categoryPrep = action.payload.category;
+      let { responsePrep, time, categoryPrep } = action.payload;
       let supportTime = [];
 
       if (time === "min-max") {
@@ -74,6 +73,7 @@ export const productReducer = (state = initialState, action) => {
         ...state,
         products: [],
       };
+
 
     //--------------------------- CODIGO PREVIO ---------------------------------------------
     // case types.SORT_PRODUCTS_BY_PRICE:
@@ -164,6 +164,12 @@ export const productReducer = (state = initialState, action) => {
       return {
         ...state,
         productsCart: [],
+      };
+
+    case types.UPDATE_PRODUCT:
+      return {
+        ...state,
+        responses: action.payload,
       };
     default:
       return state;
