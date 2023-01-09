@@ -73,3 +73,30 @@ b{
 #color__span {
   color: var(--main-color);
 }
+.card_flex{
+  display: flex;
+  justify-content: space-between;
+}
+
+.icon_delete{
+  width: 2.1rem;
+  background-color: black;
+  height: 2.1rem;
+  border-radius: 50%;
+  color: white;
+  font-weight: 100;
+}
+
+.icon_edit{
+  width: 2.1rem;
+  background-color: var(--main-color);
+  height: 2.1rem;
+  border-radius: 50%;
+  color: white;
+  font-weight: 200;
+}
+
+.delete_btn, .edit_btn{
+  border: none;
+  z-index: 10;
+}

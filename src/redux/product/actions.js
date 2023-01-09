@@ -55,7 +55,6 @@ export const filterByCategory = (category) => {
 };
 //--------------------------- CODIGO PREVIO ---------------------------------------------
 
-
 // export const sortProductsByPrice = (price, category) => {
 //   return (dispatch) =>
 //     axios
@@ -130,10 +129,22 @@ export const updateProduct = (id, data) => {
   return (dispatch) =>
     axios
       .put(`http://localhost:3000/api/v1/products/update/${id}`, data)
-
       .then((response) => {
         dispatch({
           type: types.UPDATE_PRODUCT,
+          payload: response.data,
+        });
+      })
+      .catch((error) => console.log(error));
+};
+
+export const deleteProductAdmin = (id) => {
+  return (dispatch) =>
+    axios
+      .delete(`http://localhost:3000/api/v1/products/${id}`)
+      .then((response) => {
+        dispatch({
+          type: types.DELETE_PRODUCT_BY_ID,
           payload: response.data,
         });
       })

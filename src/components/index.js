@@ -22,4 +22,5 @@ export * from "./ReviewDetails";
 export * from "./Mensaje";
 export * from "./Admin";
 export * from "./Products";
+export * from "./ProtectedRoute"
 export * from "./UpdateProduct";

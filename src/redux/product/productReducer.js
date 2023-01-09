@@ -166,10 +166,16 @@ export const productReducer = (state = initialState, action) => {
         productsCart: [],
       };
 
-    case types.UPDATE_PRODUCT:
+      case types.UPDATE_PRODUCT:
+        return {
+          ...state,
+          responses: action.payload,
+        };
+
+    case types.DELETE_PRODUCT_BY_ID:
       return {
         ...state,
-        responses: action.payload,
+        changes: !state.changes,
       };
     default:
       return state;

@@ -51,6 +51,7 @@ export const Cart = () => {
       localStorage.setItem("product", JSON.stringify(product));
     }
   }, [product]);
+
   useEffect(() => {
     setProduct(productsCart);
   }, [productsCart]);
@@ -135,7 +136,6 @@ export const Cart = () => {
   useEffect(() => {
     localStorage.setItem("contador", JSON.stringify(parseInt(count)));
   }, [handleClick]);
-
   const handleDelete = (id) => {
     dispatch(deleteProduct(id));
   };
@@ -151,66 +151,69 @@ export const Cart = () => {
   return (
     <div className={s.globalContainerCart}>
       <NavBar />
-      {product.length &&
-        product.map((p) => (
-          <div key={p.id} className={s.container}>
-            <div className={s.img}>
-              <img src={p.image} alt={p.name} />
-            </div>
-            <div className={s.nameCantidad}>
-              <h2>{p.name}</h2>
-              <div className={s.cantidad}>
-                <h3>Amount: </h3>
-                <div className={st.counter}>
+      <div className={s.containerCartsButtons}>
+        <div className={s.Carts}>
+          {productsCart.length >= 1 &&
+            product.map((p) => (
+              <div key={p.id} className={s.container}>
+                <div className={s.img}>
+                  <img src={p.image} alt={p.name} />
+                </div>
+                <div className={s.nameCantidad}>
+                  <h2>{p.name}</h2>
+                  <div className={s.cantidad}>
+                    <h3>Amount: </h3>
+                    <div className={st.counter}>
+                      <button
+                        disabled={p.count <= 1}
+                        className={st.btn}
+                        onClick={resta}
+                        value={p.id}
+                      >
+                        -
+                      </button>
+                      <span>{p.count}</span>
+                      <button value={p.id} className={st.btn} onClick={suma}>
+                        +
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                <div>
+                  <div className={s.price}>
+                    <span>${p.priceTotal}</span>
+                    <p>{total}</p>
+                  </div>
                   <button
-                    disabled={p.count <= 1}
-                    className={st.btn}
-                    onClick={resta}
-                    value={p.id}
+                    className={s.btnDelete}
+                    onClick={() => handleDelete(p.id)}
                   >
-                    -
-                  </button>
-                  <span>{p.count}</span>
-                  <button value={p.id} className={st.btn} onClick={suma}>
-                    +
+                    <span className="material-symbols-outlined">delete</span>
                   </button>
                 </div>
+                <br />
               </div>
+            ))}
+          <div className={s.total}>
+            <div>
+              <h3>Total</h3>
             </div>
             <div>
-              <div className={s.price}>
-                <span>{formatoPesosMxn(p.priceTotal)}</span>
-                <p>{total}</p>
-              </div>
-              <button
-                className={s.btnDelete}
-                onClick={() => handleDelete(p.id)}
-              >
-                <span className="material-symbols-outlined">delete</span>
-              </button>
+              <span>{formatoPesosMxn(total)}</span>
             </div>
-            <br />
           </div>
-        ))}
-      <div className={s.total}>
-        <div>
-          <h3>Total</h3>
         </div>
-        <div>
-          <span>{formatoPesosMxn(total)}</span>
+        {mensaje && <Mensaje tipo="success">{mensaje}</Mensaje>}
+
+        <div className={s.conteiner_buttons}>
+          <button className={s.btn1} onClick={handleClick}>
+            Make an Order
+          </button>
+
+          <button className={s.btn2} onClick={handleToPay}>
+            Go pay
+          </button>
         </div>
-      </div>
-
-      {mensaje && <Mensaje tipo="success">{mensaje}</Mensaje>}
-
-      <div className={s.conteiner_buttons}>
-        <button className={s.btn1} onClick={handleClick}>
-          Realizar el pedido
-        </button>
-
-        <button className={s.btn2} onClick={handleToPay}>
-          Ir a pagar
-        </button>
       </div>
     </div>
   );
