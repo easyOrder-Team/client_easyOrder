@@ -11,7 +11,7 @@ export const PasarelaMercadoPago = () => {
     if (productsCart) {
       localStorage.setItem("products", JSON.stringify(productsCart));
       fetch(
-        `http://localhost:3000/api/v1/mercadoPago?products=${JSON.stringify(
+        `${import.meta.env.VITE_URL}/api/v1/mercadoPago?products=${JSON.stringify(
           productsCart
         )}&email=${user.email}`
       )

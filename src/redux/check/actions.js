@@ -9,7 +9,7 @@ export const saveCheck = (check) =>{
 export const createCheck = (check) => {
     return (dispatch) =>
       axios
-        .post(`http://localhost:3000/api/v1/checks`,check)
+        .post(`${import.meta.env.VITE_URL}/api/v1/checks`,check)
         .then((response) => {
           dispatch({
             type: types.CREATE_CHECK,
