@@ -51,6 +51,7 @@ export const Cart = () => {
       localStorage.setItem("product", JSON.stringify(product));
     }
   }, [product]);
+
   useEffect(() => {
     setProduct(productsCart);
   }, [productsCart]);
@@ -142,7 +143,7 @@ export const Cart = () => {
 
   const handleToPay = (e) => {
     e.preventDefault();
-    dispatch(orderActions.createOrder(order))
+    dispatch(orderActions.createOrder(order));
     navigate("/pagepay");
     localStorage.setItem("contador", JSON.stringify(parseInt(0)));
     setCount(0);

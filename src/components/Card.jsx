@@ -1,7 +1,10 @@
 import React from "react";
 import style from "../styles/Card.module.css";
+import * as actionProducts from "../redux/product/actions";
+import { useDispatch } from "react-redux";
 
-export const Card = ({ name, price, image, description }) => {
+export const Card = ({ name, price, image, description, edit, borrar, id }) => {
+  const dispatch = useDispatch();
   const formatoPesosMxn = (precio) => {
     return precio
       .toLocaleString("en", {
@@ -9,6 +12,12 @@ export const Card = ({ name, price, image, description }) => {
         currency: "MXN",
       })
       .slice(2, -3);
+  };
+
+  const handleDelete = (id) => {
+    console.log("delete");
+    dispatch(actionProducts.deleteProductAdmin(id));
+    dispatch(actionProducts.getProducts());
   };
 
   return (
@@ -30,10 +39,25 @@ export const Card = ({ name, price, image, description }) => {
 
         <div className={style.card_description_C}>
           <div>{formatoPesosMxn(price)}</div>
-          <div>
-            <span id={style.color__span} className="material-symbols-outlined">
-              add_circle
-            </span>
+          <div className={style.card_flex}>
+            <div>
+              {edit && <button className={style.edit_btn}>{edit}</button>}
+            </div>
+            {!borrar ? (
+              <span
+                id={style.color__span}
+                className="material-symbols-outlined"
+              >
+                add_circle
+              </span>
+            ) : (
+              <button
+                className={style.delete_btn}
+                onClick={() => handleDelete(id)}
+              >
+                {borrar}
+              </button>
+            )}
           </div>
         </div>
       </div>

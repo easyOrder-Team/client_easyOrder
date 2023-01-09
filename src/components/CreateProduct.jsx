@@ -80,7 +80,7 @@ export const CreateProduct = () => {
     });
   };
 
-  let {categories} = useSelector((state) => state.categoryReducer);
+  let { categories } = useSelector((state) => state.categoryReducer);
 
   useEffect(() => {
     dispatch(getCategories());
@@ -250,7 +250,7 @@ export const CreateProduct = () => {
             <div className={styleForm.containerButton}>
               <button
                 className={styleForm.buttonCancelar}
-                onClick={() => navigate("/home")}
+                onClick={() => navigate("/products")}
               >
                 Cancelar
               </button>

@@ -157,6 +157,12 @@ export const productReducer = (state = initialState, action) => {
         ...state,
         productsCart: [],
       };
+
+    case types.DELETE_PRODUCT_BY_ID:
+      return {
+        ...state,
+        changes: !state.changes,
+      };
     default:
       return state;
   }
