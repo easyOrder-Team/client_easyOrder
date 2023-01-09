@@ -11,12 +11,12 @@ export const Home = () => {
   const { productsList } = useSelector((state) => state.productsList);
   const profile = useSelector((state) => state.profileReducer.profile);
   const navigate = useNavigate();
-  const site = localStorage.getItem("site")
-  if(site === null){
-    navigate("/scannQR")
+  const site = localStorage.getItem("site");
+  if (site === null) {
+    navigate("/scannQR");
   }
-  if(localStorage.getItem('profile') !==null){
-    if (JSON.parse(localStorage.getItem('profile')).superadmin) {
+  if (localStorage.getItem("profile") !== null) {
+    if (JSON.parse(localStorage.getItem("profile")).superadmin) {
       navigate("/admin");
     }
   }

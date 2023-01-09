@@ -146,154 +146,163 @@ export const UpdateProduct = () => {
       }
     });
   };
-
-  return (
-    <div id={styleForm.containerGlobalForm}>
-      <div className={styleForm.containerNav}>
-        <NavBar />
-      </div>
-      <div className={styleForm.containerForm}>
-        <form className={styleForm.form} onSubmit={(e) => submit(e)}>
-          <div className={styleForm.containerImage}>
-            <img
-              className={styleForm.img}
-              src={newData.image ? newData.image : detailProduct[0].image}
-              alt=""
-            />
-          </div>
-
-          <div className={styleForm.containerInfo}>
-            <div className={styleForm.containerName_price}>
-              <div className={styleForm.containerLabel}>
-                <label className={styleForm.labels}>Nombre</label>
-                <input
-                  className={styleForm.inputName}
-                  type="text"
-                  name="name"
-                  // value={newData.name}
-                  defaultValue={detailProduct[0].name}
-                  onChange={(e) => checkText(e)}
-                ></input>
-              </div>
-
-              <div className={styleForm.containerLabel}>
-                <div className={styleForm.containerPrice}>
-                  <label
-                    className={styleForm.labels + " " + styleForm.labelPrecio}
-                  >
-                    Precio
-                  </label>
-                  <input
-                    className={styleForm.inputPrice}
-                    type="number"
-                    name="price"
-                    // value={newData.price}
-                    defaultValue={detailProduct[0].price}
-                    onChange={(e) => checkPriceAndTime(e)}
-                  ></input>
-                </div>
-              </div>
-            </div>
-
-            <div className={styleForm.containerLabel}>
-              <label className={styleForm.labels}>Descripción</label>
-              <textarea
-                className={styleForm.inputDescription}
-                type="text"
-                name="description"
-                // value={newData.description}
-                defaultValue={detailProduct[0].description}
-                onChange={(e) => checkText(e)}
-              ></textarea>
-            </div>
-
-            <div className={styleForm.containerLabel}>
-              <label className={styleForm.labels}>
-                Elimine o seleccion nuevas categorías
-              </label>
-              <Select
-                defaultValue={detailProduct[0].category.map((cat) => ({
-                  label: cat.name,
-                  value: cat.name,
-                }))}
-                styles={selectStyle}
-                isMulti
-                options={options}
-                onChange={(e) => setLocalCategories(e)}
+  if (detailProduct) {
+    return (
+      <div id={styleForm.containerGlobalForm}>
+        <div className={styleForm.containerNav}>
+          <NavBar />
+        </div>
+        <div className={styleForm.containerForm}>
+          <form className={styleForm.form} onSubmit={(e) => submit(e)}>
+            <div className={styleForm.containerImage}>
+              <img
+                className={styleForm.img}
+                src={newData.image ? newData.image : detailProduct[0].image}
+                alt=""
               />
             </div>
 
-            <div className={styleForm.containerName_price}>
-              <div className={styleForm.containerLabel}>
-                <label className={styleForm.labels}>
-                  Tiempo de preparación
-                </label>
-                <div>
+            <div className={styleForm.containerInfo}>
+              <div className={styleForm.containerName_price}>
+                <div className={styleForm.containerLabel}>
+                  <label className={styleForm.labels}>Nombre</label>
                   <input
-                    className={styleForm.inputTime}
+                    className={styleForm.inputName}
                     type="text"
-                    name="prep_time"
-                    // value={newData.prep_time}
-                    defaultValue={detailProduct[0].prep_time}
-                    onChange={(e) => checkPriceAndTime(e)}
+                    name="name"
+                    // value={newData.name}
+                    defaultValue={detailProduct[0].name}
+                    onChange={(e) => checkText(e)}
                   ></input>
-                  <label
-                    className={styleForm.labels + " " + styleForm.labelMin}
-                  >
-                    min
-                  </label>
+                </div>
+
+                <div className={styleForm.containerLabel}>
+                  <div className={styleForm.containerPrice}>
+                    <label
+                      className={styleForm.labels + " " + styleForm.labelPrecio}
+                    >
+                      Precio
+                    </label>
+                    <input
+                      className={styleForm.inputPrice}
+                      type="number"
+                      name="price"
+                      // value={newData.price}
+                      defaultValue={detailProduct[0].price}
+                      onChange={(e) => checkPriceAndTime(e)}
+                    ></input>
+                  </div>
                 </div>
               </div>
 
-              <div
-                className={
-                  styleForm.containerLabel + " " + styleForm.containerDisponible
-                }
-              >
-                <label className={styleForm.labels}>Disponible</label>
-                <select
-                  name="stock"
-                  id={styleForm.selectDisponible}
-                  // value={newData.stock}
-                  defaultValue={detailProduct[0].stock}
-                  onChange={(e) => handleInputChange(e)}
+              <div className={styleForm.containerLabel}>
+                <label className={styleForm.labels}>Descripción</label>
+                <textarea
+                  className={styleForm.inputDescription}
+                  type="text"
+                  name="description"
+                  // value={newData.description}
+                  defaultValue={detailProduct[0].description}
+                  onChange={(e) => checkText(e)}
+                ></textarea>
+              </div>
+
+              <div className={styleForm.containerLabel}>
+                <label className={styleForm.labels}>
+                  Elimine o seleccion nuevas categorías
+                </label>
+                <Select
+                  defaultValue={detailProduct[0].category.map((cat) => ({
+                    label: cat.name,
+                    value: cat.name,
+                  }))}
+                  styles={selectStyle}
+                  isMulti
+                  options={options}
+                  onChange={(e) => setLocalCategories(e)}
+                />
+              </div>
+
+              <div className={styleForm.containerName_price}>
+                <div className={styleForm.containerLabel}>
+                  <label className={styleForm.labels}>
+                    Tiempo de preparación
+                  </label>
+                  <div>
+                    <input
+                      className={styleForm.inputTime}
+                      type="text"
+                      name="prep_time"
+                      // value={newData.prep_time}
+                      defaultValue={detailProduct[0].prep_time}
+                      onChange={(e) => checkPriceAndTime(e)}
+                    ></input>
+                    <label
+                      className={styleForm.labels + " " + styleForm.labelMin}
+                    >
+                      min
+                    </label>
+                  </div>
+                </div>
+
+                <div
+                  className={
+                    styleForm.containerLabel +
+                    " " +
+                    styleForm.containerDisponible
+                  }
                 >
-                  <option value="true">Si</option>
-                  <option value="false">No</option>
-                </select>
+                  <label className={styleForm.labels}>Disponible</label>
+                  <select
+                    name="stock"
+                    id={styleForm.selectDisponible}
+                    // value={newData.stock}
+                    defaultValue={detailProduct[0].stock}
+                    onChange={(e) => handleInputChange(e)}
+                  >
+                    <option value="true">Si</option>
+                    <option value="false">No</option>
+                  </select>
+                </div>
+              </div>
+
+              <div className={styleForm.containerLabelImage}>
+                <label className={styleForm.labels}>Imagen</label>
+                <div className={styleForm.containerInputFile}>
+                  <p className={styleForm.p}>Add imagen</p>
+                  <input
+                    className={styleForm.inputFile}
+                    type="file"
+                    accept="image/png , image/jpeg"
+                    // defaultValue={detailProduct[0].image}
+                    onChange={uploadImage}
+                  ></input>
+                </div>
+              </div>
+
+              <div className={styleForm.containerButton}>
+                <button className={styleForm.buttonCrear}>
+                  Actualizar producto
+                </button>
+              </div>
+              <div className={styleForm.containerButton}>
+                <button
+                  className={styleForm.buttonCancelar}
+                  onClick={() => navigate(`/details/${id}`)}
+                >
+                  Cancelar
+                </button>
               </div>
             </div>
-
-            <div className={styleForm.containerLabelImage}>
-              <label className={styleForm.labels}>Imagen</label>
-              <div className={styleForm.containerInputFile}>
-                <p className={styleForm.p}>Add imagen</p>
-                <input
-                  className={styleForm.inputFile}
-                  type="file"
-                  accept="image/png , image/jpeg"
-                  // defaultValue={detailProduct[0].image}
-                  onChange={uploadImage}
-                ></input>
-              </div>
-            </div>
-
-            <div className={styleForm.containerButton}>
-              <button className={styleForm.buttonCrear}>
-                Actualizar producto
-              </button>
-            </div>
-            <div className={styleForm.containerButton}>
-              <button
-                className={styleForm.buttonCancelar}
-                onClick={() => navigate(`/details/${id}`)}
-              >
-                Cancelar
-              </button>
-            </div>
-          </div>
-        </form>
+          </form>
+        </div>
       </div>
-    </div>
-  );
+    );
+  } else {
+    return (
+      <div className="containerSpin">
+        <div className="spinner"></div>
+      </div>
+    );
+  }
 };
