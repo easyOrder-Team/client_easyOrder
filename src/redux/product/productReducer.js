@@ -171,6 +171,12 @@ export const productReducer = (state = initialState, action) => {
           ...state,
           responses: action.payload,
         };
+
+    case types.DELETE_PRODUCT_BY_ID:
+      return {
+        ...state,
+        changes: !state.changes,
+      };
     default:
       return state;
   }

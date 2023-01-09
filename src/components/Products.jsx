@@ -1,14 +1,33 @@
-import React from "react";
 import s from "../styles/NavBar.module.css";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import { SearchBar } from "./SearchBar";
 import style from "../styles/Details.module.css";
+import c from "../styles/Card.module.css";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import * as actionProducts from "../redux/product/actions";
+import { Card } from ".";
+import h from "../styles/Admin.module.css";
 
 export const Products = () => {
   const [modalVisivility, setmodalVisivility] = useState("modalMenu");
   const { logout, isAuthenticated, loginWithRedirect } = useAuth0();
+  const { products } = useSelector((state) => state.productReducer);
+  const { changes } = useSelector((state) => state.productReducer);
+  const dispatch = useDispatch();
+  const profile = useSelector((state) => state.profileReducer.profile);
+ 
+  useEffect(() => {
+    dispatch(actionProducts.getProducts());
+  }, []);
+
+  useEffect(() => {
+    dispatch(actionProducts.getProducts());
+  }, [changes]);
+
+  console.log(products);
 
   const navigate = useNavigate();
   let location = useLocation().pathname;
@@ -104,9 +123,11 @@ export const Products = () => {
           </div>
         </div>
         <div>
-          <span className="material-symbols-outlined">account_circle</span>
-          <h2>Username</h2>
-          <h4>Admin</h4>
+        <span className={h.imageProfile}>
+                <img src={profile.picture} alt="" />
+              </span>
+              <h4>Admin</h4>
+              <h2>{`${profile.name} ${profile.lastname}`}</h2>
         </div>
         <div>
           <SearchBar />
@@ -116,11 +137,35 @@ export const Products = () => {
             className={style.btn1}
             onClick={() => navigate("/CreateProduct")}
           >
-            Create Product
+            Crear Producto
           </button>
         </div>
-        <div>
-          <h1>Aqui van las Cards</h1>
+        <div className={c.card_container}>
+          {products.map((p) => (
+            <div key={p.id}>
+              <Card
+                image={p.image}
+                name={p.name}
+                description={p.description}
+                price={p.price}
+                id={p.id}
+                edit={
+                  <span
+                    className={`material-symbols-outlined ${s.modalSpan} ${c.icon_edit}`}
+                  >
+                    edit
+                  </span>
+                }
+                borrar={
+                  <span
+                    className={`material-symbols-outlined ${s.modalSpan} ${c.icon_delete}`}
+                  >
+                    delete
+                  </span>
+                }
+              />
+            </div>
+          ))}
         </div>
       </div>
     );

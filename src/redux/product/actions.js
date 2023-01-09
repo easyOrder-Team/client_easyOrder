@@ -137,3 +137,16 @@ export const updateProduct = (id, data) => {
       })
       .catch((error) => console.log(error));
 };
+
+export const deleteProductAdmin = (id) => {
+  return (dispatch) =>
+    axios
+      .delete(`http://localhost:3000/api/v1/products/${id}`)
+      .then((response) => {
+        dispatch({
+          type: types.DELETE_PRODUCT_BY_ID,
+          payload: response.data,
+        });
+      })
+      .catch((error) => console.log(error));
+};

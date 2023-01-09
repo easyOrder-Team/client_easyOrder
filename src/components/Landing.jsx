@@ -41,6 +41,7 @@ export function Landing() {
     if (isAuthenticated) {
       navigate("/home");
     } else {
+      localStorage.removeItem("site");
       return (
         <div className="root">
           <div className="carrousel">
