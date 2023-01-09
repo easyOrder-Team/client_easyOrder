@@ -38,11 +38,17 @@ export const OrderConfirmation = () => {
   }, [products]);
 
   const deleteLocaleStorage = () => {
-    localStorage.removeItem('contador')
-    localStorage.removeItem('tempTotal')
-    localStorage.removeItem('order')
-    localStorage.removeItem('product')
-  }
+    localStorage.removeItem("contador");
+    localStorage.removeItem("tempTotal");
+    localStorage.removeItem("order");
+    localStorage.removeItem("product");
+  };
+
+  const sendEmail = (email, id_order, valor, fecha) => {
+    fetch(
+      `http://localhost:3000/api/v1/notification?email=${email}&id_order=${id_order}&estado=Aprobada&valor=${valor}&fecha=${fecha}`
+    ).then(response => console.log(response))
+  };
   const handleClick = (e) => {
     e.preventDefault();
     dispatch(clearCart());
@@ -57,8 +63,9 @@ export const OrderConfirmation = () => {
         email: bill.payer.email_address,
         id_order: order.id_orders,
       };
+      sendEmail(check.email, check.id_check, check.total, check.date);
       dispatch(clearCart());
-      deleteLocaleStorage()
+      deleteLocaleStorage();
       dispatch(checkActions.createCheck(check));
     } else {
       if (mercadoPagoBill.payer.first_name === null) {
@@ -71,8 +78,9 @@ export const OrderConfirmation = () => {
           email: profile.id_profile,
           id_order: order.id_orders,
         };
+        sendEmail(check.email, check.id_check, check.total, check.date);
         dispatch(clearCart());
-        deleteLocaleStorage()
+        deleteLocaleStorage();
         dispatch(checkActions.createCheck(check));
       }
       // check = {

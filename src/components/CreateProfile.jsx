@@ -28,7 +28,8 @@ export const CreateProfile = () => {
   useEffect(() => {
     if (typeof profile === "object") {
       if (Object.entries(profile).length > 0) {
-        navigate("/home");
+        console.log(profile)
+        profile.superadmin? navigate("/admin"):navigate("/home");;
       }
     }
   }, [profile]);

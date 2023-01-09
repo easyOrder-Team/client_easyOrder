@@ -166,11 +166,11 @@ export const productReducer = (state = initialState, action) => {
         productsCart: [],
       };
 
-    case types.UPDATE_PRODUCT:
-      return {
-        ...state,
-        responses: action.payload,
-      };
+      case types.UPDATE_PRODUCT:
+        return {
+          ...state,
+          responses: action.payload,
+        };
     default:
       return state;
   }

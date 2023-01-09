@@ -37,7 +37,7 @@ function App() {
   return (
     <div className="App">
       <Routes>
-        <Route path="/:site" element={<Landing />} />
+        <Route path="/" element={<Landing />} />
         <Route path="/cards/:category" element={<Cards />} />
         <Route path="/cards" element={<Cards />} />
         <Route path="/login" element={<Login />} />
@@ -60,7 +60,14 @@ function App() {
         <Route path="/confirmation" element={<Redirect />} />
         <Route path="/payMercadoPago" element={<PasarelaMercadoPago />} />
         <Route path="/scannQR" element={<Scanner />} />
-        <Route path="/admin" element={<Admin />} />
+        <Route
+          path="/admin"
+          element={
+            <ProtectedRoute isAuthenticated={isAuthenticated}>
+              <Admin />
+            </ProtectedRoute>
+          }
+        />
         <Route path="/products" element={<Products />} />
         <Route path="/review" element={<Review />} />
         <Route path="/orderDetail/:id" element={<OrderDetail />} />

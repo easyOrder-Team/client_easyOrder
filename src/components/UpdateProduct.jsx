@@ -21,7 +21,7 @@ export const UpdateProduct = () => {
     image: "",
     stock: "false",
     prep_time: "",
-    // categories: "",
+    category: "",
   });
 
   const { id } = useParams();
@@ -31,23 +31,24 @@ export const UpdateProduct = () => {
   }, []);
 
   let { categories } = useSelector((state) => state.categoryReducer);
+
   useEffect(() => {
     dispatch(getCategories());
   }, []);
 
-  // useEffect(() => {
-  //   if (localCategories.length > 0) {
-  //     setNewData({
-  //       ...newData,
-  //       ["categories"]: localCategories.map((category) => category.value),
-  //     });
-  //   } else {
-  //     setNewData({
-  //       ...newData,
-  //       ["categories"]: [],
-  //     });
-  //   }
-  // }, [localCategories]);
+  useEffect(() => {
+    if (localCategories.length > 0) {
+      setNewData({
+        ...newData,
+        ["category"]: localCategories.map((category) => category.value),
+      });
+    } else {
+      setNewData({
+        ...newData,
+        ["category"]: [],
+      });
+    }
+  }, [localCategories]);
 
   const handleInputChange = (e) => {
     setNewData({
@@ -120,6 +121,14 @@ export const UpdateProduct = () => {
     newData.prep_time === ""
       ? (modifiedData.prep_time = detailProduct[0].prep_time)
       : (modifiedData.prep_time = newData.prep_time);
+
+    if (newData.category.length === 0) {
+      let categs = [];
+      detailProduct[0].category.map((c) => categs.push(c.name));
+      modifiedData.category = categs;
+    } else {
+      modifiedData.category = newData.category;
+    }
   };
 
   const submit = (e) => {
@@ -187,7 +196,7 @@ export const UpdateProduct = () => {
             </div>
 
             <div className={styleForm.containerLabel}>
-              <label className={styleForm.labels}>Descripcion</label>
+              <label className={styleForm.labels}>Descripción</label>
               <textarea
                 className={styleForm.inputDescription}
                 type="text"
@@ -198,15 +207,21 @@ export const UpdateProduct = () => {
               ></textarea>
             </div>
 
-            {/* <div className={styleForm.containerLabel}>
-              <label className={styleForm.labels}>Select new categories</label>
+            <div className={styleForm.containerLabel}>
+              <label className={styleForm.labels}>
+                Elimine o seleccion nuevas categorías
+              </label>
               <Select
+                defaultValue={detailProduct[0].category.map((cat) => ({
+                  label: cat.name,
+                  value: cat.name,
+                }))}
                 styles={selectStyle}
                 isMulti
                 options={options}
                 onChange={(e) => setLocalCategories(e)}
               />
-            </div>  */}
+            </div>
 
             <div className={styleForm.containerName_price}>
               <div className={styleForm.containerLabel}>
@@ -264,17 +279,14 @@ export const UpdateProduct = () => {
             </div>
 
             <div className={styleForm.containerButton}>
-              <button
-                className={styleForm.buttonCrear}
-                // onClick={() => navigate(`/details/${id}`)}
-              >
-                Update Product
+              <button className={styleForm.buttonCrear}>
+                Actualizar producto
               </button>
             </div>
             <div className={styleForm.containerButton}>
               <button
                 className={styleForm.buttonCancelar}
-                onClick={() => navigate("/home")}
+                onClick={() => navigate(`/details/${id}`)}
               >
                 Cancelar
               </button>

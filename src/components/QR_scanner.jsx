@@ -1,9 +1,11 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import QrReader from "react-qr-scanner";
+import { useNavigate } from "react-router-dom";
 import scann from "../styles/QR_scanner.module.css";
 import { NavBar } from "./index";
 export const Scanner = () => {
+  const navigate = useNavigate()
   const [result, setResult] = useState({
     delay: 100,
     result: "Sin resultado",
@@ -43,6 +45,7 @@ export const Scanner = () => {
       </div>
     );
   } else {
-    return <p>{result.result}</p>;
+    localStorage.setItem("site", JSON.stringify(parseInt(result.result)));
+    navigate("/home")
   }
 };

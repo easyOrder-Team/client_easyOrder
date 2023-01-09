@@ -1,7 +1,7 @@
 import React from "react";
 import s from "../styles/Home.module.css";
 import { NavBar } from ".";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import * as actions from "../redux/product/actions";
@@ -10,9 +10,21 @@ export const Home = () => {
   const dispatch = useDispatch();
   const { productsList } = useSelector((state) => state.productsList);
   const profile = useSelector((state) => state.profileReducer.profile);
+  const navigate = useNavigate();
+  const site = localStorage.getItem("site")
+  if(site === null){
+    navigate("/scannQR")
+  }
+  if(localStorage.getItem('profile') !==null){
+    if (JSON.parse(localStorage.getItem('profile')).superadmin) {
+      navigate("/admin");
+    }
+  }
+
   useEffect(() => {
     dispatch(actions.clearProduct());
     console.log(localStorage.getItem("site"));
+    console.log(profile);
   }, []);
   useEffect(() => {
     if (profile && profile.hasOwnProperty("id_profile"))
