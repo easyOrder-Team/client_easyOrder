@@ -11,13 +11,19 @@ export const Details = () => {
   const { id } = useParams();
   const navegate = useNavigate();
   const { detailProduct } = useSelector((state) => state.productReducer);
-  const profile = JSON.parse(localStorage.getItem("profile"))
+  const profile = JSON.parse(localStorage.getItem("profile"));
   const [count, setCount] = useState(1);
   const [mensaje, setMensaje] = useState("");
   let isAdmin = false;
-  if(profile.superadmin){
-    isAdmin=true
-  }
+
+  useEffect(() => {
+    if (profile) {
+      if (profile.superadmin) {
+        isAdmin = true;
+      }
+    }
+  }, [profile]);
+
   const dispatch = useDispatch();
 
   const formatoPesosMxn = (precio) => {
@@ -28,7 +34,6 @@ export const Details = () => {
       })
       .slice(2, -3);
   };
-
 
   useEffect(() => {
     dispatch(actions.getProductById(id));
