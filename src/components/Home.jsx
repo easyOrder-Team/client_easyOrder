@@ -34,7 +34,7 @@ export const Home = () => {
   useEffect(() => {
     if (profile && profile.hasOwnProperty("id_profile"))
       localStorage.setItem("profile", JSON.stringify(profile));
-  }, []);
+  }, [profile]);
 
   useEffect(() => {
     dispatch(actions.getProducts());
