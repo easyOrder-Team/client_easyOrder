@@ -46,6 +46,6 @@ export const Scanner = () => {
     );
   } else {
     localStorage.setItem("site", JSON.stringify(parseInt(result.result)));
-    navigate("/home")
+    navigate("/cart")
   }
 };

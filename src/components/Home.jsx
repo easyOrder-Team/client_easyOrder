@@ -5,21 +5,26 @@ import { Link, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import * as actions from "../redux/product/actions";
-
+import * as actionsProfile from "../redux/profile/actions";
+import { useAuth0 } from "@auth0/auth0-react";
 export const Home = () => {
   const dispatch = useDispatch();
+  const { user, isAuthenticated, isLoading } = useAuth0();
   const { productsList } = useSelector((state) => state.productsList);
   const profile = useSelector((state) => state.profileReducer.profile);
   const navigate = useNavigate();
-  const site = localStorage.getItem("site")
-  if(site === null){
-    navigate("/scannQR")
-  }
-  if(localStorage.getItem('profile') !==null){
-    if (JSON.parse(localStorage.getItem('profile')).superadmin) {
+  
+  if (localStorage.getItem("profile") !== null) {
+    if (JSON.parse(localStorage.getItem("profile")).superadmin) {
       navigate("/admin");
     }
   }
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      dispatch(actionsProfile.getProfileById(user.email));
+    }
+  }, [user]);
 
   useEffect(() => {
     dispatch(actions.clearProduct());

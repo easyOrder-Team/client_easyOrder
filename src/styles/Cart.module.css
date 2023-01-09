@@ -90,7 +90,6 @@
     flex-direction: column;
     justify-content:center;
     text-align: center;
-    width: 25%;
 }
 .btnDelete {
     border-color: transparent;

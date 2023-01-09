@@ -105,6 +105,11 @@ export const Cart = () => {
   };
 
   const handleClick = (e) => {
+    const site = localStorage.getItem("site");
+    if (site === null) {
+      navigate("/scannQR");
+    }
+    
     e.preventDefault();
     dispatch(orderActions.saveOrder(order));
     if (product.length === 0) {
