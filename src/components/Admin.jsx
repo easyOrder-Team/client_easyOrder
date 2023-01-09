@@ -11,6 +11,7 @@ export const Admin = () => {
 
   const navigate = useNavigate();
   let location = useLocation().pathname;
+  console.log(isAuthenticated);
   if (
     location !== "/createProduct" &&
     !location.includes("/cards") &&
