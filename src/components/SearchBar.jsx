@@ -106,6 +106,7 @@ export const SearchBar = () => {
       <form className={s.container} onSubmit={handleSubmit}>
         <div className={s.input}>
           <Autosuggest
+            style="list-style: none;"
             suggestions={options}
             onSuggestionsFetchRequested={onSuggestionsFetchRequested}
             onSuggestionsClearRequested={onSuggestionsClearRequested}

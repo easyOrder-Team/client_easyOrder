@@ -1,24 +1,14 @@
-.container {
-  display: flex;
-  align-items: center;
-  padding: 0.6rem;
-  height: 3.75rem;
-  background-color: var(--light-color);
-  border-radius: 2rem;
-}
-
 .input {
-  display: flex;
-  justify-content: center;
-  align-items: center;
   height: 100% !important;
+  background-color: var(--light-color);
   border: none;
+  border-radius: 0;
+  border-end-start-radius: 2rem;
+  border-start-start-radius: 2rem;
   padding-left: 1.2rem;
-  background-color: transparent;
-}
+  outline: none;
+  padding-top: 0.37rem;
 
-.input:focus {
-    outline: none;
 }
 
 .containerInput {
@@ -28,15 +18,21 @@
 
 .btn {
   border: none;
-  padding-right: 0.5rem;
+  padding: 0.2rem;
+  background-color: var(--light-color);
+  border-end-end-radius: 20rem;
+  border-start-end-radius: 20rem;
   height: 100%;
-  background-color: transparent;
+  padding-right: 0.5rem;
+  padding-top: 0.25rem;
 }
 
-.btn:hover {
-  filter: brightness(1.1);
+.container {
+  display: flex;
+  align-items: center;
+  padding: 0.6rem;
+  height: 4rem;
 }
-
 
 ::placeholder {
   color: var(--text-color);
@@ -57,8 +53,15 @@
   border: none;
   border-radius: 0;
   padding-left: 1.2rem;
-  border-left: black 1px solid;
-  border-right: black 1px solid;
-  border-top: black 1px solid;
   height: 65px;
+  list-style: none;
+  width: 100%;
+}
+
+.theme ul {
+  list-style: none;
+}
+
+.theme li {
+  list-style: none;
 }

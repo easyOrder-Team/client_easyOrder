@@ -108,7 +108,7 @@ span {
   text-align: left;
 }
 
-@media (prefers-color-scheme: light) {
+@media (prefers-color-scheme: dark) {
   .logoLight{
     display:none;
   }
