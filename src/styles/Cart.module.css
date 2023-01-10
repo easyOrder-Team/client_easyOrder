@@ -1,5 +1,7 @@
+
 .globalContainerCart{
     min-height: 100%;
+    gap: 2rem;
 }
 .container{
     width: 100%;
@@ -72,17 +74,37 @@
 }
 
 .conteiner_buttons{
-    justify-content: center;
+    display:block;
+    margin-right: auto;
+    margin-left: auto;
     align-items: center;
     width: 100%;
-    position: absolute;
-    bottom: 0px;
+    bottom: 0;
 }
-
+.Carts{
+    min-height: 50vh;
+}
+.containerCartsButtons{
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content:center;
+    text-align: center;
+}
 .btnDelete {
     border-color: transparent;
     background-color: transparent;
     padding-top: 1rem;
+    cursor: pointer;
+}
+
+.delete:hover {
+    color: var(--main-color);
+}
+
+.btn {
+    color:var(--main-color);
+
 }
 
 .btn1, .btn2{
@@ -119,23 +141,33 @@
 }
 
 .link {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     font-size: 1.15rem;
     font-weight: 500;
     color: var(--main-color);
     padding-top: 2rem;
     padding-bottom: 2rem;
+    gap: 1rem;
+
 }
 
 .link:hover {
     cursor: pointer;
-    text-decoration: underline;
+    filter: brightness(1.1);
+}
+
+.icon {
+    color: var(--main-color)
 }
 
 .payBtn{
     width: 100%;
     padding: 1rem;
-    position: absolute;
+   
     bottom: 0px;
+    
 }
 
 .logos{
@@ -147,4 +179,20 @@
     border-radius: 5px;
     border: 1px solid rgb(223, 223, 223);
     background-color: white;
+    cursor: pointer;
+}
+
+.payBtnMercadopago:hover{
+    filter:brightness(1.1)
+}
+
+
+@media (max-width: 900px) {
+    .conteiner_buttons{
+        width: 100%;
+    }
+
+    .payBtn{
+        width: 100%;
+    }
 }
