@@ -5,7 +5,7 @@ import axios from "axios";
 export const createReview = (review) => {
     return (dispatch) =>
       axios
-        .post(`http://localhost:3000/api/v1/review`, review)
+        .post(`${import.meta.env.VITE_URL}/api/v1/review`, review)
         .then((response) => {
         console.log('action')
           console.log(response)
@@ -16,7 +16,7 @@ export const createReview = (review) => {
   export const getReviewByIdProfile = (id) => {
     return (dispatch) =>
       axios
-        .get(`http://localhost:3000/api/v1/review/profile/${id}`)
+        .get(`${import.meta.env.VITE_URL}/api/v1/review/profile/${id}`)
         .then((response) => {
           console.log(response.data)
           dispatch({
@@ -30,7 +30,7 @@ export const createReview = (review) => {
   export const getReviewByIdReview = (id) => {
     return (dispatch) =>
       axios
-        .get(`http://localhost:3000/api/v1/review/review/${id}`)
+        .get(`${import.meta.env.VITE_URL}/api/v1/review/review/${id}`)
         .then((response) => {
           console.log(response.data)
           dispatch({

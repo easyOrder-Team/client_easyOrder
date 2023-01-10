@@ -4,7 +4,7 @@ import axios from "axios";
 export const getCategories = () => {
   return (dispatch) =>
     axios
-      .get(`http://localhost:3000/api/v1/products/categories`)
+      .get(`${import.meta.env.VITE_URL}/api/v1/products/categories`)
       .then((response) => {
         dispatch({
           type: types.GET_CATEGORIES,

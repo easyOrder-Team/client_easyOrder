@@ -30,7 +30,8 @@ import { useDispatch } from "react-redux";
 import { CreateProfile } from "./components/CreateProfile";
 import OrderDetail from "./components/OrderDetail";
 import ReviewDetail from "./components/ReviewDetails";
-import { useAuth0 } from "@auth0/auth0-react";
+import { Ventas } from "./components/Ventas";
+import { VentasDetail } from "./components/VentasDetail";
 
 function App() {
   const { user, isAuthenticated, isLoading } = useAuth0();
@@ -72,7 +73,8 @@ function App() {
         <Route path="/review" element={<Review />} />
         <Route path="/orderDetail/:id" element={<OrderDetail />} />
         <Route path="/reviewDetail/:id" element={<ReviewDetail />} />
-        <Route path="/updateProduct/:id" element={<UpdateProduct />} />
+        <Route path="/ventas" element={<Ventas />} />
+        <Route path="/ventas/:id" element={<VentasDetail/>} />
       </Routes>
     </div>
   );
