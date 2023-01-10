@@ -17,4 +17,27 @@ export const createCheck = (check) => {
           });
         })
         .catch((error) => console.log(error));
-  };
+};
+
+export const getAllCheck = () => {
+  return (dispatch) => {
+    axios.get(`http://localhost:3000/api/v1/checks`)
+    .then(response => {
+      dispatch({
+        type: types.GET_ALL_CHECK,
+        payload: response.data
+      })
+    })
+  }
+}
+export const getCheck = (id) => {
+  return (dispatch) => {
+    axios.get(`http://localhost:3000/api/v1/checks?id=${id}`)
+    .then(response => {
+      dispatch({
+        type: types.GET_CHECK,
+        payload: response.data
+      })
+    })
+  }
+}

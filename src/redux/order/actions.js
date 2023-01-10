@@ -54,3 +54,13 @@ export const getAllOrder =  () => {
         })
         .catch((error) => console.log(error));
   };
+  export const getOrders = () => {
+    return (dispatch) => 
+  axios.get(`http://localhost:3000/api/v1/orders`)
+  .then((response) => {
+    dispatch({
+      type: types.GET_ALL_ORDERS,
+      payload: response.data
+    }) 
+  })
+  }
