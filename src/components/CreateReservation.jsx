@@ -11,7 +11,7 @@ import { NavBar } from "./NavBar"
 
 const CreateReservation = () => {
     const { profile } = useSelector((state) => state.profileReducer);
-    console.log(profile)
+    const [startDate, setStartDate] = useState(new Date());
     const [reserv, setReserv] = useState({
         amount_persons: "",
         date: "",
@@ -23,14 +23,16 @@ const CreateReservation = () => {
     const maxDate = new Date()
     const dispatch = useDispatch();
 
-    const reservation = ( date) => {
-       
-        let reserva = date.toLocaleString('es-AR', "dd/MM/yyyy HH:mm")
+    const reservation = (date) => {      
+        dispatch(actions.createReservation(reserv));
+        setReserv({ ...reserv,amount_persons: "", date: "", hour: "", id_profile: "", num_table: [] })
+    }
+    useEffect(() => {
+        let reserva = startDate.toLocaleDateString('locales', { year:"numeric", month:"2-digit", day:"2-digit", hour: "2-digit", minute: "2-digit"})
         let dateReserva = reserva.split(",")
         setReserv({ ...reserv, date: dateReserva[0], hour: dateReserva[1], id_profile: profile.id_profile })
-        dispatch(actions.createReservation());
-        console.log(reserv)
-    }
+    }, [startDate])
+
     let handleChange = (e) => {
         let { name, value } = e.target
         e.preventDefault();
@@ -41,7 +43,7 @@ const CreateReservation = () => {
         if (e.target.checked) {
             setReserv({
                 ...reserv,
-                num_table: [...reserv.num_table, e.target.name]
+                num_table: [...reserv.num_table, parseInt(e.target.name)]
             })
         } else {
             let table = [...reserv.num_table].filter(c => c !== e.target.name)
@@ -53,44 +55,47 @@ const CreateReservation = () => {
         dispatch(actionsSite.getSiteActivas());
     }, [])
 
-    const { siteActivas } = useSelector((state) => state.siteReducer);
-    
+    let { siteActivas } = useSelector((state) => state.siteReducer);
 
-    console.log(siteActivas)
+
+    // console.log(siteActivas)
     if (siteActivas.length !== 0) {
         return (
             <div>
-
-                <NavBar/>
-            <div className={style.conteiner}>
-                <div className={style.modal}>
-                    <h1 className={style.title}>Hace tu reservacion</h1>
-                    <div>
-                        <label>N° de comensales: </label>
-                        <input type={"text"} name={"amount_persons"} value={reserv.amount_persons} onChange={handleChange} />
+                <NavBar />
+                <div className={style.conteiner}>
+                    <div className={style.modal}>
+                        <h2 className={style.title}>Hace tu reservacion</h2>
+                        <div>
+                            <label>N° de comensales: </label>
+                            <input className={style.comensales} type={"text"} name={"amount_persons"} value={reserv.amount_persons} onChange={handleChange} />
+                        </div>
+                        <div className={style.conteinerMap}>
+                            {siteActivas.map((s) => {
+                                return (
+                                    <div className={style.table} key={s.id_site}>
+                                        <input onClick={handleClick} multiple type="checkbox" name={s.num_table} value={s.id_site} />
+                                        <h4>Mesa</h4>
+                                        <h4>{s.amount_persons}px</h4>
+                                    </div>)
+                            })
+                            }
+                        </div>
+                        <div className={style.datePicker}>
+                            <DatePicker
+                                inline
+                                selected={startDate}
+                                minDate={new Date()}
+                                maxDate={maxDate.setDate(maxDate.getDate() + 15)}
+                                onChange={(date) => setStartDate(date)}
+                                showTimeSelect
+                                dateFormat="dd/MM/yyyy HH:mm" />
+                        </div>
+                        <br />
+                        <br />
+                        <button className={style.button} onClick={reservation} >Reservar</button>
                     </div>
-                    <div>
-                        {siteActivas.map((s) => {
-                            return(
-                            <div key={s.id_site}>
-                                <input onClick={handleClick} multiple type="checkbox" name={s.num_table} value={s.id_site} />
-                                <h4>Mesa N°{s.num_table} para {s.amount_persons} personas</h4>
-                            </div>)
-                        })
-                        }
-                    </div>
-                    <div className={style.datePicker}>
-                        <DatePicker
-                            inline
-                            minDate={new Date()}
-                            maxDate={maxDate.setDate(maxDate.getDate() + 15)}
-                            onChange={(date) => reservation(date)}
-                            showTimeSelect
-                            dateFormat="dd/MM/yyyy HH:mm" />
-                    </div>
-                    <button onClick={reservation}>Reservar</button>
                 </div>
-            </div>
             </div>
 
         );

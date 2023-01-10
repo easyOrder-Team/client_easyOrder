@@ -79,7 +79,7 @@ export const NavBar = () => {
               </Link>
             </div>
             <div className={s.navbar__allicons}>
-              <span class="material-symbols-outlined"
+              <span className ="material-symbols-outlined"
                 onClick={() =>
                   isAuthenticated ? navigate("/createReservation") : loginWithRedirect()
                 }>calendar_today</span>

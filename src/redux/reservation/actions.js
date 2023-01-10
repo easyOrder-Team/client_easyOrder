@@ -32,7 +32,7 @@ export const createReservation = (reservation) => {
   console.log(reservation);
   return (dispatch) =>
     axios
-      .post(`http://localhost:3000/api/v1/reservation`, reservation)
+      .post(`http://localhost:3000/api/v1/reservation/`, reservation)
       .then((response) => {
         dispatch({
           type: types.CREATE_RESERVATION,

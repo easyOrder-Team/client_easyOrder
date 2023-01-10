@@ -13,16 +13,21 @@ const Reservas = () => {
     dispatch(actions.deleteReservation(id))
   }
 
-  let fecha = new Date().toLocaleDateString('locales', { year:"numeric", month:"numeric", day:"numeric"})
+  let fecha = new Date().toLocaleDateString('locales', { year:"numeric", month:"2-digit", day:"2-digit"})
 
 console.log(fecha)
   
  totalResevation.map((r)=>{
-   if (fecha < r.date) {
+   if (fecha  <= r.date) {
+    console.log('activas')
        console.log(r.date);
+   }else{
+    console.log('inactivas')
+    console.log(r.date)
    }
  })
 
+ console.log(totalResevation[0].date)
   
   let id
   if (totalResevation.length !== 0) {
