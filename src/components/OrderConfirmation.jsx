@@ -46,7 +46,7 @@ export const OrderConfirmation = () => {
 
   const sendEmail = (email, id_order, valor, fecha) => {
     fetch(
-      `http://localhost:3000/api/v1/notification?email=${email}&id_order=${id_order}&estado=Aprobada&valor=${valor}&fecha=${fecha}`
+      `${import.meta.env.VITE_URL}/api/v1/notification?email=${email}&id_order=${id_order}&estado=Aprobada&valor=${valor}&fecha=${fecha}`
     ).then(response => console.log(response))
   };
   const handleClick = (e) => {
@@ -63,10 +63,10 @@ export const OrderConfirmation = () => {
         email: bill.payer.email_address,
         id_order: order.id_orders,
       };
+      dispatch(checkActions.createCheck(check));
       sendEmail(check.email, check.id_check, check.total, check.date);
       dispatch(clearCart());
       deleteLocaleStorage();
-      dispatch(checkActions.createCheck(check));
     } else {
       if (mercadoPagoBill.payer.first_name === null) {
         check = {
@@ -78,10 +78,10 @@ export const OrderConfirmation = () => {
           email: profile.id_profile,
           id_order: order.id_orders,
         };
+        dispatch(checkActions.createCheck(check));
         sendEmail(check.email, check.id_check, check.total, check.date);
         dispatch(clearCart());
         deleteLocaleStorage();
-        dispatch(checkActions.createCheck(check));
       }
       // check = {
       //   id_check: id,

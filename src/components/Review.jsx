@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 import s from "../styles/OrderConfirmation.module.css";
 import { useNavigate } from "react-router-dom";
-import { Stars } from "./stars";
+import { Stars } from "./Stars.jsx";
 export const Review = () => {
   
   const { productsCart } = useSelector((state) => state.productReducer);

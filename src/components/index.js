@@ -24,3 +24,4 @@ export * from "./Admin";
 export * from "./Products";
 export * from "./ProtectedRoute"
 export * from "./UpdateProduct";
+export * from "./Stars"

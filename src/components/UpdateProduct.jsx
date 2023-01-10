@@ -26,6 +26,7 @@ export const UpdateProduct = () => {
 
   const { id } = useParams();
   const { detailProduct } = useSelector((state) => state.productReducer);
+
   useEffect(() => {
     dispatch(actionProducts.getProductById(id));
   }, []);
@@ -146,7 +147,8 @@ export const UpdateProduct = () => {
       }
     });
   };
-  if (detailProduct) {
+
+  if (detailProduct.length > 0) {
     return (
       <div id={styleForm.containerGlobalForm}>
         <div className={styleForm.containerNav}>

@@ -13,7 +13,7 @@ const Pedidos = () => {
       <div className={style.globalContainerOrder}>
         {totalOrders.map((o) =>
           <div className={style.containerCard}  key={o.id}>
-            <Link to={`/orderDetail/${o.id_order}`}>
+            <Link to={`/orderDetail/${o.id}`}>
               <div className={style.container}>
                 <h2 className={style.nameCantidada}>Order of the day {o.date}</h2>
                 <h2 className={style.totala}>$ {o.price}</h2>
