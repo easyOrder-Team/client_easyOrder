@@ -11,9 +11,18 @@ export const Details = () => {
   const { id } = useParams();
   const navegate = useNavigate();
   const { detailProduct } = useSelector((state) => state.productReducer);
-
+  const profile = JSON.parse(localStorage.getItem("profile"));
   const [count, setCount] = useState(1);
   const [mensaje, setMensaje] = useState("");
+  let isAdmin = false;
+
+  useEffect(() => {
+    if (profile) {
+      if (profile.superadmin) {
+        isAdmin = true;
+      }
+    }
+  }, [profile]);
 
   const dispatch = useDispatch();
 
@@ -25,8 +34,6 @@ export const Details = () => {
       })
       .slice(2, -3);
   };
-
-  let isAdmin = true;
 
   useEffect(() => {
     dispatch(actions.getProductById(id));

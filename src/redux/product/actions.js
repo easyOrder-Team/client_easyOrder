@@ -4,7 +4,7 @@ import axios from "axios";
 export const getProducts = () => {
   return (dispatch) =>
     axios
-      .get(`http://localhost:3000/api/v1/products`)
+      .get(`${import.meta.env.VITE_URL}/api/v1/products`)
       .then((response) => {
         dispatch({
           type: types.GET_PRODUCTS,
@@ -17,7 +17,7 @@ export const getProducts = () => {
 export const sortByTimePreparation = (time, categoryPrep) => {
   return (dispatch) =>
     axios
-      .get(`http://localhost:3000/api/v1/products/filter/timePreparationOrder`)
+      .get(`${import.meta.env.VITE_URL}/api/v1/products/filter/timePreparationOrder`)
       .then((response) => {
         dispatch({
           type: types.SORT_BY_TIME_PREPARATION,
@@ -29,7 +29,7 @@ export const sortByTimePreparation = (time, categoryPrep) => {
 export const getProductByName = (name) => {
   return (dispatch) =>
     axios
-      .get(`http://localhost:3000/api/v1/products?name=${name}`)
+      .get(`${import.meta.env.VITE_URL}/api/v1/products?name=${name}`)
       .then((response) => {
         dispatch({
           type: types.GET_PRODUCTS_BY_NAME,
@@ -43,7 +43,7 @@ export const filterByCategory = (category) => {
   return (dispatch) =>
     axios
       .get(
-        `http://localhost:3000/api/v1/products/filter/filterByCategory?category=${category}`
+        `${import.meta.env.VITE_URL}/api/v1/products/filter/filterByCategory?category=${category}`
       )
       .then((response) => {
         dispatch({
@@ -55,11 +55,10 @@ export const filterByCategory = (category) => {
 };
 //--------------------------- CODIGO PREVIO ---------------------------------------------
 
-
 // export const sortProductsByPrice = (price, category) => {
 //   return (dispatch) =>
 //     axios
-//       .get(`http://localhost:3000/api/v1/products/filter/priceOrder`)
+//       .get(`${import.meta.env.VITE_URL}/api/v1/products/filter/priceOrder`)
 //       .then((response) => {
 //         dispatch({
 //           type: types.SORT_PRODUCTS_BY_PRICE,
@@ -75,7 +74,7 @@ export const sortProductsByPrice = (category, order) => {
   return (dispatch) =>
     axios
       .get(
-        `http://localhost:3000/api/v1/products/filter/priceOrder?category=${category}&order=${order}`
+        `${import.meta.env.VITE_URL}/api/v1/products/filter/priceOrder?category=${category}&order=${order}`
       )
       .then((response) => {
         console.log("respuestaaaa", response.data);
@@ -90,7 +89,7 @@ export const sortProductsByPrice = (category, order) => {
 export const getProductById = (id) => {
   return (dispatch) =>
     axios
-      .get(`http://localhost:3000/api/v1/products/${id}`)
+      .get(`${import.meta.env.VITE_URL}/api/v1/products/${id}`)
       .then((response) => {
         dispatch({
           type: types.GET_PRODUCT_BY_ID,
@@ -129,11 +128,23 @@ export const deleteProduct = (id) => {
 export const updateProduct = (id, data) => {
   return (dispatch) =>
     axios
-      .put(`http://localhost:3000/api/v1/products/update/${id}`, data)
-
+      .put(`${import.meta.env.VITE_URL}/api/v1/products/update/${id}`, data)
       .then((response) => {
         dispatch({
           type: types.UPDATE_PRODUCT,
+          payload: response.data,
+        });
+      })
+      .catch((error) => console.log(error));
+};
+
+export const deleteProductAdmin = (id) => {
+  return (dispatch) =>
+    axios
+      .delete(`${import.meta.env.VITE_URL}/api/v1/products/${id}`)
+      .then((response) => {
+        dispatch({
+          type: types.DELETE_PRODUCT_BY_ID,
           payload: response.data,
         });
       })

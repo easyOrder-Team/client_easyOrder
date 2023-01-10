@@ -28,7 +28,8 @@ export const CreateProfile = () => {
   useEffect(() => {
     if (typeof profile === "object") {
       if (Object.entries(profile).length > 0) {
-        navigate("/home");
+        console.log(profile)
+        profile.superadmin? navigate("/admin"):navigate("/home");;
       }
     }
   }, [profile]);
@@ -112,7 +113,7 @@ export const CreateProfile = () => {
 
   function submit(e) {
     e.preventDefault();
-    fetch(`http://localhost:3000/api/v1/profile`, {
+    fetch(`${import.meta.env.VITE_URL}/api/v1/profile`, {
       method: "POST",
       body: JSON.stringify(data),
       headers: {

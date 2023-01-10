@@ -41,7 +41,7 @@ export const Profile = () => {
       }/dbconnections/change_password`,
       headers: { "content-type": "application/json" },
       data: {
-        client_id: import.meta.env.VITE_AUTH0_CLIENT_I,
+        client_id: import.meta.env.VITE_AUTH0_CLIENT_ID,
         email: user.email,
         connection: "Username-Password-Authentication",
       },
