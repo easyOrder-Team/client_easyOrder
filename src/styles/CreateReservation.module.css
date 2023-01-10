@@ -1,0 +1,38 @@
+.conteiner{
+        /* background-image: url("../images/reserva.jpg"); */
+        height: 100%;
+        width: 100%;
+        position: fixed;
+        top: 0;
+        left: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .modal{
+        width: 30rem;
+        height: 30rem;
+        position: relative;
+        border-radius: 1em;
+        box-shadow: rgba(100, 100, 111, .2) 0px 7px 29px 0px;
+        display: grid;
+        grid-template-columns: 1fr;
+        justify-content: center;
+    }
+    
+    .title{
+        margin-top: 1em;
+        color: var(--main-color);
+    }
+    
+    .datePicker{
+        margin-top: 5em;
+        justify-content: center;
+        margin-top: 1em;
+    }
