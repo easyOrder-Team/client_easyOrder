@@ -75,7 +75,7 @@ function App() {
         <Route path="/orderDetail/:id" element={<OrderDetail />} />
         <Route path="/reviewDetail/:id" element={<ReviewDetail />} />
         <Route path="/ventas" element={<Ventas />} />
-        <Route path="/ventas/:id" element={<VentasDetail />} />
+        <Route path="/ventas/:id" element={<VentasDetail/>} />
         <Route path="/updateProduct/:id" element={<UpdateProduct />} />
       </Routes>
     </div>

@@ -46,8 +46,10 @@ export const OrderConfirmation = () => {
 
   const sendEmail = (email, id_order, valor, fecha) => {
     fetch(
-      `${import.meta.env.VITE_URL}/api/v1/notification?email=${email}&id_order=${id_order}&estado=Aprobada&valor=${valor}&fecha=${fecha}`
-    ).then(response => console.log(response))
+      `${
+        import.meta.env.VITE_URL
+      }/api/v1/notification?email=${email}&id_order=${id_order}&estado=Aprobada&valor=${valor}&fecha=${fecha}`
+    ).then((response) => console.log(response));
   };
   const handleClick = (e) => {
     e.preventDefault();
