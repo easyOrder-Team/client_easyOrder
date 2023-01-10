@@ -152,6 +152,18 @@ export const Admin = () => {
                   <h2>Ventas</h2>
                 </div>
               </Link>
+
+              <Link to={"/ordenes"}>
+                <div className={`${h.card} ${h.card__ordenes}`}>
+                  <h2>Ordenes</h2>
+                </div>
+              </Link>
+
+              <Link to={"/usuarios"}>
+                <div className={`${h.card} ${h.card__usuarios}`}>
+                  <h2>Usuarios</h2>
+                </div>
+              </Link>
             </div>
           </div>
         );

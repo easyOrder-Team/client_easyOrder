@@ -13,7 +13,7 @@ export const Home = () => {
   const { productsList } = useSelector((state) => state.productsList);
   const profile = useSelector((state) => state.profileReducer.profile);
   const navigate = useNavigate();
-  
+
   if (localStorage.getItem("profile") !== null) {
     if (JSON.parse(localStorage.getItem("profile")).superadmin) {
       navigate("/admin");
