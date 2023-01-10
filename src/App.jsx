@@ -26,6 +26,8 @@ import { useDispatch } from "react-redux";
 import { CreateProfile } from "./components/CreateProfile";
 import OrderDetail from "./components/OrderDetail";
 import ReviewDetail from "./components/ReviewDetails";
+import { Ventas } from "./components/Ventas";
+import { VentasDetail } from "./components/VentasDetail";
 
 function App() {
   return (
@@ -52,6 +54,8 @@ function App() {
         <Route path="/review" element={<Review />} />
         <Route path="/admin" element={<Admin />} />
         <Route path="/products" element={<Products />} />
+        <Route path="/ventas" element={<Ventas />} />
+        <Route path="/ventas/:id" element={<VentasDetail/>} />
       </Routes>
     </div>
   );

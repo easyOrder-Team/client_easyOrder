@@ -31,10 +31,12 @@ export const CREATE_ORDER = 'CREATE_ORDER';
 export const SAVE_ORDER = 'SAVE_ORDER';
 export const GET_ORDER = 'GET_ORDER';
 export const GET_ORDER_BY_ID = 'GET_ORDER_BY_ID';
+export const GET_ALL_ORDERS = 'GET_ALL_ORDERS'
 //check
 export const CREATE_CHECK = 'CREATE_CHECK';
 export const SAVE_CHECK = 'SAVE_CHECK';
-
+export const GET_ALL_CHECK = 'GET_ALL_CHECK'
+export const GET_CHECK = 'GET_CHECK'
 //pago
 export const GET_INFO_PAYMENT = 'GET_INFO_PAYMENT';
 export const GET_ORDERS_ID_PROFILE = 'GET_ORDERS_ID_PROFILE';
