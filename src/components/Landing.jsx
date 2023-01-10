@@ -13,6 +13,10 @@ export function Landing() {
   const { site } = useParams();
   const { loginWithRedirect, isAuthenticated, isLoading } = useAuth0();
   const navigate = useNavigate();
+
+  useEffect(()=>{
+    localStorage.clear()
+  })
   // useEffect(() => {
   //   const getLS = () => {
   //     const tableLS = JSON.parse(localStorage.getItem('site')) ?? '';
