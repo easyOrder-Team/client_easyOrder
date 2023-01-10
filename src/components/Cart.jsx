@@ -21,7 +21,7 @@ export const Cart = () => {
   const [mensaje, setMensaje] = useState("");
   const [order, setOrder] = useState({
     id_mesa: parseInt(localStorage.getItem("site")),
-    id_profile: state.profile.id_profile,
+    id_profile: JSON.parse(localStorage.getItem('profile')).id_profile,
     total: total,
     products: product,
   });
