@@ -19,8 +19,8 @@ export const OrderConfirmation = () => {
   const navigate = useNavigate();
   const { id } = useParams();
   const products = JSON.parse(localStorage.getItem("products"));
-  const order = JSON.parse(localStorage.getItem('order'));
-  const profile = JSON.parse(localStorage.getItem('profile'));
+  const order = JSON.parse(localStorage.getItem("order"));
+  const profile = JSON.parse(localStorage.getItem("profile"));
   const bill = useSelector((state) => state.checkReducer.check);
   const mercadoPagoBill = useSelector(
     (state) => state.paymentReducer.infoPayment
@@ -38,15 +38,15 @@ export const OrderConfirmation = () => {
   }, [products]);
 
   const deleteLocaleStorage = () => {
-    localStorage.removeItem('contador')
-    localStorage.removeItem('tempTotal')
-    localStorage.removeItem('order')
-    localStorage.removeItem('product')
-  }
+    localStorage.removeItem("contador");
+    localStorage.removeItem("tempTotal");
+    localStorage.removeItem("order");
+    localStorage.removeItem("product");
+  };
   const handleClick = (e) => {
     e.preventDefault();
     let check = {};
-    if (!mercadoPagoBill.hasOwnProperty('order')) {
+    if (!mercadoPagoBill.hasOwnProperty("order")) {
       check = {
         id_check: bill.id,
         name: bill.payer.name.given_name,
@@ -59,14 +59,14 @@ export const OrderConfirmation = () => {
       console.log(check);
       console.log("regresar al home");
       dispatch(clearCart());
-      deleteLocaleStorage()
+      deleteLocaleStorage();
       dispatch(checkActions.createCheck(check));
-    }else{
-      if(mercadoPagoBill.payer.first_name === null){
+    } else {
+      if (mercadoPagoBill.payer.first_name === null) {
         check = {
           id_check: `${id}`,
-          name: mercadoPagoBill.card.cardholder.name.split(' ')[0],
-          lastname: mercadoPagoBill.card.cardholder.name.split(' ')[1],
+          name: mercadoPagoBill.card.cardholder.name.split(" ")[0],
+          lastname: mercadoPagoBill.card.cardholder.name.split(" ")[1],
           date: mercadoPagoBill.date_approved,
           total: mercadoPagoBill.transaction_amount,
           email: profile.id_profile,
@@ -74,10 +74,10 @@ export const OrderConfirmation = () => {
         };
 
         console.log(check);
-        console.log(order.order.id_orders)
+        console.log(order.order.id_orders);
         console.log("regresar al home");
         dispatch(clearCart());
-        deleteLocaleStorage()
+        deleteLocaleStorage();
         dispatch(checkActions.createCheck(check));
       }
       // check = {
@@ -89,9 +89,7 @@ export const OrderConfirmation = () => {
       //   email: bill.payer.email_address,
       //   id_order: order.order.id_orders,
       // };
-
     }
-
 
     navigate("/home");
   };
@@ -133,7 +131,9 @@ export const OrderConfirmation = () => {
             <span>${total}</span>
           </div>
         </div>
-        <button className= {s.btn1} onClick = {() => navigate('/review')}>Te gustaria puntuarnos?</button>
+        <button className={s.btn1} onClick={() => navigate("/review")}>
+          Te gustaria puntuarnos?
+        </button>
         <button className={s.btn1} onClick={handleClick}>
           CONTINUAR
         </button>
