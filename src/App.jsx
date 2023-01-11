@@ -21,7 +21,7 @@ import {
   // OrderDetail
   UpdateProduct,
   Users,
-  CropProfileImage,
+  CropProfileImage
 } from "./components";
 
 import { PagePay } from "./components/PagePay";
@@ -53,15 +53,7 @@ function App() {
         <Route path="resultsearch" element={<ResultSearch />} />
         <Route path="/details/:id" element={<Details />} />
         <Route path="/createProfile" element={<CreateProfile />} />
-
-        <Route
-          path="/cart"
-          element={
-            <ProtectedRoute isAuthenticated={isAuthenticated}>
-              <Cart />
-            </ProtectedRoute>
-          }
-        />
+        <Route path="/cart" element={<Cart />} />
         <Route path="/createReservation" element={<CreateReservation />} />
         <Route
           path="/pagepay"
@@ -88,10 +80,10 @@ function App() {
         <Route path="/orderDetail/:id" element={<OrderDetail />} />
         <Route path="/reviewDetail/:id" element={<ReviewDetail />} />
         <Route path="/ventas" element={<Ventas />} />
-        <Route path="/ventas/:id" element={<VentasDetail />} />
-        <Route path="/updateProduct/:id" element={<UpdateProduct />} />
-        <Route path="/usuarios" element={<Users />} />
-        <Route path="/cropImage" element={<CropProfileImage />} />
+        <Route path="/ventas/:id" element={<VentasDetail/>} />
+        <Route path="/updateProduct/:id" element={<UpdateProduct />} /> 
+        <Route path="/usuarios" element={<Users />} /> 
+        <Route path="/cropImage" element={<CropProfileImage />} /> 
       </Routes>
     </div>
   );

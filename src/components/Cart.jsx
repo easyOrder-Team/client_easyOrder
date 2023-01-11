@@ -18,12 +18,25 @@ export const Cart = () => {
   const [total, setTotal] = useState(0);
   const [product, setProduct] = useState(productsCart);
   const [mensaje, setMensaje] = useState("");
+  const profile = JSON.parse(localStorage.getItem('profile'))
   const [order, setOrder] = useState({
-    id_mesa: parseInt(localStorage.getItem("site")),
-    id_profile: JSON.parse(localStorage.getItem('profile')).id_profile,
-    total: total,
-    products: product,
+    id_mesa: '',
+    id_profile: '',
+    total: '',
+    products: '',
   });
+
+  useEffect(()=>{
+    if(profile!= null){
+      setOrder({
+        id_mesa: parseInt(localStorage.getItem("site")),
+        id_profile: JSON.parse(localStorage.getItem('profile')).id_profile,
+        total: total,
+        products: product,
+      });
+    }
+  },[profile])
+  
   const [count, setCount] = useState(
     JSON.parse(localStorage.getItem("contador")) ?? []
   );
