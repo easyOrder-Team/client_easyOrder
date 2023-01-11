@@ -16,7 +16,7 @@ export const NavBar = () => {
     !location.includes("/cards") &&
     location !== "/profile" &&
     location !== "/scannQR" &&
-    location !== "/selectPayMethod" 
+    location !== "/selectPayMethod"
   ) {
     return (
       <div>
@@ -78,6 +78,16 @@ export const NavBar = () => {
                 />
               </Link>
             </div>
+            <span
+              className="material-symbols-outlined"
+              onClick={() =>
+                isAuthenticated
+                  ? navigate("/createReservation")
+                  : loginWithRedirect()
+              }
+            >
+              calendar_today
+            </span>
             <div className={s.navbar__allicons}>
               <span className="material-symbols-outlined">notifications</span>
               <Link to={"/cart"}>
@@ -163,6 +173,16 @@ export const NavBar = () => {
                 />
               </Link>
             </div>
+            <span
+              className="material-symbols-outlined"
+              onClick={() =>
+                isAuthenticated
+                  ? navigate("/createReservation")
+                  : loginWithRedirect()
+              }
+            >
+              calendar_today
+            </span>
             <div className={s.navbar__allicons}>
               <span className="material-symbols-outlined">notifications</span>
               <Link to={"/cart"}>
