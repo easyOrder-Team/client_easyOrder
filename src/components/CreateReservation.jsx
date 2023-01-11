@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { NavBar } from "./NavBar";
 
-const CreateReservation = () => {
+export const CreateReservation = () => {
   const { profile } = useSelector((state) => state.profileReducer);
   const [startDate, setStartDate] = useState(new Date());
   const [reserv, setReserv] = useState({
@@ -133,4 +133,3 @@ const CreateReservation = () => {
     return <h2>No Hay mesas disponibles</h2>;
   }
 };
-export default CreateReservation;
