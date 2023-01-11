@@ -25,6 +25,7 @@
   border-radius: 1.5rem;
   width: 20rem;
   font-family: "Comfortaa", cursive;
+  margin-bottom: 1rem;
 }
 
 .cards__button {
@@ -33,4 +34,9 @@
   border: solid 0.5px rgb(70, 69, 69);
   padding: 0.6rem;
   border-radius: 1.5rem;
+}
+
+/* //---------------------Henry change---------- */
+.div_error {
+  margin: 3rem;
 }

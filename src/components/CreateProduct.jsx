@@ -98,36 +98,32 @@ export const CreateProduct = () => {
 
   const submit = (e) => {
     e.preventDefault();
-    console.log("data", data);
-    dispatch(actionProducts.createProduct(data));
-    // let newData = JSON.stringify(data);
-    // dispatch(actionProducts.createProduct(newData));
-    // fetch("http://localhost:3000/api/v1/products", {
-    //   method: "POST",
-    //   body: JSON.stringify(data),
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    // }
-    // ).then((response) => {
-    //   if (response.statusText === "Created") {
-    //     Swal.fire({
-    //       title: "OK!",
-    //       text: "El producto se ha creado con exito",
-    //       icon: "success",
-    //     }).then((response) => {
-    //       if (response.isConfirmed) {
-    //         navigate("/home");
-    //       }
-    //     });
-    //   } else {
-    //     Swal.fire({
-    //       title: "Error!",
-    //       text: "El producto NO se ha podido crear",
-    //       icon: "error",
-    //     });
-    //   }
-    // });
+
+    fetch("http://localhost:3000/api/v1/products", {
+      method: "POST",
+      body: JSON.stringify(data),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }).then((response) => {
+      if (response.statusText === "Created") {
+        Swal.fire({
+          title: "OK!",
+          text: "El producto se ha creado con exito",
+          icon: "success",
+        }).then((response) => {
+          if (response.isConfirmed) {
+            navigate("/home");
+          }
+        });
+      } else {
+        Swal.fire({
+          title: "Error!",
+          text: "El producto NO se ha podido crear",
+          icon: "error",
+        });
+      }
+    });
   };
   return (
     <div id={styleForm.containerGlobalForm}>

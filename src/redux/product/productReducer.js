@@ -18,37 +18,96 @@ export const productReducer = (state = initialState, action) => {
         productsList: action.payload,
       };
 
+    ///-------------------------Henry´s code----------------------------
     case types.SORT_BY_TIME_PREPARATION:
-      let { responsePrep, time, categoryPrep } = action.payload;
-      let supportTime = [];
+      let { responsePrep, time, categoryPrep, rangePrep } = action.payload;
+      let supportTimeProducts = [];
+      let newSupport = [];
 
-      if (time === "min-max") {
-        responsePrep.forEach((p) => {
-          p.category.forEach((c) => {
-            if (c.name.toLowerCase() === categoryPrep.toLowerCase()) {
-              supportTime.push(p);
-            }
-          });
-        });
-        return {
-          ...state,
-          products: supportTime,
-        };
+      if (rangePrep === undefined) {
+        if (categoryPrep === "allProducts") {
+          if (time === "min-max") {
+            supportTimeProducts = responsePrep;
+          } else {
+            let reverse = [...responsePrep].reverse();
+            supportTimeProducts = reverse;
+          }
+        } else {
+          if (time === "min-max") {
+            responsePrep.forEach((p) => {
+              p.category.forEach((c) => {
+                if (c.name.toLowerCase() === categoryPrep.toLowerCase()) {
+                  supportTimeProducts.push(p);
+                }
+              });
+            });
+          } else {
+            let reverse = [...responsePrep].reverse();
+            reverse.forEach((p) => {
+              p.category.forEach((c) => {
+                if (c.name.toLowerCase() === categoryPrep.toLowerCase()) {
+                  supportTimeProducts.push(p);
+                }
+              });
+            });
+          }
+        }
+      } else {
+        if (categoryPrep === "allProducts") {
+          if (time === "min-max") {
+            responsePrep.forEach((p) => {
+              if (p.price > rangePrep.min && p.price < rangePrep.max) {
+                newSupport.push(p);
+              }
+            });
+            supportTimeProducts = newSupport;
+          } else {
+            let reverse = [...responsePrep].reverse();
+            reverse.forEach((p) => {
+              if (p.price > rangePrep.min && p.price < rangePrep.max) {
+                newSupport.push(p);
+              }
+            });
+            supportTimeProducts = newSupport;
+          }
+        } else {
+          if (time === "min-max") {
+            responsePrep.forEach((p) => {
+              p.category.forEach((c) => {
+                if (c.name.toLowerCase() === categoryPrep.toLowerCase()) {
+                  supportTimeProducts.push(p);
+                }
+              });
+            });
+            supportTimeProducts.forEach((p) => {
+              if (p.price > rangePrep.min && p.price < rangePrep.max) {
+                newSupport.push(p);
+              }
+            });
+            supportTimeProducts = newSupport;
+          } else {
+            let reverse = [...responsePrep].reverse();
+            reverse.forEach((p) => {
+              p.category.forEach((c) => {
+                if (c.name.toLowerCase() === categoryPrep.toLowerCase()) {
+                  supportTimeProducts.push(p);
+                }
+              });
+            });
+            supportTimeProducts.forEach((p) => {
+              if (p.price > rangePrep.min && p.price < rangePrep.max) {
+                newSupport.push(p);
+              }
+            });
+            supportTimeProducts = newSupport;
+          }
+        }
       }
-      if (time === "max-min") {
-        let reverse = [...responsePrep].reverse();
-        reverse.forEach((p) => {
-          p.category.forEach((c) => {
-            if (c.name.toLowerCase() === categoryPrep.toLowerCase()) {
-              supportTime.push(p);
-            }
-          });
-        });
-        return {
-          ...state,
-          products: supportTime,
-        };
-      }
+      return {
+        ...state,
+        products: supportTimeProducts,
+      };
+    //------------------------------------------------------------------------------
 
     case types.GET_PRODUCTS_BY_NAME:
       return {
@@ -74,21 +133,36 @@ export const productReducer = (state = initialState, action) => {
         products: [],
       };
 
+    ///-----------------------Henry´s code----------------------------
     case types.SORT_PRODUCTS_BY_PRICE:
-      let { response, category } = action.payload;
+      let { response, category, range } = action.payload;
       let supportPrice = [];
 
-      response.forEach((p) => {
-        p.category.forEach((c) => {
-          if (c.name.toLowerCase() === category.toLowerCase()) {
-            supportPrice.push(p);
+      if (category === "allProducts") {
+        supportPrice = response;
+      } else {
+        response.forEach((p) => {
+          p.category.forEach((c) => {
+            if (c.name.toLowerCase() === category.toLowerCase()) {
+              supportPrice.push(p);
+            }
+          });
+        });
+      }
+      if (typeof range === "object") {
+        let newSupport = [];
+        supportPrice.forEach((p) => {
+          if (p.price > range.min && p.price < range.max) {
+            newSupport.push(p);
           }
         });
-      });
+        supportPrice = newSupport;
+      }
       return {
         ...state,
         products: supportPrice,
       };
+    //------------------------------------------------
 
     case types.DELETE_PRODUCT:
       return {

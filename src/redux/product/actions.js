@@ -14,14 +14,20 @@ export const getProducts = () => {
       .catch((error) => console.log(error));
 };
 
-export const sortByTimePreparation = (time, categoryPrep) => {
+///-------------Henry´s code--------------------
+export const sortByTimePreparation = (time, categoryPrep, rangePrep) => {
   return (dispatch) =>
     axios
       .get(`http://localhost:3000/api/v1/products/filter/timePreparationOrder`)
       .then((response) => {
         dispatch({
           type: types.SORT_BY_TIME_PREPARATION,
-          payload: { responsePrep: response.data, time, categoryPrep },
+          payload: {
+            responsePrep: response.data,
+            time,
+            categoryPrep,
+            rangePrep,
+          },
         });
       });
 };
@@ -54,19 +60,17 @@ export const filterByCategory = (category) => {
       .catch((error) => console.log(error));
 };
 
-export const sortProductsByPrice = (priceRange, category) => {
-  console.log("price", priceRange);
+///-------------Henry´s code---------------------
+export const sortProductsByPrice = (price, category, range) => {
   return (dispatch) =>
     axios
       .get(
-        `http://localhost:3000/api/v1/products/filter/priceOrder`,
-        priceRange
+        `http://localhost:3000/api/v1/products/filter/priceOrder/?price=${price}`
       )
       .then((response) => {
-        console.log("respuestaaaa", response.data);
         dispatch({
           type: types.SORT_PRODUCTS_BY_PRICE,
-          payload: { response: response.data, category },
+          payload: { response: response.data, category, range },
         });
       })
       .catch((error) => console.log(error));
@@ -115,7 +119,6 @@ export const updateProduct = (id, data) => {
   return (dispatch) =>
     axios
       .put(`http://localhost:3000/api/v1/products/update/${id}`, data)
-
       .then((response) => {
         dispatch({
           type: types.UPDATE_PRODUCT,

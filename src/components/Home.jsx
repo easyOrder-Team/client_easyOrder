@@ -12,7 +12,6 @@ export const Home = () => {
   const profile = useSelector((state) => state.profileReducer.profile);
   useEffect(() => {
     dispatch(actions.clearProduct());
-    console.log(localStorage.getItem("site"));
   }, []);
   useEffect(() => {
     if (profile && profile.hasOwnProperty("id_profile"))
