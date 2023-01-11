@@ -17,7 +17,7 @@ export const Ventas = () => {
   return (
     <div>
         <NavBar/>
-        {checks.length ? checks.map(o => 
+        {checks !== "There are no checks yet" ? checks.length ? checks.map(o => 
         <div key = {o.id_check} onClick={() => navigate(`/ventas/${o.id_check}`)}>
             
             <div className={s.container}>
@@ -28,7 +28,7 @@ export const Ventas = () => {
               </div>
               <p>{o.date}</p>
             </div>
-        </div>) : <h1>Loading</h1>}
+        </div>) : <h1>Loading</h1> : <h1>There are no checks yet</h1>}
     </div>
   )
 }
