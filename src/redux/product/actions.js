@@ -59,6 +59,7 @@ export const filterByCategory = (category) => {
       })
       .catch((error) => console.log(error));
 };
+//--------------------------- CODIGO PREVIO ---------------------------------------------
 
 ///-------------Henry´s code---------------------
 export const sortProductsByPrice = (price, category, range) => {

@@ -160,7 +160,7 @@ export const productReducer = (state = initialState, action) => {
       }
       return {
         ...state,
-        products: supportPrice,
+        products: action.payload,
       };
     //------------------------------------------------
 
