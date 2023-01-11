@@ -38,10 +38,7 @@ export const PagePay = () => {
     });
   };
 
-  const priceTotalCalculator = (productPrice) => {
-    total = total + productPrice;
-  };
-
+ 
   const handleClick = (e) => {
     e.preventDefault();
     console.log("regresar al cart");
@@ -104,5 +101,53 @@ export const PagePay = () => {
         />
       </div>
     </div>
+      <div className={s.containerCartsButtons}>
+        <div className={s.link} onClick={handleClick}>
+          Regresar al carrito de compras
+        </div>
+        {productsCart.map((p) => (
+          <div key={p.id} className={s.container}>
+            <div className={s.img}>
+              <img src={p.image} alt={p.name} />
+            </div>
+            <div className={s.nameCantidad}>
+              <h2>
+                {p.name} (x{p.count})
+              </h2>
+            </div>
+            <div className={s.price}>
+              <span>${p.priceTotal}</span>
+              <p>{(total = total + p.priceTotal)}</p>
+            </div>
+          </div>
+        ))}
+        <div className={s.total}>
+          <div>
+            <h3>Total</h3>
+          </div>
+          <div>
+            <span>${total}</span>
+          </div>
+        </div>
+        
+        <div className={s.payBtn}>
+          <button
+            className={s.payBtnMercadopago}
+            onClick={handleClickMercadoPago}
+          >
+            <img
+              className={s.logos}
+              src="https://logodownload.org/wp-content/uploads/2019/06/mercado-pago-logo-4.png"
+              alt=""
+            />
+          </button>
+          <PayPalButton
+            createOrder={(data, actions) => createOrder(data, actions)}
+            onApprove={(data, actions) => onApprove(data, actions)}
+          />
+        </div>
+      </div>
+    </div>
   );
 };
+

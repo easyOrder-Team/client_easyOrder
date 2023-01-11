@@ -86,6 +86,16 @@ export const NavBar = () => {
                 {/* <img className={s.logo_dark} scr={logoDark}></img> */}
               </Link>
             </div>
+            <span
+              className="material-symbols-outlined"
+              onClick={() =>
+                isAuthenticated
+                  ? navigate("/createReservation")
+                  : loginWithRedirect()
+              }
+            >
+              calendar_today
+            </span>
             <div className={s.navbar__allicons}>
               <span className="material-symbols-outlined">notifications</span>
               <Link to={"/cart"}>
@@ -171,6 +181,16 @@ export const NavBar = () => {
                 />
               </Link>
             </div>
+            <span
+              className="material-symbols-outlined"
+              onClick={() =>
+                isAuthenticated
+                  ? navigate("/createReservation")
+                  : loginWithRedirect()
+              }
+            >
+              calendar_today
+            </span>
             <div className={s.navbar__allicons}>
               <span className="material-symbols-outlined">notifications</span>
               <Link to={"/cart"}>

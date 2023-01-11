@@ -36,6 +36,12 @@ export const orderReducer = (state = initialState, action) => {
         orderById: action.payload
       }
     }
+    case types.GET_ALL_ORDERS: {
+      return{
+        ...state, 
+        totalOrders: action.payload
+      }
+    }
     default:
       return state;
   }

@@ -16,6 +16,10 @@ import {
   Review,
   Admin,
   Products,
+  ProtectedRoute,
+  // ReviewDetail,
+  // OrderDetail
+  UpdateProduct,
 } from "./components";
 import { PagePay } from "./components/PagePay";
 import { Profile } from "./components/Profile";
@@ -26,12 +30,17 @@ import { useDispatch } from "react-redux";
 import { CreateProfile } from "./components/CreateProfile";
 import OrderDetail from "./components/OrderDetail";
 import ReviewDetail from "./components/ReviewDetails";
+import { Ventas } from "./components/Ventas";
+import { VentasDetail } from "./components/VentasDetail";
+import { useAuth0 } from "@auth0/auth0-react";
+import { CreateReservation } from "./components/CreateReservation";
 
 function App() {
+  const { user, isAuthenticated, isLoading } = useAuth0();
   return (
     <div className="App">
       <Routes>
-        <Route path="/:site" element={<Landing />} />
+        <Route path="/" element={<Landing />} />
         <Route path="/cards/:category" element={<Cards />} />
         <Route path="/cards" element={<Cards />} />
         <Route path="/login" element={<Login />} />
@@ -42,16 +51,34 @@ function App() {
         <Route path="/details/:id" element={<Details />} />
         <Route path="/createProfile" element={<CreateProfile />} />
         <Route path="/cart" element={<Cart />} />
-        <Route path="/pagepay" element={<PagePay />} />
+        <Route path="/createReservation" element={<CreateReservation />} />
+        <Route
+          path="/pagepay"
+          element={
+            <ProtectedRoute isAuthenticated={isAuthenticated}>
+              <PagePay />
+            </ProtectedRoute>
+          }
+        />
         <Route path="/confirmation/:id" element={<OrderConfirmation />} />
         <Route path="/confirmation" element={<Redirect />} />
         <Route path="/payMercadoPago" element={<PasarelaMercadoPago />} />
         <Route path="/scannQR" element={<Scanner />} />
+        <Route
+          path="/admin"
+          element={
+            <ProtectedRoute isAuthenticated={isAuthenticated}>
+              <Admin />
+            </ProtectedRoute>
+          }
+        />
+        <Route path="/products" element={<Products />} />
+        <Route path="/review" element={<Review />} />
         <Route path="/orderDetail/:id" element={<OrderDetail />} />
         <Route path="/reviewDetail/:id" element={<ReviewDetail />} />
-        <Route path="/review" element={<Review />} />
-        <Route path="/admin" element={<Admin />} />
-        <Route path="/products" element={<Products />} />
+        <Route path="/ventas" element={<Ventas />} />
+        <Route path="/ventas/:id" element={<VentasDetail />} />
+        <Route path="/updateProduct/:id" element={<UpdateProduct />} />
       </Routes>
     </div>
   );
