@@ -6,7 +6,6 @@ export const getSiteActivas = (id) => {
     axios
       .get(`http://localhost:3000/api/v1/site/avalible`)
       .then((response) => {
-        console.log(response.data);
         dispatch({
           type: types.GET_SITE_ACTIVAS,
           payload: response.data,

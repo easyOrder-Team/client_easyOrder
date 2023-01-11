@@ -9,7 +9,7 @@ import { useEffect } from "react";
 import { NavBar } from "./NavBar";
 
 export const CreateReservation = () => {
-  const { profile } = useSelector((state) => state.profileReducer);
+  const profile = JSON.parse(localStorage.getItem("profile"));
   const [startDate, setStartDate] = useState(new Date());
   const [reserv, setReserv] = useState({
     amount_persons: "",
@@ -23,6 +23,7 @@ export const CreateReservation = () => {
   const dispatch = useDispatch();
 
   const reservation = (date) => {
+    console.log("reserv", reserv);
     dispatch(actions.createReservation(reserv));
     setReserv({
       ...reserv,
@@ -63,11 +64,13 @@ export const CreateReservation = () => {
         num_table: [...reserv.num_table, parseInt(e.target.name)],
       });
     } else {
-      let table = [...reserv.num_table].filter((c) => c !== e.target.name);
+      let table = [...reserv.num_table].filter(
+        (c) => c !== parseInt(e.target.name)
+      );
       setReserv({ ...reserv, num_table: [...table] });
     }
   };
-  console.log(reserv);
+
   useEffect(() => {
     dispatch(actionsSite.getSiteActivas());
   }, []);

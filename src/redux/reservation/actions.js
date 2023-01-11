@@ -28,13 +28,13 @@ export const deleteReservation = (id) => {
       .catch((error) => console.log(error));
 };
 export const createReservation = (reservation) => {
-  console.log(reservation);
   return (dispatch) =>
     axios
       .post(`${import.meta.env.VITE_URL}/api/v1/reservation`, reservation)
       .then((response) => {
         dispatch({
           type: types.CREATE_RESERVATION,
+          payload: response.data,
         });
       })
       .catch((error) => console.log(error));
