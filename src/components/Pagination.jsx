@@ -11,6 +11,7 @@ export function Pagination({
   for (let i = 1; i <= Math.ceil(products / productsPerPage); i++) {
     pageNumbers.push(i);
   }
+
   return (
     <div>
       <ul className={s.pagination}>

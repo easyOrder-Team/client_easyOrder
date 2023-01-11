@@ -4,7 +4,7 @@ import axios from "axios";
 export const getReservationById = (id) => {
     return (dispatch) =>
       axios
-        .get(`http://localhost:3000/api/v1/reservation/${id}`)
+        .get(`${import.meta.env.VITE_URL}/api/v1/reservation/${id}`)
         .then((response) => {
           console.log(response.data)
           dispatch({
@@ -18,7 +18,7 @@ export const getReservationById = (id) => {
   export const deleteReservation = (id) => {
     return (dispatch) =>
       axios
-        .delete(`http://localhost:3000/api/v1/reservation/${id}`)
+        .delete(`${import.meta.env.VITE_URL}/api/v1/reservation/${id}`)
         .then((response) => {
           dispatch({
             type: types.DELETE_RESERVATION,

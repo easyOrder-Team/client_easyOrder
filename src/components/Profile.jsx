@@ -11,23 +11,19 @@ import axios from "axios";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 import OrderHistory from "./OrderHistory";
-import * as actionsOrders from '../redux/order/actions'
+import * as actionsOrders from "../redux/order/actions";
 import Reservas from "./ReservationHistory";
-import * as actionsReservation from '../redux/reservation/actions';
+import * as actionsReservation from "../redux/reservation/actions";
 import ReviewHistory from "./ReviewHistory";
-import * as actionsReview from '../redux/review/actions';
-
-
+import * as actionsReview from "../redux/review/actions";
 
 export const Profile = () => {
-  const {profile} = useSelector((state) => state.profileReducer);
+  const { profile } = useSelector((state) => state.profileReducer);
   const { user, isAuthenticated, isLoading } = useAuth0();
   const [ventana, setVentana] = useState("pedidos");
   const dispatch = useDispatch();
-  const navigate =  useNavigate()
+  const navigate = useNavigate();
 
-
-  
   useEffect(() => {
     if (isAuthenticated) {
       dispatch(actionsProfile.getProfileById(user.email));
@@ -40,10 +36,12 @@ export const Profile = () => {
   const changePassword = () => {
     let options = {
       method: "POST",
-      url: `https://${import.meta.env.VITE_AUTH0_DOMAIN}/dbconnections/change_password`,
+      url: `https://${
+        import.meta.env.VITE_AUTH0_DOMAIN
+      }/dbconnections/change_password`,
       headers: { "content-type": "application/json" },
       data: {
-        client_id: import.meta.env.VITE_AUTH0_CLIENT_I,
+        client_id: import.meta.env.VITE_AUTH0_CLIENT_ID,
         email: user.email,
         connection: "Username-Password-Authentication",
       },
@@ -125,11 +123,15 @@ export const Profile = () => {
 
               {ventana === "reservas" ? (
                 <div className={profileStyle.containerOptionsDiv}>
-                  <div><Reservas/></div>
+                  <div>
+                    <Reservas />
+                  </div>
                 </div>
               ) : ventana === "reseñas" ? (
                 <div className={profileStyle.containerOptionsDiv}>
-                  <div><ReviewHistory/></div>
+                  <div>
+                    <ReviewHistory />
+                  </div>
                 </div>
               ) : ventana === "contraseña" ? (
                 <div className={profileStyle.containerOptionsDiv}>
@@ -139,14 +141,17 @@ export const Profile = () => {
                       Te enviaremos un link al correo electronico donde podras
                       entrar a realizar el cambio de contraseña
                     </p>
-                    <button onClick={changePassword} className={profileStyle.buttonLink}>
+                    <button
+                      onClick={changePassword}
+                      className={profileStyle.buttonLink}
+                    >
                       Enviar Link
                     </button>
                   </div>
                 </div>
               ) : (
                 <div className={profileStyle.containerOptionsDiv}>
-                  <div>{<OrderHistory/>}</div>
+                  <div>{<OrderHistory />}</div>
                 </div>
               )}
             </div>
@@ -172,7 +177,7 @@ export const Profile = () => {
             </div>
             <div className={profileStyle.containerOptions}>
               <div className={profileStyle.userOptions}>
-              <button
+                <button
                   className={profileStyle.buttons}
                   name="pedidos"
                   onClick={() => setVentana("pedidos")}
@@ -196,15 +201,19 @@ export const Profile = () => {
               </div>
               {ventana === "reservas" ? (
                 <div className={profileStyle.containerOptionsDiv}>
-                  <div><Reservas/></div>
+                  <div>
+                    <Reservas />
+                  </div>
                 </div>
               ) : ventana === "reseñas" ? (
                 <div className={profileStyle.containerOptionsDiv}>
-                  <div><ReviewHistory/></div>
+                  <div>
+                    <ReviewHistory />
+                  </div>
                 </div>
               ) : (
                 <div className={profileStyle.containerOptionsDiv}>
-                  <div>{<OrderHistory/>}</div>
+                  <div>{<OrderHistory />}</div>
                 </div>
               )}
             </div>
