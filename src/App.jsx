@@ -20,7 +20,10 @@ import {
   // ReviewDetail,
   // OrderDetail
   UpdateProduct,
+  Users,
+  CropProfileImage
 } from "./components";
+
 import { PagePay } from "./components/PagePay";
 import { Profile } from "./components/Profile";
 import * as actions from "./redux/product/actions";
@@ -76,7 +79,9 @@ function App() {
         <Route path="/reviewDetail/:id" element={<ReviewDetail />} />
         <Route path="/ventas" element={<Ventas />} />
         <Route path="/ventas/:id" element={<VentasDetail/>} />
-        <Route path="/updateProduct/:id" element={<UpdateProduct />} />
+        <Route path="/updateProduct/:id" element={<UpdateProduct />} /> 
+        <Route path="/usuarios" element={<Users />} /> 
+        <Route path="/cropImage" element={<CropProfileImage />} /> 
       </Routes>
     </div>
   );

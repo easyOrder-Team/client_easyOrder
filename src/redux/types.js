@@ -17,6 +17,7 @@ export const DELETE_PRODUCT_BY_ID = "DELETE_PRODUCT_BY_ID";
 //profile
 export const GET_PROFILE_BY_ID = "GET_PROFILE_BY_ID";
 export const CREATE_PROFILE = "CREATE_PROFILE";
+export const GET_ALL_PROFILES = "GET_ALL_PROFILES"
 
 //cart
 export const ADD_PRODUCT_CART = "ADD_PRODUCT_CART";
