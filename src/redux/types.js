@@ -53,3 +53,6 @@ export const GET_REVIEW_BY_ID_REVIEW = "GET_REVIEW_BY_ID_REVIEW";
 
 //site
 export const GET_SITE_ACTIVAS = "GET_SITE_ACTIVAS";
+export const GET_SITES = "GET_SITES";
+export const GET_NUM_TABLE = "GET_NUM_TABLE";
+export const DELETE_TABLE = "DELETE_TABLE";

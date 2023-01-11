@@ -1,0 +1,48 @@
+.site {
+  padding: 3rem;
+  display: flex;
+  align-items: center;
+  font-size: 2rem;
+  border-radius: 1rem;
+  color: var(--text-color);
+  width: 100%;
+  height: 5rem;
+  width: 5rem;
+  margin: 1rem;
+  background-color: antiquewhite;
+}
+
+.conteiner_Name {
+  font-size: 2rem;
+  grid-template-columns: auto auto;
+  text-align: center;
+  margin: 1rem;
+  align-items: center;
+}
+
+.btn1,
+.btn2 {
+  width: 95%;
+  height: 4rem;
+  align-items: center;
+  justify-content: center;
+  will-change: 400;
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  background-color: var(--main-color);
+  color: var(--light-color);
+  border: none;
+  border-radius: 0.4rem;
+}
+.btn2 {
+  background-color: var(--secondary-color);
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+}
+
+.btn1:hover {
+  cursor: pointer;
+}
+.btn2:hover {
+  cursor: pointer;
+}

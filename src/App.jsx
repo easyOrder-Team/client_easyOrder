@@ -34,6 +34,9 @@ import { Ventas } from "./components/Ventas";
 import { VentasDetail } from "./components/VentasDetail";
 import { useAuth0 } from "@auth0/auth0-react";
 import { CreateReservation } from "./components/CreateReservation";
+import { AdminSites } from "./components/AdminSites";
+import { SiteDetails } from "./components/SiteDetails";
+import { UpdateSite } from "./components/UpdateSite";
 
 function App() {
   const { user, isAuthenticated, isLoading } = useAuth0();
@@ -79,6 +82,9 @@ function App() {
         <Route path="/ventas" element={<Ventas />} />
         <Route path="/ventas/:id" element={<VentasDetail />} />
         <Route path="/updateProduct/:id" element={<UpdateProduct />} />
+        <Route path="/sites" element={<AdminSites />} />
+        <Route path="/siteDetails/:id" element={<SiteDetails />} />
+        <Route path="/updateSite/:id" element={<UpdateSite />} />
       </Routes>
     </div>
   );

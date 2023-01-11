@@ -2,6 +2,8 @@ import * as types from "../types";
 
 const initialState = {
   siteActivas: [],
+  allSites: [],
+  siteDetail: [],
 };
 
 export const siteReducer = (state = initialState, action) => {
@@ -11,6 +13,19 @@ export const siteReducer = (state = initialState, action) => {
         ...state,
         siteActivas: action.payload,
       };
+
+    case types.GET_SITES:
+      return {
+        ...state,
+        allSites: action.payload,
+      };
+
+    case types.GET_NUM_TABLE:
+      return {
+        ...state,
+        siteDetail: action.payload,
+      };
+
     default:
       return state;
   }
