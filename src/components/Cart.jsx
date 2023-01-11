@@ -6,14 +6,13 @@ import s from "../styles/Cart.module.css";
 import st from "../styles/ItemCount.module.css";
 import { useNavigate } from "react-router-dom";
 import * as orderActions from "../redux/order/actions";
-
+import { useAuth0 } from "@auth0/auth0-react";
 import * as actions from "../redux/product/actions";
 
 export const Cart = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   var aux = 0;
-
   const state = useSelector((state) => state.profileReducer);
   const { productsCart } = useSelector((state) => state.productReducer);
   const [total, setTotal] = useState(0);
