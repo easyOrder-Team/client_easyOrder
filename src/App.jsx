@@ -33,6 +33,7 @@ import ReviewDetail from "./components/ReviewDetails";
 import { Ventas } from "./components/Ventas";
 import { VentasDetail } from "./components/VentasDetail";
 import { useAuth0 } from "@auth0/auth0-react";
+import { Orders } from "./components/Orders";
 
 function App() {
   const { user, isAuthenticated, isLoading } = useAuth0();
@@ -77,6 +78,7 @@ function App() {
         <Route path="/ventas" element={<Ventas />} />
         <Route path="/ventas/:id" element={<VentasDetail />} />
         <Route path="/updateProduct/:id" element={<UpdateProduct />} />
+        <Route path="/ordenes" element={<Orders />} />
       </Routes>
     </div>
   );
