@@ -9,8 +9,9 @@ import { useEffect } from 'react';
 import { NavBar } from "./NavBar"
 
 
+
 const CreateReservation = () => {
-    const { profile } = useSelector((state) => state.profileReducer);
+    const profile = JSON.parse(localStorage.getItem('profile')) 
     const [startDate, setStartDate] = useState(new Date());
     const [reserv, setReserv] = useState({
         amount_persons: "",
@@ -26,6 +27,7 @@ const CreateReservation = () => {
     const reservation = (date) => {      
         dispatch(actions.createReservation(reserv));
         setReserv({ ...reserv,amount_persons: "", date: "", hour: "", id_profile: "", num_table: [] })
+        history.back()
     }
     useEffect(() => {
         let reserva = startDate.toLocaleDateString('locales', { year:"numeric", month:"2-digit", day:"2-digit", hour: "2-digit", minute: "2-digit"})
@@ -46,7 +48,7 @@ const CreateReservation = () => {
                 num_table: [...reserv.num_table, parseInt(e.target.name)]
             })
         } else {
-            let table = [...reserv.num_table].filter(c => c !== e.target.name)
+            let table = [...reserv.num_table].filter(c => c !== parseInt(e.target.name))
             setReserv({ ...reserv, num_table: [...table] })
         }
     };
@@ -73,11 +75,12 @@ const CreateReservation = () => {
                         <div className={style.conteinerMap}>
                             {siteActivas.map((s) => {
                                 return (
+                                    reserv.amount_persons< s.amount_persons?  
                                     <div className={style.table} key={s.id_site}>
                                         <input onClick={handleClick} multiple type="checkbox" name={s.num_table} value={s.id_site} />
                                         <h4>Mesa</h4>
                                         <h4>{s.amount_persons}px</h4>
-                                    </div>)
+                                    </div> : null )
                             })
                             }
                         </div>
