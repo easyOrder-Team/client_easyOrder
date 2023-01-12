@@ -28,8 +28,6 @@ export const Home = () => {
 
   useEffect(() => {
     dispatch(actions.clearProduct());
-    console.log(localStorage.getItem("site"));
-    console.log(profile);
   }, []);
   useEffect(() => {
     if (profile && profile.hasOwnProperty("id_profile"))

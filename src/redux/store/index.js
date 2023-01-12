@@ -13,7 +13,7 @@ import { siteReducer } from "../site/siteReducer";
 
 const store = createStore(
   combineReducers({
-    productReducer,
+    
     productsList: productReducer,
     categoryReducer,
     profileReducer,
