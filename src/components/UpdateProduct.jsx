@@ -25,7 +25,7 @@ export const UpdateProduct = () => {
   });
 
   const { id } = useParams();
-  const { detailProduct } = useSelector((state) => state.productReducer);
+  const { detailProduct } = useSelector((state) => state.productsList);
 
   useEffect(() => {
     dispatch(actionProducts.getProductById(id));

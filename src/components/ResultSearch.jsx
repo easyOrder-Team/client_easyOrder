@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import { useEffect } from "react";
 
 export const ResultSearch = () => {
-  const { products } = useSelector((state) => state.productReducer);
+  const { products } = useSelector((state) => state.productsList);
   return (
     <div>
       <div>
