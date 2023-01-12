@@ -89,7 +89,7 @@ export const Cards = () => {
     );
   };
 
-  //---------------------Henry change----------
+  //-----------------Henry changes----------
   const handleSelectCategory = (e) => {
     if (e.target.value === "allProducts") {
       setTime("");
@@ -169,7 +169,7 @@ export const Cards = () => {
               <option value="mayor">Mayor a menor</option>
             </select>
 
-            {/* //---------------------Henry change---------- */}
+            {/* //-----------------Henry change---------- */}
           </div>
           <div className={style.cards_container_select}>
             <select
