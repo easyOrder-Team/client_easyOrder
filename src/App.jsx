@@ -20,6 +20,7 @@ import {
   // ReviewDetail,
   // OrderDetail
   UpdateProduct,
+  Process,
 } from "./components";
 import { PagePay } from "./components/PagePay";
 import { Profile } from "./components/Profile";
@@ -81,6 +82,7 @@ function App() {
         <Route path="/ventas/:id" element={<VentasDetail />} />
         <Route path="/updateProduct/:id" element={<UpdateProduct />} />
         <Route path="/ordenes" element={<Orders />} />
+        <Route path="/process/:id" element={<Process />} />
       </Routes>
     </div>
   );

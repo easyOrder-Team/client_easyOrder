@@ -62,10 +62,7 @@ export const Details = () => {
       setMensaje("");
     }, 2000);
     dispatch(actions.addProductCart(productSelected));
-    setTimeout(() => {
-      window.history.back();
-      setCount(1);
-    }, 1000);
+    setCount(1);
   };
 
   const handleToCart = (e) => {

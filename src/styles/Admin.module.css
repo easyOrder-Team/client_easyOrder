@@ -65,6 +65,14 @@ h2 {
   background-size: cover;
   background-position: center;
 }
+
+.card__order {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url("../images/mesa.jpg");
+  background-size: cover;
+  background-position: center;
+}
+
 .imageProfile img {
   width: 100%;
   

@@ -32,6 +32,8 @@ export const SAVE_ORDER = "SAVE_ORDER";
 export const GET_ORDER = "GET_ORDER";
 export const GET_ORDER_BY_ID = "GET_ORDER_BY_ID";
 export const GET_ALL_ORDERS = "GET_ALL_ORDERS";
+export const GET_ACTIVE_ORDERS = "GET_ACTIVE_ORDERS";
+export const CHANGE_STATE_ORDER = "CHANGE_STATE_ORDER";
 //check
 export const CREATE_CHECK = "CREATE_CHECK";
 export const SAVE_CHECK = "SAVE_CHECK";
