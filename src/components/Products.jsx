@@ -14,8 +14,8 @@ import h from "../styles/Admin.module.css";
 export const Products = () => {
   const [modalVisivility, setmodalVisivility] = useState("modalMenu");
   const { logout, isAuthenticated, loginWithRedirect } = useAuth0();
-  const { products } = useSelector((state) => state.productReducer);
-  const { changes } = useSelector((state) => state.productReducer);
+  const { products } = useSelector((state) => state.productsList);
+  const { changes } = useSelector((state) => state.productsList);
   const dispatch = useDispatch();
   const profile = useSelector((state) => state.profileReducer.profile);
  
