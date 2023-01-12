@@ -11,6 +11,7 @@
     justify-content: center;
     align-items: center;
     opacity: 0.85;
+    left: 0;
 }
 
 .content {
@@ -19,8 +20,8 @@
     justify-content: center;
     align-items: center;
     background-color: rgba(255, 255, 255, 0.95);
-    width: 90%;
-    padding: 2rem;
+    width: 35%;
+    padding: 5rem;
     border-radius: 1rem;
 }
 
@@ -142,4 +143,8 @@
     cursor: pointer;
 }
 
-
+@media (max-width: 900px) {
+    .content{
+        width:90%
+    }
+}

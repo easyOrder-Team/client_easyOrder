@@ -137,9 +137,9 @@ export const OrderConfirmation = () => {
           </div>
         </div>
         <button className={s.btn1} onClick={() => navigate("/review")}>
-          Te gustaria puntuarnos?
+          ¿TE GUSTARÍA PUNTUARNOS?
         </button>
-        <button className={s.btn1} onClick={handleClick}>
+        <button className={s.btn2} onClick={handleClick}>
           CONTINUAR
         </button>
         <div className={s.photo}></div>
