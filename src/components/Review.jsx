@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { Stars } from "./Stars.jsx";
 export const Review = () => {
   
-  const { productsCart } = useSelector((state) => state.productReducer);
+  const { productsCart } = useSelector((state) => state.productsList);
   let idProfile = JSON.parse(localStorage.getItem("profile")).id_profile
   
   return (
