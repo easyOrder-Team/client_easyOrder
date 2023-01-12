@@ -6,6 +6,7 @@ const initialState = {
   changes: false,
   productsCart: [],
   productsList: [],
+  responses: "",
 };
 
 export const productReducer = (state = initialState, action) => {
@@ -18,38 +19,93 @@ export const productReducer = (state = initialState, action) => {
       };
 
     case types.SORT_BY_TIME_PREPARATION:
-      let responsePrep = action.payload.response;
-      let time = action.payload.time;
-      let categoryPrep = action.payload.category;
-      let supportTime = [];
+      let { responsePrep, time, categoryPrep, rangePrep } = action.payload;
+      let supportTimeProducts = [];
+      let newSupport = [];
 
-      if (time === "min-max") {
-        responsePrep.forEach((p) => {
-          p.category.forEach((c) => {
-            if (c.name.toLowerCase() === categoryPrep.toLowerCase()) {
-              supportTime.push(p);
-            }
-          });
-        });
-        return {
-          ...state,
-          products: supportTime,
-        };
+      if (rangePrep === undefined) {
+        if (categoryPrep === "allProducts") {
+          if (time === "min-max") {
+            supportTimeProducts = responsePrep;
+          } else {
+            let reverse = [...responsePrep].reverse();
+            supportTimeProducts = reverse;
+          }
+        } else {
+          if (time === "min-max") {
+            responsePrep.forEach((p) => {
+              p.category.forEach((c) => {
+                if (c.name.toLowerCase() === categoryPrep.toLowerCase()) {
+                  supportTimeProducts.push(p);
+                }
+              });
+            });
+          } else {
+            let reverse = [...responsePrep].reverse();
+            reverse.forEach((p) => {
+              p.category.forEach((c) => {
+                if (c.name.toLowerCase() === categoryPrep.toLowerCase()) {
+                  supportTimeProducts.push(p);
+                }
+              });
+            });
+          }
+        }
+      } else {
+        if (categoryPrep === "allProducts") {
+          if (time === "min-max") {
+            responsePrep.forEach((p) => {
+              if (p.price > rangePrep.min && p.price < rangePrep.max) {
+                newSupport.push(p);
+              }
+            });
+            supportTimeProducts = newSupport;
+          } else {
+            let reverse = [...responsePrep].reverse();
+            reverse.forEach((p) => {
+              if (p.price > rangePrep.min && p.price < rangePrep.max) {
+                newSupport.push(p);
+              }
+            });
+            supportTimeProducts = newSupport;
+          }
+        } else {
+          if (time === "min-max") {
+            responsePrep.forEach((p) => {
+              p.category.forEach((c) => {
+                if (c.name.toLowerCase() === categoryPrep.toLowerCase()) {
+                  supportTimeProducts.push(p);
+                }
+              });
+            });
+            supportTimeProducts.forEach((p) => {
+              if (p.price > rangePrep.min && p.price < rangePrep.max) {
+                newSupport.push(p);
+              }
+            });
+            supportTimeProducts = newSupport;
+          } else {
+            let reverse = [...responsePrep].reverse();
+            reverse.forEach((p) => {
+              p.category.forEach((c) => {
+                if (c.name.toLowerCase() === categoryPrep.toLowerCase()) {
+                  supportTimeProducts.push(p);
+                }
+              });
+            });
+            supportTimeProducts.forEach((p) => {
+              if (p.price > rangePrep.min && p.price < rangePrep.max) {
+                newSupport.push(p);
+              }
+            });
+            supportTimeProducts = newSupport;
+          }
+        }
       }
-      if (time === "max-min") {
-        let reverse = [...responsePrep].reverse();
-        reverse.forEach((p) => {
-          p.category.forEach((c) => {
-            if (c.name.toLowerCase() === categoryPrep.toLowerCase()) {
-              supportTime.push(p);
-            }
-          });
-        });
-        return {
-          ...state,
-          products: supportTime,
-        };
-      }
+      return {
+        ...state,
+        products: supportTimeProducts,
+      };
 
     case types.GET_PRODUCTS_BY_NAME:
       return {
@@ -75,40 +131,35 @@ export const productReducer = (state = initialState, action) => {
         products: [],
       };
 
-    case types.SORT_PRODUCTS_BY_PRICE:
-      let response = action.payload.response;
-      let price = action.payload.price;
-      let category = action.payload.category;
-      let supportPrice = [];
-
-      if (price === "menor-mayor") {
-        response.forEach((p) => {
-          p.category.forEach((c) => {
-            if (c.name.toLowerCase() === category.toLowerCase()) {
-              supportPrice.push(p);
+      case types.SORT_PRODUCTS_BY_PRICE:
+        let { response, category, range } = action.payload;
+        let supportPrice = [];
+        if (category === "allProducts") {
+          supportPrice = response;
+        } else {
+          response.forEach((p) => {
+            p.category.forEach((c) => {
+              if (c.name.toLowerCase() === category.toLowerCase()) {
+                supportPrice.push(p);
+              }
+            });
+          });
+        }
+        
+        if (typeof range === "object") {
+          let newSupport = [];
+          supportPrice.forEach((p) => {
+            if (p.price > range.min && p.price < range.max) {
+              newSupport.push(p);
             }
           });
-        });
+          supportPrice = newSupport;
+          
+        }
         return {
           ...state,
           products: supportPrice,
         };
-      }
-      if (price === "mayor-menor") {
-        let reverse = [...response].reverse();
-        reverse.forEach((p) => {
-          p.category.forEach((c) => {
-            if (c.name.toLowerCase() === category.toLowerCase()) {
-              supportPrice.push(p);
-            }
-          });
-        });
-
-        return {
-          ...state,
-          products: supportPrice,
-        };
-      }
 
     case types.DELETE_PRODUCT:
       return {
@@ -156,6 +207,18 @@ export const productReducer = (state = initialState, action) => {
       return {
         ...state,
         productsCart: [],
+      };
+
+    case types.UPDATE_PRODUCT:
+      return {
+        ...state,
+        responses: action.payload,
+      };
+
+    case types.DELETE_PRODUCT_BY_ID:
+      return {
+        ...state,
+        changes: !state.changes,
       };
     default:
       return state;

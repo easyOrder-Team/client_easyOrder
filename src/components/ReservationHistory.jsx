@@ -1,67 +1,69 @@
-import React from 'react';
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import style from "../styles/ReservationHistory.module.css";
 import * as actions from "../redux/reservation/actions";
 
-
-
 const Reservas = () => {
   const { totalResevation } = useSelector((state) => state.reservationReducer);
-  console.log(totalResevation)
   const dispatch = useDispatch();
-  const handleDelete = () =>{
-    dispatch(actions.deleteReservation(id))
-  }
+  const handleDelete = () => {
+    dispatch(actions.deleteReservation(id));
+  };
 
-  let fecha = new Date().toLocaleDateString('locales', { year:"numeric", month:"2-digit", day:"2-digit"})
+  let fecha = new Date().toLocaleDateString("locales", {
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+  });
 
-console.log(fecha)
-  
- totalResevation.map((r)=>{
-   if (fecha  <= r.date) {
-    console.log('activas')
-       console.log(r.date);
-   }else{
-    console.log('inactivas')
-    console.log(r.date)
-   }
- })
+  totalResevation.map((r) => {
+    if (fecha < r.date) {
+      console.log(r.date);
+    }
+  });
 
- console.log(totalResevation[0].date)
-  
-  let id
+  let id;
   if (totalResevation.length !== 0) {
     return (
       <div className={style.globalContainerOrder}>
         <h2>Activas</h2>
-      {totalResevation.map((r) =>
-      fecha <= r.date ? 
-          <div className={style.containerCard}  key={r.id}>
+        {totalResevation.map((r) =>
+          fecha <= r.date ? (
+            <div className={style.containerCard} key={r.id}>
               <div className={style.container}>
-                <h2 className={style.nameCantidada}>Reservation of the day {r.date}</h2>
+                <h2 className={style.nameCantidada}>
+                  Reservation of the day {r.date}
+                </h2>
                 <h2 className={style.totala}>Hour {r.hour}</h2>
               </div>
-            <button className={style.btnDelete} onClick={()=> handleDelete(id = r.id)}>
-              <span className="material-symbols-outlined">delete</span>
-            </button>
-                <br />
-          </div> : null
+              <button
+                className={style.btnDelete}
+                onClick={() => handleDelete((id = r.id))}
+              >
+                <span className="material-symbols-outlined">delete</span>
+              </button>
+              <br />
+            </div>
+          ) : null
         )}
         <br />
         <br />
         <h2>History</h2>
         {totalResevation.map((r) =>
-        fecha > r.date ?
-          <div className={style.containerCard2}  key={r.id}>
+          fecha > r.date ? (
+            <div className={style.containerCard2} key={r.id}>
               <div className={style.container}>
-                <h2 className={style.nameCantidada}>Reservation of the day {r.date}</h2>
+                <h2 className={style.nameCantidada}>
+                  Reservation of the day {r.date}
+                </h2>
                 <h2 className={style.totala}>Hour {r.hour}</h2>
               </div>
-              </div> : null
-               )}
+            </div>
+          ) : null
+        )}
       </div>
-    )
+    );
   }
-}
+};
 
-export default Reservas
+export default Reservas;

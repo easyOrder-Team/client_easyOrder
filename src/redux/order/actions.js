@@ -9,7 +9,7 @@ export const createOrder = (order) => {
     console.log(order)
     return (dispatch) =>
       axios
-        .post(`http://localhost:3000/api/v1/orders`,order)
+        .post(`${import.meta.env.VITE_URL}/api/v1/orders`,order)
         .then((response) => {
           dispatch({
             type: types.CREATE_ORDER,
@@ -20,7 +20,7 @@ export const createOrder = (order) => {
   };
 export const getAllOrder =  () => {
   return (dispatch) => 
-  axios.get(`http://localhost:3000/api/v1/orders`)
+  axios.get(`${import.meta.env.VITE_URL}/api/v1/orders`)
   .then((response) => {
     dispatch({
       type: types.GET_ORDER,
@@ -32,7 +32,7 @@ export const getAllOrder =  () => {
   export const getOrdersIdfUser = (id_profile) => {
     return (dispatch) =>
       axios
-        .get(`http://localhost:3000/api/v1/orders/${id_profile}`)
+        .get(`${import.meta.env.VITE_URL}/api/v1/orders/${id_profile}`)
         .then((response) => {
           dispatch({
             type: types.GET_ORDERS_ID_PROFILE,
@@ -45,7 +45,7 @@ export const getAllOrder =  () => {
   export const getOrderById = (id_order) => {
     return (dispatch) =>
       axios
-        .get(`http://localhost:3000/api/v1/orders/orderbyid/filter/${id_order}`)
+        .get(`${import.meta.env.VITE_URL}/api/v1/orders/orderbyid/filter/${id_order}`)
         .then((response) => {
           dispatch({
             type: types.GET_ORDER_BY_ID,
@@ -54,3 +54,13 @@ export const getAllOrder =  () => {
         })
         .catch((error) => console.log(error));
   };
+  export const getOrders = () => {
+    return (dispatch) => 
+  axios.get(`http://localhost:3000/api/v1/orders`)
+  .then((response) => {
+    dispatch({
+      type: types.GET_ALL_ORDERS,
+      payload: response.data
+    }) 
+  })
+  }

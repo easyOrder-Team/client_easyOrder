@@ -1,23 +1,38 @@
 import React from "react";
 import s from "../styles/Home.module.css";
 import { NavBar } from ".";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import * as actions from "../redux/product/actions";
-
+import * as actionsProfile from "../redux/profile/actions";
+import { useAuth0 } from "@auth0/auth0-react";
 export const Home = () => {
   const dispatch = useDispatch();
+  const { user, isAuthenticated, isLoading } = useAuth0();
   const { productsList } = useSelector((state) => state.productsList);
   const profile = useSelector((state) => state.profileReducer.profile);
+  const navigate = useNavigate();
+
+  if (localStorage.getItem("profile") !== null) {
+    if (JSON.parse(localStorage.getItem("profile")).superadmin) {
+      navigate("/admin");
+    }
+  }
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      dispatch(actionsProfile.getProfileById(user.email));
+    }
+  }, [user]);
+
   useEffect(() => {
     dispatch(actions.clearProduct());
-    console.log(localStorage.getItem("site"));
   }, []);
   useEffect(() => {
     if (profile && profile.hasOwnProperty("id_profile"))
       localStorage.setItem("profile", JSON.stringify(profile));
-  }, []);
+  }, [profile]);
 
   useEffect(() => {
     dispatch(actions.getProducts());
@@ -69,7 +84,9 @@ export const Home = () => {
           </div>
         </div>
       ) : (
-        <div>Loading...</div>
+        <div className="containerSpin">
+          <div className="spinner"></div>
+        </div>
       )}
     </div>
   );

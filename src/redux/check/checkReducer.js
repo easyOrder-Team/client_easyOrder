@@ -1,7 +1,8 @@
 import * as types from "../types";
 
 const initialState = {
-  check: {}
+  check: {},
+  checks: []
 };
 
 export const checkReducer = (state = initialState, action) => {
@@ -16,7 +17,16 @@ export const checkReducer = (state = initialState, action) => {
         ...state,
         check: action.payload
       }
-
+    case types.GET_ALL_CHECK:
+      return {
+        ...state,
+        checks: action.payload
+      }
+    case types.GET_CHECK:
+      return {
+        ...state,
+        check: action.payload
+      }
     default:
       return state;
   }

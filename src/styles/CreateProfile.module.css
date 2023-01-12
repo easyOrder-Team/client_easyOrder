@@ -12,14 +12,14 @@ body,
   flex-direction: column;
   align-items: center;
 }
-.containerNav{
-    width: 100%;
-    padding: 20px;
+.containerNav {
+  width: 100%;
+  padding: 20px;
 }
-.logo{
+.logo {
   width: 30%;
 }
-.titulo{
+.titulo {
   margin-top: 10%;
   width: 100%;
   text-align: center;
@@ -34,6 +34,32 @@ body,
   display: flex;
   flex-wrap: wrap;
   align-content: center;
+}
+.containerIdentifiacion {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+.numIdentificacion {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  margin-left: 10%;
+}
+.inputIdentificacion{
+  width: 100%;
+  margin-top: 10px;
+}
+#idOptions{
+  height: 20px;
+  border-radius: 10px;
+  border: 1px solid rgb(213, 213, 213);
+  margin-top: 10px;
+}
+.containerTipoId{
+  display: flex;
+  flex-direction: column;
 }
 .containerImage {
   width: 100%;
@@ -51,8 +77,6 @@ body,
   height: 100%;
   padding: 40px;
   padding-top: 0px;
-
-
 }
 .containerLabel {
   display: flex;
@@ -76,8 +100,8 @@ body,
   width: 50%;
   text-align: left;
 }
-.labelMin{
-    color: gray;
+.labelMin {
+  color: gray;
 }
 
 .containerButton {
@@ -93,11 +117,11 @@ input {
   height: 20px;
   padding: 0px 5px;
 }
-.inputCelular{
+.inputCelular {
   width: 60%;
 }
 .inputImageProfile {
-  margin-top: 5px;  
+  margin-top: 5px;
   border: transparent;
   border-radius: 0px;
   font-family: "Comfortaa", cursive !important;
@@ -132,49 +156,48 @@ input {
   width: 40px;
   margin-right: 10px;
 }
-.globalContainerInputFile{
+.globalContainerInputFile {
   margin-top: 20px;
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
 }
-.containerInputFile{  
-    width: 70%;
-    height: 2rem;
-    background-color: white;
-    border: 1px solid  #f39d12c5;
-    position: relative;
-    border-radius: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-   
-} 
+.containerInputFile {
+  width: 70%;
+  height: 2rem;
+  background-color: white;
+  border: 1px solid #f39d12c5;
+  position: relative;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
-.containerLabelImage{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 10px;
+.containerLabelImage {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
 }
-.inputFileImage{
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    margin: 0;
-    width: 100%;
-    height: 100%;
-    opacity: 0;
+.inputFileImage {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
 }
-.p{
-    text-align: center;
-    color: var(--secondary-color);
-    font-weight: bold;
-    font-size: 1rem;
+.p {
+  text-align: center;
+  color: var(--secondary-color);
+  font-weight: bold;
+  font-size: 1rem;
 }
 .containerName_price {
   width: 100%;
@@ -209,7 +232,7 @@ input {
   border-radius: 5px;
   font-weight: bold;
 }
-.buttonCrearNoHover{
+.buttonCrearNoHover {
   background-color: gray;
   width: 100%;
   height: 3rem;
@@ -219,4 +242,3 @@ input {
   border-radius: 5px;
   font-weight: bold;
 }
-

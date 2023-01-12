@@ -13,12 +13,24 @@ import { useNavigate } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 import * as actionsProfile from "../redux/profile/actions";
 import axios from "axios";
+import { CropProfileImage } from "./CropProfileImage";
+
 export const CreateProfile = () => {
   const { user, isAuthenticated, isLoading } = useAuth0();
-
-  const {profile} = useSelector((state) => state.profileReducer);
+  const { profile } = useSelector((state) => state.profileReducer);
+  const [urlImage, setUrlImage] = useState(null);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [data, setData] = useState({
+    id_profile: "",
+    name: "",
+    lastname: "",
+    phone: "",
+    email: "",
+    picture: "",
+  });
+  let profileImage = localStorage.getItem("profileImage");
+
   useEffect(() => {
     if (isAuthenticated) {
       dispatch(actionsProfile.getProfileById(user.email));
@@ -28,22 +40,12 @@ export const CreateProfile = () => {
   useEffect(() => {
     if (typeof profile === "object") {
       if (Object.entries(profile).length > 0) {
-        navigate("/home");
+        console.log(profile);
+        profile.superadmin ? navigate("/admin") : navigate("/home");
       }
     }
   }, [profile]);
 
-  const [localCategories, setLocalCategories] = useState([]);
-  const [options, setOptions] = useState([]);
-  const [activeButton, setActiveButton] = useState(true);
-  const [data, setData] = useState({
-    id_profile: "",
-    name: "",
-    lastname: "",
-    phone: "",
-    email: "",
-    picture: "",
-  });
   //id_profile, name, lastname, phone, email
   useEffect(() => {
     if (isAuthenticated) {
@@ -57,6 +59,16 @@ export const CreateProfile = () => {
       });
     }
   }, [user]);
+
+  useEffect(() => {
+    if (profileImage !== null) {
+      console.log(profileImage);
+      setData({
+        ...data,
+        picture: profileImage,
+      });
+    }
+  }, [profileImage]);
 
   const handleInputChange = (e) => {
     setData({
@@ -77,42 +89,15 @@ export const CreateProfile = () => {
     }
   };
 
-  // useEffect(() => {
-  //   let validator;
-  //   Object.values(data).forEach((element) => {
-  //     if (element.length === 0) validator = true;
-  //   });
 
-  //   if (validator === true) {
-  //     setActiveButton(true);
-  //   } else {
-  //     setActiveButton(false);
-  //   }
-  // }, [data]);
-
-  const uploadImage = async (e) => {
-    const files = e.target.files;
-    const dataFile = new FormData();
-    dataFile.append("file", files[0]);
-    dataFile.append("upload_preset", "EasyOrder_BD");
-    const res = await fetch(
-      "https://api.cloudinary.com/v1_1/dypjcpbis/image/upload",
-      {
-        method: "POST",
-        body: dataFile,
-      }
-    );
-
-    const url = await res.json();
-    setData({
-      ...data,
-      ["picture"]: url.secure_url,
-    });
+  const createUrl = async (e) => {
+    localStorage.removeItem("profileImage");
+    setUrlImage(URL.createObjectURL(e.target.files[0]));
   };
 
   function submit(e) {
     e.preventDefault();
-    fetch(`http://localhost:3000/api/v1/profile`, {
+    fetch(`${import.meta.env.VITE_URL}/api/v1/profile`, {
       method: "POST",
       body: JSON.stringify(data),
       headers: {
@@ -121,6 +106,7 @@ export const CreateProfile = () => {
     })
       .then((response) => {
         if (response.status === 201) {
+          localStorage.removeItem("profileImage");
           navigate("/home");
         }
       })
@@ -133,86 +119,91 @@ export const CreateProfile = () => {
       </div>
     );
   } else if (typeof profile !== "object") {
-    return (
-      <div id={styleCreateProfile.containerGlobalForm}>
-        <div className={styleCreateProfile.containerNav}>
-          <img
-            className={styleCreateProfile.logo}
-            src="https://res.cloudinary.com/dypjcpbis/image/upload/v1670886694/EasyOrder_BD/Recurso_1_l9yefi.svg"
-            alt="logo_EasyOrder.svg"
-          />
-          <h1 className={styleCreateProfile.titulo}>Completar perfil</h1>
-        </div>
-        <div className={styleCreateProfile.containerForm}>
-          <form className={styleCreateProfile.form} onSubmit={(e) => submit(e)}>
-            <div className={styleCreateProfile.containerInfo}>
-              {/* id_profile, name, lastname, phone, email */}
-              <div>
-                <img
-                  className={styleCreateProfile.imageProfile}
-                  src={data.picture}
-                  alt="photo"
-                />
-                <div className={styleCreateProfile.globalContainerInputFile}>
-                  <div className={styleCreateProfile.containerInputFile}>
-                    <p className={styleCreateProfile.p}>Add imagen</p>
-                    <input
-                      className={styleCreateProfile.inputFileImage}
-                      type="file"
-                      accept="image/png , image/jpeg"
-                      onChange={uploadImage}
-                    ></input>
+    if (urlImage !== null && profileImage === null) {
+      return <CropProfileImage urlImage={urlImage} />;
+    } else {
+      return (
+        <div id={styleCreateProfile.containerGlobalForm}>
+          <div className={styleCreateProfile.containerNav}>
+            <img
+              className={styleCreateProfile.logo}
+              src="https://res.cloudinary.com/dypjcpbis/image/upload/v1670886694/EasyOrder_BD/Recurso_1_l9yefi.svg"
+              alt="logo_EasyOrder.svg"
+            />
+            <h1 className={styleCreateProfile.titulo}>Completar perfil</h1>
+          </div>
+          <div className={styleCreateProfile.containerForm}>
+            <form
+              className={styleCreateProfile.form}
+              onSubmit={(e) => submit(e)}
+            >
+              <div className={styleCreateProfile.containerInfo}>
+                {/* id_profile, name, lastname, phone, email */}
+                <div>
+                  <img
+                    className={styleCreateProfile.imageProfile}
+                    src={data.picture}
+                    alt="photo"
+                  />
+                  <div className={styleCreateProfile.globalContainerInputFile}>
+                    <div className={styleCreateProfile.containerInputFile}>
+                      <p className={styleCreateProfile.p}>Add imagen</p>
+                      <input
+                        className={styleCreateProfile.inputFileImage}
+                        type="file"
+                        accept="image/png , image/jpeg"
+                        onChange={createUrl}
+                      ></input>
+                    </div>
                   </div>
                 </div>
-              </div>
-              <label className={styleCreateProfile.labels}>Nombre</label>
-              <input
-                className={styleCreateProfile.input}
-                type="text"
-                name="name"
-                value={data.name}
-                onChange={(e) => checkText(e)}
-              ></input>
-              <label className={styleCreateProfile.labels}>Apellidos</label>
-              <input
-                className={styleCreateProfile.input}
-                type="text"
-                name="lastname"
-                value={data.lastname}
-                onChange={(e) => checkText(e)}
-              ></input>
-              <label className={styleCreateProfile.labels}>
-                Correo electronico
-              </label>
-              <input
-                className={styleCreateProfile.input}
-                type="text"
-                name="email"
-                value={data.email}
-                onChange={(e) => checkText(e)}
-              ></input>
-              <label className={styleCreateProfile.labels}>Celular</label>
-              <input
-                className={styleCreateProfile.inputCelular}
-                type="text"
-                name="phone"
-                value={data.phone}
-                onChange={(e) => checkCel(e)}
-              ></input>
-
-              <div className={styleCreateProfile.containerButton}>
+                <label className={styleCreateProfile.labels}>Nombre</label>
                 <input
-                  
-                  type="submit"
-                  value="Aceptar"
-                  className={ styleCreateProfile.buttonCrear
-                  }
-                />
+                  className={styleCreateProfile.input}
+                  type="text"
+                  name="name"
+                  value={data.name}
+                  onChange={(e) => checkText(e)}
+                ></input>
+                <label className={styleCreateProfile.labels}>Apellidos</label>
+                <input
+                  className={styleCreateProfile.input}
+                  type="text"
+                  name="lastname"
+                  value={data.lastname}
+                  onChange={(e) => checkText(e)}
+                ></input>
+                <label className={styleCreateProfile.labels}>
+                  Correo electronico
+                </label>
+                <input
+                  className={styleCreateProfile.input}
+                  type="text"
+                  name="email"
+                  value={data.email}
+                  onChange={(e) => checkText(e)}
+                ></input>
+                <label className={styleCreateProfile.labels}>Celular</label>
+                <input
+                  className={styleCreateProfile.inputCelular}
+                  type="text"
+                  name="phone"
+                  value={data.phone}
+                  onChange={(e) => checkCel(e)}
+                ></input>
+
+                <div className={styleCreateProfile.containerButton}>
+                  <input
+                    type="submit"
+                    value="Aceptar"
+                    className={styleCreateProfile.buttonCrear}
+                  />
+                </div>
               </div>
-            </div>
-          </form>
+            </form>
+          </div>
         </div>
-      </div>
-    );
+      );
+    }
   }
 };
