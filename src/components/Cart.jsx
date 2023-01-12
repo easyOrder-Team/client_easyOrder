@@ -6,25 +6,40 @@ import s from "../styles/Cart.module.css";
 import st from "../styles/ItemCount.module.css";
 import { useNavigate } from "react-router-dom";
 import * as orderActions from "../redux/order/actions";
-
+import { useAuth0 } from "@auth0/auth0-react";
 import * as actions from "../redux/product/actions";
 
 export const Cart = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   var aux = 0;
-
   const state = useSelector((state) => state.profileReducer);
-  const { productsCart } = useSelector((state) => state.productReducer);
+  const { productsCart } = useSelector((state) => state.productsList);
+  const [activeButton, setAvtiveButton] = useState(true);
   const [total, setTotal] = useState(0);
   const [product, setProduct] = useState(productsCart);
   const [mensaje, setMensaje] = useState("");
+  const [tipoMensaje, setTipoMensaje] = useState("success");
+  const [mensajeButton, setMensajeBoton] = useState("Realizar pedido")
+  const profile = JSON.parse(localStorage.getItem("profile"));
   const [order, setOrder] = useState({
-    id_mesa: parseInt(localStorage.getItem("site")),
-    id_profile: JSON.parse(localStorage.getItem('profile')).id_profile,
-    total: total,
-    products: product,
+    id_mesa: "",
+    id_profile: "",
+    total: "",
+    products: "",
   });
+
+  useEffect(() => {
+    if (profile != null) {
+      setOrder({
+        id_mesa: parseInt(localStorage.getItem("site")),
+        id_profile: JSON.parse(localStorage.getItem("profile")).id_profile,
+        total: total,
+        products: product,
+      });
+    }
+  }, [profile]);
+
   const [count, setCount] = useState(
     JSON.parse(localStorage.getItem("contador")) ?? []
   );
@@ -109,10 +124,11 @@ export const Cart = () => {
     if (site === null) {
       navigate("/scannQR");
     }
-    
+    setTipoMensaje("success");
     e.preventDefault();
     dispatch(orderActions.saveOrder(order));
     if (product.length === 0) {
+      setTipoMensaje("error");
       setMensaje("No hay productos en el carrito");
       setCount(0);
     } else if (count === 0) {
@@ -121,7 +137,8 @@ export const Cart = () => {
       console.log(tempTotal);
       setMensaje("Se ha realizado su pedido");
     } else if (total === tempTotal && count !== 0) {
-      setMensaje("Pedido ya realizado");
+      setMensaje("Pedido ya realizado, agrege nuevos productos");
+      setTipoMensaje("error")
       console.log(tempTotal, total, count);
     } else if (total !== tempTotal && count >= 0) {
       setMensaje("Pedido Actualizado");
@@ -132,10 +149,13 @@ export const Cart = () => {
     } else {
       setMensaje("");
     }
+
     setTimeout(() => {
       setMensaje("");
     }, 2000);
-    setCount(parseInt(count + 1));
+    if(product.length !== 0){
+      setCount(parseInt(count + 1));
+    }
   };
 
   useEffect(() => {
@@ -208,15 +228,18 @@ export const Cart = () => {
             </div>
           </div>
         </div>
-        {mensaje && <Mensaje tipo="success">{mensaje}</Mensaje>}
+        {mensaje && <Mensaje tipo={tipoMensaje}>{mensaje}</Mensaje>}
 
         <div className={s.conteiner_buttons}>
-          <button className={s.btn1} onClick={handleClick}>
-            Make an Order
+          <button
+            className={product.length === 0 ? s.btn1Disabled : s.btn1}
+            onClick={handleClick}
+          >
+            {mensajeButton}
           </button>
 
           <button className={s.btn2} onClick={handleToPay}>
-            Go pay
+            ir a pagar
           </button>
         </div>
       </div>

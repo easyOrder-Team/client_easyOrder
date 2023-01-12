@@ -16,7 +16,8 @@ export const NavBar = () => {
     !location.includes("/cards") &&
     location !== "/profile" &&
     location !== "/scannQR" &&
-    location !== "/selectPayMethod"
+    location !== "/selectPayMethod" &&
+    location !== "/usuarios" 
   ) {
     return (
       <div>
