@@ -35,7 +35,7 @@ export const Scanner = () => {
             className={scann.qr}
             onError={handleError}
             onScan={handleScan}
-            facingMode={'rear'}
+            facingMode="back"
           />
           <p>
             Por favor escannea el codigo QR que esta sobre la mesa, de esta
