@@ -70,6 +70,14 @@ b {
   font-size: 1em;
 }
 
+h3 {
+  font-family: "Comfortaa", cursive;
+}
+
+h4 {
+  font-family: "Comfortaa", cursive;
+}
+
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;

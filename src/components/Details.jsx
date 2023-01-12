@@ -97,7 +97,7 @@ export const Details = () => {
             </div>
             <div>
               <p className={style.description}>
-                Description: {detailProduct[0].description}
+                Descripción: {detailProduct[0].description}
               </p>
             </div>
             <div>
@@ -131,7 +131,7 @@ export const Details = () => {
         {isAdmin ? (
           <div className={style.conteiner_buttons}>
             <button className={style.btn1} onClick={handleEdit}>
-              Edit Product
+              Editar producto
             </button>
             <button className={style.btn2}>Delete Product</button>
           </div>
