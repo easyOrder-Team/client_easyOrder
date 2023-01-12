@@ -10,7 +10,7 @@ import { NavBar, Mensaje } from ".";
 export const Details = () => {
   const { id } = useParams();
   const navegate = useNavigate();
-  const { detailProduct } = useSelector((state) => state.productReducer);
+  const { detailProduct } = useSelector((state) => state.productsList);
   const profile = JSON.parse(localStorage.getItem("profile"));
   const [count, setCount] = useState(1);
   const [mensaje, setMensaje] = useState("");
