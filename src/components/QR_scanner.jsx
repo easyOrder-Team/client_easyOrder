@@ -36,7 +36,9 @@ export const Scanner = () => {
             onError={handleError}
             onScan={handleScan}
             constraints={{
-              facingMode: "environment",
+              video: {
+                facingMode: "environment",
+              },
             }}
           />
           <p>
