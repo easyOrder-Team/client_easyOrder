@@ -89,7 +89,6 @@ export const CreateProfile = () => {
     }
   };
 
-
   const createUrl = async (e) => {
     localStorage.removeItem("profileImage");
     setUrlImage(URL.createObjectURL(e.target.files[0]));
@@ -130,7 +129,7 @@ export const CreateProfile = () => {
               src="https://res.cloudinary.com/dypjcpbis/image/upload/v1670886694/EasyOrder_BD/Recurso_1_l9yefi.svg"
               alt="logo_EasyOrder.svg"
             />
-            <h1 className={styleCreateProfile.titulo}>Completar perfil</h1>
+            <h1 className={styleCreateProfile.title}>Completar perfil</h1>
           </div>
           <div className={styleCreateProfile.containerForm}>
             <form
@@ -147,17 +146,25 @@ export const CreateProfile = () => {
                   />
                   <div className={styleCreateProfile.globalContainerInputFile}>
                     <div className={styleCreateProfile.containerInputFile}>
-                      <p className={styleCreateProfile.p}>Add imagen</p>
-                      <input
-                        className={styleCreateProfile.inputFileImage}
-                        type="file"
-                        accept="image/png , image/jpeg"
-                        onChange={createUrl}
-                      ></input>
+                      <div className={styleCreateProfile.photo}>
+                        <span
+                          className={`material-symbols-outlined ${styleCreateProfile.icon}`}
+                          id="icon"
+                        >
+                          add_a_photo
+                          <input
+                            className={styleCreateProfile.inputFileImage}
+                            type="file"
+                            accept="image/png , image/jpeg"
+                            onChange={createUrl}
+                          ></input>
+                        </span>
+                        <p className={styleCreateProfile.p}>Agregar un foto</p>
+                      </div>
                     </div>
                   </div>
                 </div>
-                <label className={styleCreateProfile.labels}>Nombre</label>
+                <label className={styleCreateProfile.labels}>Nombre:</label>
                 <input
                   className={styleCreateProfile.input}
                   type="text"
@@ -165,7 +172,7 @@ export const CreateProfile = () => {
                   value={data.name}
                   onChange={(e) => checkText(e)}
                 ></input>
-                <label className={styleCreateProfile.labels}>Apellidos</label>
+                <label className={styleCreateProfile.labels}>Apellidos:</label>
                 <input
                   className={styleCreateProfile.input}
                   type="text"
@@ -193,11 +200,12 @@ export const CreateProfile = () => {
                 ></input>
 
                 <div className={styleCreateProfile.containerButton}>
-                  <input
+                  <button
                     type="submit"
-                    value="Aceptar"
                     className={styleCreateProfile.buttonCrear}
-                  />
+                  >
+                    Registrar
+                  </button>
                 </div>
               </div>
             </form>
