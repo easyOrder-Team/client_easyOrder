@@ -71,10 +71,18 @@ export const NavBar = () => {
         </div>
         <div className={s.navbar__container}>
           <div className={s.navbar__content}>
-            <div className={s.logo}>
+            <div className={s.lightLogo}>
               <Link to={"/home"}>
                 <img
-                  src="https://res.cloudinary.com/dypjcpbis/image/upload/v1670886694/EasyOrder_BD/Recurso_1_l9yefi.svg"
+                  src="https://res.cloudinary.com/dbvh03usi/image/upload/v1673154193/logoLight.svg"
+                  alt="logo_EasyOrder.svg"
+                />
+              </Link>
+            </div>
+            <div className={s.darkLogo}>
+              <Link to={"/home"}>
+                <img
+                  src="https://res.cloudinary.com/dbvh03usi/image/upload/v1673154201/logoDark.svg"
                   alt="logo_EasyOrder.svg"
                 />
               </Link>
