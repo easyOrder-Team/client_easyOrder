@@ -6,6 +6,9 @@
   border-end-start-radius: 2rem;
   border-start-start-radius: 2rem;
   padding-left: 1.2rem;
+  outline: none;
+  padding-top: 0.37rem;
+
 }
 
 .containerInput {
@@ -20,6 +23,8 @@
   border-end-end-radius: 20rem;
   border-start-end-radius: 20rem;
   height: 100%;
+  padding-right: 0.5rem;
+  padding-top: 0.25rem;
 }
 
 .container {
@@ -48,8 +53,15 @@
   border: none;
   border-radius: 0;
   padding-left: 1.2rem;
-  border-left: black 1px solid;
-  border-right: black 1px solid;
-  border-top: black 1px solid;
   height: 65px;
+  list-style: none;
+  width: 100%;
+}
+
+.theme ul {
+  list-style: none;
+}
+
+.theme li {
+  list-style: none;
 }

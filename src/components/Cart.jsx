@@ -20,7 +20,7 @@ export const Cart = () => {
   const [product, setProduct] = useState(productsCart);
   const [mensaje, setMensaje] = useState("");
   const [tipoMensaje, setTipoMensaje] = useState("success");
-  const [mensajeButton, setMensajeBoton] = useState("Realizar pedido")
+  const [mensajeButton, setMensajeBoton] = useState("Realizar pedido");
   const profile = JSON.parse(localStorage.getItem("profile"));
   const [order, setOrder] = useState({
     id_mesa: "",
@@ -138,7 +138,7 @@ export const Cart = () => {
       setMensaje("Se ha realizado su pedido");
     } else if (total === tempTotal && count !== 0) {
       setMensaje("Pedido ya realizado, agrege nuevos productos");
-      setTipoMensaje("error")
+      setTipoMensaje("error");
       console.log(tempTotal, total, count);
     } else if (total !== tempTotal && count >= 0) {
       setMensaje("Pedido Actualizado");
@@ -153,7 +153,7 @@ export const Cart = () => {
     setTimeout(() => {
       setMensaje("");
     }, 2000);
-    if(product.length !== 0){
+    if (product.length !== 0) {
       setCount(parseInt(count + 1));
     }
   };
@@ -187,7 +187,7 @@ export const Cart = () => {
                 <div className={s.nameCantidad}>
                   <h2>{p.name}</h2>
                   <div className={s.cantidad}>
-                    <h3>Amount: </h3>
+                    <h3>Cantidad: </h3>
                     <div className={st.counter}>
                       <button
                         disabled={p.count <= 1}
@@ -239,7 +239,7 @@ export const Cart = () => {
           </button>
 
           <button className={s.btn2} onClick={handleToPay}>
-            ir a pagar
+            Ir a pagar
           </button>
         </div>
       </div>

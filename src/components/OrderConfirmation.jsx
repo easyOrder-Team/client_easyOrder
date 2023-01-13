@@ -107,7 +107,7 @@ export const OrderConfirmation = () => {
           src="https://res.cloudinary.com/dypjcpbis/image/upload/v1670886694/EasyOrder_BD/Recurso_1_l9yefi.svg"
           alt="logo_EasyOrder.svg"
         />
-        <h1 className={s.title}>¡PEDIDO EXITOSO!</h1>
+        <h1 className={s.subtitle}>¡PEDIDO EXITOSO!</h1>
         <p className={s.description}>
           ¡Muchas gracias! Su pedido con la factura <b>{id}</b> se ha realizado
           exitosamente, asímismo, queremos recordarte que tu pedido consta de:{" "}
@@ -137,9 +137,9 @@ export const OrderConfirmation = () => {
           </div>
         </div>
         <button className={s.btn1} onClick={() => navigate("/review")}>
-          Te gustaria puntuarnos?
+          ¿TE GUSTARÍA PUNTUARNOS?
         </button>
-        <button className={s.btn1} onClick={handleClick}>
+        <button className={s.btn2} onClick={handleClick}>
           CONTINUAR
         </button>
         <div className={s.photo}></div>

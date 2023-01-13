@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import { Rating } from "react-simple-star-rating";
 import { useDispatch } from "react-redux";
-import * as actions from '../redux/review/actions'
+import * as actions from "../redux/review/actions";
+import s from "../styles/Review.module.css";
 export const Stars = (props) => {
-  const dispatch = useDispatch()
+  const btnEnviar = document.getElementById("btnEnviar");
+  const dispatch = useDispatch();
   const [rating, setRating] = useState(0);
   const [review, setReview] = useState({
     stars: 0,
@@ -14,7 +16,7 @@ export const Stars = (props) => {
   // Catch Rating value
   const handleRating = (rate) => {
     setRating(rate);
-    setReview({...review, stars: rate})
+    setReview({ ...review, stars: rate });
     console.log(rate);
     // other logic
   };
@@ -29,21 +31,31 @@ export const Stars = (props) => {
       id_profile: props.id_profile,
       products: props.products,
     });
-    console.log(review)
-    dispatch(actions.createReview(review))
+    console.log(review);
+    dispatch(actions.createReview(review));
+    btnEnviar.disabled = true;
   };
   // Optinal callback functions
   return (
-    <div>
-      <Rating onClick={handleRating} size={20} iconsCount={5} />
+    <div className={s.review}>
+      <Rating
+        onClick={handleRating}
+        size={20}
+        iconsCount={5}
+        className={s.star}
+      />
       <textarea
         name="comment"
         cols="30"
         rows="10"
         value={review.comment}
         onChange={handleChange}
+        className={s.textarea}
+        placeholder="Ingrese su comentario aquí..."
       ></textarea>
-      <button onClick = {handleClick}>Enviar</button>
+      <button onClick={handleClick} className={s.btn1} id="btnEnviar">
+        Enviar
+      </button>
     </div>
   );
 };
