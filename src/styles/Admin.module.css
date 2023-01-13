@@ -108,5 +108,6 @@ h2 {
     justify-content: end;
     align-items: flex-end;
     height: 12rem;
+    margin: 0.25rem;
   }
 }
