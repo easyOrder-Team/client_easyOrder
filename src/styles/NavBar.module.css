@@ -90,6 +90,9 @@ span {
 #menuButton:hover {
   cursor: pointer;
 }
+#menuButton {
+  color: var(--main-color);
+}
 
 .modalSpan{
   width: 10%;
