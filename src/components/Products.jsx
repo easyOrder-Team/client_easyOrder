@@ -19,7 +19,7 @@ export const Products = () => {
   const { changes } = useSelector((state) => state.productsList);
   const dispatch = useDispatch();
   const profile = useSelector((state) => state.profileReducer.profile);
- 
+
   useEffect(() => {
     dispatch(actionProducts.getProducts());
   }, []);
@@ -41,24 +41,27 @@ export const Products = () => {
   ) {
     return (
       <div>
-        <NavBarAdmin/>
+        <NavBarAdmin />
         <div>
-        <span className={h.imageProfile}>
-                <img src={profile.picture} alt="" />
-              </span>
-              <h4>Admin</h4>
-              <h2>{`${profile.name} ${profile.lastname}`}</h2>
+          <span className={h.imageProfile}>
+            <img src={profile.picture} alt="" />
+          </span>
+          <h4>Admin</h4>
+          <h2>{`${profile.name} ${profile.lastname}`}</h2>
         </div>
-        <div>
+        <div className={style.container_search}>
           <SearchBar />
         </div>
         <div>
-          <button
-            className={style.btn1}
-            onClick={() => navigate("/CreateProduct")}
-          >
-            Crear Producto
-          </button>
+          <div className={style.conteiner_buttons}>
+            <button
+              className={style.btn1}
+              id={style.btnCreate}
+              onClick={() => navigate("/CreateProduct")}
+            >
+              Crear Producto
+            </button>
+          </div>
         </div>
         <div className={c.card_container}>
           {products.map((p) => (
