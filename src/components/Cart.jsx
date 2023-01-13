@@ -14,6 +14,7 @@ export const Cart = () => {
   const dispatch = useDispatch();
   var aux = 0;
   const state = useSelector((state) => state.profileReducer);
+  const site = localStorage.getItem("site");
   const { productsCart } = useSelector((state) => state.productsList);
   const [activeButton, setAvtiveButton] = useState(true);
   const [total, setTotal] = useState(0);
@@ -28,7 +29,12 @@ export const Cart = () => {
     total: "",
     products: "",
   });
-
+  useEffect(()=>{
+    if(site === null){
+      setMensajeBoton("Escanear Mesa")
+    }
+    
+  },[])
   useEffect(() => {
     if (profile != null) {
       setOrder({
@@ -41,7 +47,7 @@ export const Cart = () => {
   }, [profile]);
 
   const [count, setCount] = useState(
-    JSON.parse(localStorage.getItem("contador")) ?? []
+    JSON.parse(localStorage.getItem("contador")) ?? 0
   );
   const [tempTotal, setTemTotal] = useState(0);
 
@@ -120,7 +126,7 @@ export const Cart = () => {
   };
 
   const handleClick = (e) => {
-    const site = localStorage.getItem("site");
+   
     if (site === null) {
       navigate("/scannQR");
     }
@@ -150,12 +156,14 @@ export const Cart = () => {
       setMensaje("");
     }
 
+    if (product.length !== 0 && site !== null) {
+      
+        setCount(parseInt(count + 1));
+      
+    }
     setTimeout(() => {
       setMensaje("");
     }, 2000);
-    if (product.length !== 0) {
-      setCount(parseInt(count + 1));
-    }
   };
 
   useEffect(() => {
@@ -232,7 +240,7 @@ export const Cart = () => {
 
         <div className={s.conteiner_buttons}>
           <button
-            className={product.length === 0 ? s.btn1Disabled : s.btn1}
+            className={site === null ? s.btn1Disabled : product.length === 0 ? s.btn1Disabled : s.btn1}
             onClick={handleClick}
           >
             {mensajeButton}
