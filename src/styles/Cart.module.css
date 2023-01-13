@@ -191,3 +191,19 @@
         width: 95%;
     }
 }
+
+.btnAtras{
+    border: none;
+    background-color: white;
+    margin: 0 0 2rem 2rem;
+    display: flex;
+    flex-direction: column;
+    align-self: flex-start;
+}
+
+.p{
+    display: flex;
+    align-self: flex-end;
+    flex-direction: column;
+
+}
