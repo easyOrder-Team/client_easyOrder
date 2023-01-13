@@ -7,9 +7,11 @@ import { useDispatch, useSelector } from "react-redux";
 import * as actions from "../redux/product/actions";
 import * as actionsProfile from "../redux/profile/actions";
 import { useAuth0 } from "@auth0/auth0-react";
+import Swal from "sweetalert2";
+
 export const Home = () => {
   const dispatch = useDispatch();
-  const { user, isAuthenticated, isLoading } = useAuth0();
+  const { user, isAuthenticated, isLoading, logout } = useAuth0();
   const { productsList } = useSelector((state) => state.productsList);
   const profile = useSelector((state) => state.profileReducer.profile);
   const navigate = useNavigate();
@@ -30,8 +32,21 @@ export const Home = () => {
     dispatch(actions.clearProduct());
   }, []);
   useEffect(() => {
-    if (profile && profile.hasOwnProperty("id_profile"))
-      localStorage.setItem("profile", JSON.stringify(profile));
+    if (profile && profile.hasOwnProperty("id_profile")) {      
+      if (profile.state) {
+        localStorage.setItem("profile", JSON.stringify(profile));
+      } else {
+        Swal.fire({
+          title: "Error!",
+          text: "El usuario se encuentra inactivo, por favor habla con el administrador del restaurante para que lo active nuevamente",
+          icon: "error",
+        }).then((response) => {
+          if (response.isConfirmed) {
+            logout();
+          }
+        });
+      }
+    }
   }, [profile]);
 
   useEffect(() => {
