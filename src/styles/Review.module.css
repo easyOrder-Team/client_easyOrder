@@ -22,6 +22,7 @@
     width: 40%;
     border-radius: 1rem;
     gap: 5rem;
+    
 }
 
 .logo {
@@ -117,7 +118,7 @@
     width: 100%;
 }
 
-.btn{
+.btn1{
     margin-top: 2rem;
     width: 50%;
     height: 4rem;
@@ -132,7 +133,27 @@
     border-radius: .4rem;
 }
 
-.btn:hover{
+.btn2{
+    width: 50%;
+    height: 4rem;
+    align-items: center;
+    justify-content: center;
+    will-change: 400;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    color: var(--light-color);
+    border: none;
+    border-radius: .4rem;
+    background-color:var(--secondary-color);
+    margin-bottom: 2rem;
+}
+
+.btn1:hover{
+    cursor: pointer;
+    filter: brightness(1.1);
+}
+
+.btn2:hover{
     cursor: pointer;
     filter: brightness(1.1);
 }

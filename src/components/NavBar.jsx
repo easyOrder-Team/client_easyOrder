@@ -17,7 +17,7 @@ export const NavBar = () => {
     location !== "/profile" &&
     location !== "/scannQR" &&
     location !== "/selectPayMethod" &&
-    location !== "/usuarios" 
+    location !== "/usuarios"
   ) {
     return (
       <div>
@@ -79,30 +79,43 @@ export const NavBar = () => {
                 />
               </Link>
             </div>
-            <span
-              className="material-symbols-outlined"
-              onClick={() =>
-                isAuthenticated
-                  ? navigate("/createReservation")
-                  : loginWithRedirect()
-              }
-            >
-              calendar_today
-            </span>
             <div className={s.navbar__allicons}>
-              <span className="material-symbols-outlined">notifications</span>
-              <Link to={"/cart"}>
-                <span className="material-symbols-outlined">shopping_cart</span>
-              </Link>
-              <span
-                onClick={() =>
-                  isAuthenticated ? navigate("/profile") : loginWithRedirect()
-                }
-                className="material-symbols-outlined"
-              >
-                account_circle
-              </span>
-
+              <abbr title="Solicitar ayuda">
+                <span className="material-symbols-outlined" id="icon">
+                  notifications
+                </span>
+              </abbr>
+              <abbr title="Reservar una mesa">
+                <span
+                  className="material-symbols-outlined"
+                  id="icon"
+                  onClick={() =>
+                    isAuthenticated
+                      ? navigate("/createReservation")
+                      : loginWithRedirect()
+                  }
+                >
+                  calendar_today
+                </span>
+              </abbr>
+              <abbr title="Carrito de compras">
+                <Link to={"/cart"}>
+                  <span className="material-symbols-outlined" id="icon">
+                    shopping_cart
+                  </span>
+                </Link>
+              </abbr>
+              <abbr title="Perfil">
+                <span
+                  onClick={() =>
+                    isAuthenticated ? navigate("/profile") : loginWithRedirect()
+                  }
+                  className="material-symbols-outlined"
+                  id="icon"
+                >
+                  account_circle
+                </span>
+              </abbr>
               <a
                 id={s.menuButton}
                 className="material-symbols-outlined"

@@ -2,11 +2,28 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 import s from "../styles/Review.module.css";
+import { clearCart } from "../redux/product/actions";
 import { useNavigate } from "react-router-dom";
 import { Stars } from "./Stars.jsx";
 export const Review = () => {
   const { productsCart } = useSelector((state) => state.productsList);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   let idProfile = JSON.parse(localStorage.getItem("profile")).id_profile;
+
+  const deleteLocaleStorage = () => {
+    localStorage.removeItem("contador");
+    localStorage.removeItem("tempTotal");
+    localStorage.removeItem("order");
+    localStorage.removeItem("product");
+  };
+
+  const handleClick = (e) => {
+    e.preventDefault();
+    dispatch(clearCart());
+    deleteLocaleStorage();
+    navigate("/home");
+  };
 
   return (
     <div className={s.root}>
@@ -44,6 +61,12 @@ export const Review = () => {
             </div>
           </div>
         ))}
+        <div>
+          {/* <button className={s.btn2} onClick={() => navigate("/home")}> */}
+          <button className={s.btn2} onClick={handleClick}>
+            REGRESAR AL INICIO
+          </button>
+        </div>
       </div>
     </div>
   );

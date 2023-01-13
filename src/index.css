@@ -2,6 +2,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: "Comfortaa", cursive;
 }
 *,
 *:before,
@@ -70,12 +71,13 @@ b {
   font-size: 1em;
 }
 
-h3 {
-  font-family: "Comfortaa", cursive;
+#icon{
+  cursor:pointer;
 }
 
-h4 {
-  font-family: "Comfortaa", cursive;
+#icon:hover{
+  scale: 1.25;
+  color: var(--main-color)
 }
 
 @media (prefers-color-scheme: light) {

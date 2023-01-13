@@ -51,7 +51,7 @@ export const Stars = (props) => {
         className={s.textarea}
         placeholder="Ingrese su comentario aquí..."
       ></textarea>
-      <button onClick={handleClick} className={s.btn}>
+      <button onClick={handleClick} className={s.btn1}>
         Enviar
       </button>
     </div>
