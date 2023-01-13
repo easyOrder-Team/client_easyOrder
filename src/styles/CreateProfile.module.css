@@ -125,6 +125,7 @@ body,
   padding: 1.5rem;
   outline: none;
   font-size: 1rem;
+  z-index: 1;
 }
 .inputCelular {
   width: 60%;
@@ -136,6 +137,7 @@ body,
   padding: 1.5rem;
   outline: none;
   font-size: 1rem;
+  z-index: 1;
 }
 .inputImageProfile {
   margin-top: 5px;
