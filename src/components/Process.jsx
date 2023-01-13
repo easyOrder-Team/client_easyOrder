@@ -1,23 +1,59 @@
 import React from "react";
 import s from "../styles/NavBar.module.css";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import n from "../styles/Cart.module.css";
+import { NavBarAdmin } from ".";
+import {
+  Link,
+  redirect,
+  useLocation,
+  useNavigate,
+  useParams,
+} from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import h from "../styles/Admin.module.css";
-import { useSelector } from "react-redux";
 import { useEffect } from "react";
-import { NavBarAdmin } from "./NavBarAdmin";
-export const Admin = () => {
+import * as orderActions from "../redux/order/actions";
+import { CardOrder } from ".";
+
+export const Process = () => {
   const [modalVisivility, setmodalVisivility] = useState("modalMenu");
+  const [change, setChange] = useState(false);
   const { logout, isAuthenticated, loginWithRedirect, isLoading } = useAuth0();
   const profile = useSelector((state) => state.profileReducer.profile);
   const navigate = useNavigate();
   let location = useLocation().pathname;
+  const { id } = useParams();
 
   useEffect(() => {
     localStorage.setItem("profile", JSON.stringify(profile));
-  });
+  }, []);
+  /* orders */
+  const { orderById } = useSelector((state) => state.orderReducer);
+  const dispatch = useDispatch();
 
+  useEffect(() => {
+    dispatch(orderActions.getOrderById(id));
+    setChange(false);
+  }, [change]);
+
+  const handleState = (id) => {
+    dispatch(orderActions.changeStateOrder(id, false));
+    setChange(true);
+  };
+
+  const handleCancel = (id) => {
+    dispatch(orderActions.changeStateOrder(id, true));
+    setTimeout(() => {
+      navigate("/ordenes");
+    }, 1000);
+  };
+
+  const handleAtras = () => {
+    navigate("/ordenes");
+    console.log("atras");
+  };
   if (isLoading) {
     <div className="containerSpin">
       <div className="spinner"></div>
@@ -35,7 +71,7 @@ export const Admin = () => {
       ) {
         return (
           <div>
-          <NavBarAdmin/>
+            <NavBarAdmin/>
             <div>
               <span className={h.imageProfile}>
                 <img src={profile.picture} alt="" />
@@ -43,37 +79,46 @@ export const Admin = () => {
               <h4>Admin</h4>
               <h2>{`${profile.name} ${profile.lastname}`}</h2>
             </div>
-            <div className={h.container}>
-              <Link to={"/products"}>
-                <div className={`${h.card} ${h.card__productos}`}>
-                  <h2>Productos</h2>
-                </div>
-              </Link>
 
-              <Link to={"/reservas"}>
-                <div className={`${h.card} ${h.card__reservas}`}>
-                  <h2>Reservas</h2>
-                </div>
-              </Link>
+            <br />
 
-              <Link to={"/ventas"}>
-                <div className={`${h.card} ${h.card__ventas}`}>
-                  <h2>Ventas</h2>
-                </div>
-              </Link>
+            {/* ---- Ordenes Process ---- */}
+            {orderById.length !== 0 ? (
+              <div className={h.homecontainer}>
+                <button className={n.btnAtras} onClick={handleAtras}>
+                  <span className="material-symbols-outlined">
+                    arrow_back_ios
+                  </span>
+                  <p className={n.p}>Volver</p>
+                </button>
+                <h3>{`Orden Mesa No. ${orderById[0].id_mesa}`}</h3>
+                {orderById[0].products.map((p) => (
+                  <CardOrder
+                    key={p.name}
+                    image={p.image}
+                    name={p.name}
+                    price={p.price}
+                  />
+                ))}
+                <div className={n.conteiner_buttons}>
+                  <button className={n.btn1} onClick={() => handleState(id)}>
+                    {orderById[0].state === "created"
+                      ? "Procesar"
+                      : orderById[0].state === "finished"
+                      ? setTimeout(() => {
+                          navigate("/ordenes");
+                        }, 1000)
+                      : "Finalizar"}
+                  </button>
 
-              <Link to={"/ordenes"}>
-                <div className={`${h.card} ${h.card__ordenes}`}>
-                  <h2>Ordenes</h2>
+                  <button className={n.btn2} onClick={() => handleCancel(id)}>
+                    cancelar
+                  </button>
                 </div>
-              </Link>
-
-              <Link to={"/usuarios"}>
-                <div className={`${h.card} ${h.card__usuarios}`}>
-                  <h2>Usuarios</h2>
-                </div>
-              </Link>
-            </div>
+              </div>
+            ) : (
+              <h2>Loading</h2>
+            )}
           </div>
         );
       } else {
@@ -130,23 +175,23 @@ export const Admin = () => {
             </div>
             <div className={s.navbar__container}>
               <div className={s.navbar__content}>
-                <div className={s.lightLogo}>
+                <div className={s.logo}>
                   <Link to={"/home"}>
                     <img
-                      src="https://res.cloudinary.com/dbvh03usi/image/upload/v1673154193/logoLight.svg"
-                      alt="logo_EasyOrder.svg"
-                    />
-                  </Link>
-                </div>
-                <div className={s.darkLogo}>
-                  <Link to={"/home"}>
-                    <img
-                      src="https://res.cloudinary.com/dbvh03usi/image/upload/v1673154201/logoDark.svg"
+                      src="https://res.cloudinary.com/dypjcpbis/image/upload/v1670886694/EasyOrder_BD/Recurso_1_l9yefi.svg"
                       alt="logo_EasyOrder.svg"
                     />
                   </Link>
                 </div>
                 <div className={s.navbar__allicons}>
+                  <span className="material-symbols-outlined">
+                    notifications
+                  </span>
+                  <Link to={"/cart"}>
+                    <span className="material-symbols-outlined">
+                      shopping_cart
+                    </span>
+                  </Link>
                   <span
                     onClick={() =>
                       isAuthenticated

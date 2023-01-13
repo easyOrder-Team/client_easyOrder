@@ -6,7 +6,7 @@ import { getCategories } from "../redux/categories/actions";
 import styleForm from "../styles/Form.module.css";
 import tableroFood from "../images/tablero_food.jpg";
 import { selectStyle } from "../styles/StyleSelectForm";
-import { NavBar } from "../components";
+import { NavBarAdmin } from "../components";
 import { useNavigate } from "react-router-dom";
 import * as actionProducts from "../redux/product/actions";
 
@@ -99,40 +99,39 @@ export const CreateProduct = () => {
   const submit = (e) => {
     e.preventDefault();
     console.log("data", data);
-    dispatch(actionProducts.createProduct(data));
-    // let newData = JSON.stringify(data);
-    // dispatch(actionProducts.createProduct(newData));
-    // fetch("http://localhost:3000/api/v1/products", {
-    //   method: "POST",
-    //   body: JSON.stringify(data),
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    // }
-    // ).then((response) => {
-    //   if (response.statusText === "Created") {
-    //     Swal.fire({
-    //       title: "OK!",
-    //       text: "El producto se ha creado con exito",
-    //       icon: "success",
-    //     }).then((response) => {
-    //       if (response.isConfirmed) {
-    //         navigate("/home");
-    //       }
-    //     });
-    //   } else {
-    //     Swal.fire({
-    //       title: "Error!",
-    //       text: "El producto NO se ha podido crear",
-    //       icon: "error",
-    //     });
-    //   }
-    // });
+    let newData = JSON.stringify(data);
+    dispatch(actionProducts.createProduct(newData));
+    fetch("http://localhost:3000/api/v1/products", {
+      method: "POST",
+      body: JSON.stringify(data),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }
+    ).then((response) => {
+      if (response.statusText === "Created") {
+        Swal.fire({
+          title: "OK!",
+          text: "El producto se ha creado con exito",
+          icon: "success",
+        }).then((response) => {
+          if (response.isConfirmed) {
+            navigate("/home");
+          }
+        });
+      } else {
+        Swal.fire({
+          title: "Error!",
+          text: "El producto NO se ha podido crear",
+          icon: "error",
+        });
+      }
+    });
   };
   return (
     <div id={styleForm.containerGlobalForm}>
       <div className={styleForm.containerNav}>
-        <NavBar />
+        <NavBarAdmin />
       </div>
       <div className={styleForm.containerForm}>
         <form className={styleForm.form} onSubmit={(e) => submit(e)}>

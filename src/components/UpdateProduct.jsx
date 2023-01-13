@@ -8,7 +8,7 @@ import { selectStyle } from "../styles/StyleSelectForm";
 import { NavBar } from "../components";
 import { useNavigate, useParams } from "react-router-dom";
 import * as actionProducts from "../redux/product/actions";
-
+import { NavBarAdmin } from "../components";
 export const UpdateProduct = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -25,7 +25,7 @@ export const UpdateProduct = () => {
   });
 
   const { id } = useParams();
-  const { detailProduct } = useSelector((state) => state.productReducer);
+  const { detailProduct } = useSelector((state) => state.productsList);
 
   useEffect(() => {
     dispatch(actionProducts.getProductById(id));
@@ -152,7 +152,7 @@ export const UpdateProduct = () => {
     return (
       <div id={styleForm.containerGlobalForm}>
         <div className={styleForm.containerNav}>
-          <NavBar />
+          <NavBarAdmin />
         </div>
         <div className={styleForm.containerForm}>
           <form className={styleForm.form} onSubmit={(e) => submit(e)}>

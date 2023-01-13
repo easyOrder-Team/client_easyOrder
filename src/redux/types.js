@@ -17,6 +17,7 @@ export const DELETE_PRODUCT_BY_ID = "DELETE_PRODUCT_BY_ID";
 //profile
 export const GET_PROFILE_BY_ID = "GET_PROFILE_BY_ID";
 export const CREATE_PROFILE = "CREATE_PROFILE";
+export const GET_ALL_PROFILES = "GET_ALL_PROFILES"
 
 //cart
 export const ADD_PRODUCT_CART = "ADD_PRODUCT_CART";
@@ -27,16 +28,20 @@ export const SAVESITE = "SAVESITE";
 //Reservations
 
 //orders
-export const CREATE_ORDER = 'CREATE_ORDER';
-export const SAVE_ORDER = 'SAVE_ORDER';
-export const GET_ORDER = 'GET_ORDER';
-export const GET_ORDER_BY_ID = 'GET_ORDER_BY_ID';
-export const GET_ALL_ORDERS = 'GET_ALL_ORDERS';
+export const CREATE_ORDER = "CREATE_ORDER";
+export const SAVE_ORDER = "SAVE_ORDER";
+export const GET_ORDER = "GET_ORDER";
+export const GET_ORDER_BY_ID = "GET_ORDER_BY_ID";
+export const GET_ALL_ORDERS = "GET_ALL_ORDERS";
+export const GET_ACTIVE_ORDERS = "GET_ACTIVE_ORDERS";
+export const CHANGE_STATE_ORDER = "CHANGE_STATE_ORDER";
+export const DELETE_ACTIVE = "DELETE_ACTIVE";
+export const CHANGE_STATE_ORDER_FALSE = "CHANGE_STATE_ORDER_FALSE";
 //check
-export const CREATE_CHECK = 'CREATE_CHECK';
-export const SAVE_CHECK = 'SAVE_CHECK';
-export const GET_ALL_CHECK = 'GET_ALL_CHECK';
-export const GET_CHECK = 'GET_CHECK';
+export const CREATE_CHECK = "CREATE_CHECK";
+export const SAVE_CHECK = "SAVE_CHECK";
+export const GET_ALL_CHECK = "GET_ALL_CHECK";
+export const GET_CHECK = "GET_CHECK";
 //pago
 export const GET_INFO_PAYMENT = "GET_INFO_PAYMENT";
 export const GET_ORDERS_ID_PROFILE = "GET_ORDERS_ID_PROFILE";
@@ -44,8 +49,12 @@ export const GET_ORDERS_ID_PROFILE = "GET_ORDERS_ID_PROFILE";
 //reservas
 export const GET_RESERVAS_ACT_BY_ID_PROFILE = "GET_RESERVAS_ACT_BY_ID_PROFILE";
 export const DELETE_RESERVATION = "DELETE_RESERVATION";
+export const CREATE_RESERVATION = "CREATE_RESERVATION";
 
 //review
 export const CREATE_REVIEW = "CREATE_REVIEW";
 export const GET_REVIEW_BY_ID_PROFILE = "GET_REVIEW_BY_ID_PROFILE";
 export const GET_REVIEW_BY_ID_REVIEW = "GET_REVIEW_BY_ID_REVIEW";
+
+//site
+export const GET_SITE_ACTIVAS = "GET_SITE_ACTIVAS";

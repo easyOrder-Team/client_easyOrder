@@ -20,7 +20,11 @@ import {
   // ReviewDetail,
   // OrderDetail
   UpdateProduct,
+  Users,
+  CropProfileImage,
+  Process,
 } from "./components";
+
 import { PagePay } from "./components/PagePay";
 import { Profile } from "./components/Profile";
 import * as actions from "./redux/product/actions";
@@ -33,6 +37,8 @@ import ReviewDetail from "./components/ReviewDetails";
 import { Ventas } from "./components/Ventas";
 import { VentasDetail } from "./components/VentasDetail";
 import { useAuth0 } from "@auth0/auth0-react";
+import { Orders } from "./components/Orders";
+import { CreateReservation } from "./components/CreateReservation";
 
 function App() {
   const { user, isAuthenticated, isLoading } = useAuth0();
@@ -50,6 +56,7 @@ function App() {
         <Route path="/details/:id" element={<Details />} />
         <Route path="/createProfile" element={<CreateProfile />} />
         <Route path="/cart" element={<Cart />} />
+        <Route path="/createReservation" element={<CreateReservation />} />
         <Route
           path="/pagepay"
           element={
@@ -76,7 +83,11 @@ function App() {
         <Route path="/reviewDetail/:id" element={<ReviewDetail />} />
         <Route path="/ventas" element={<Ventas />} />
         <Route path="/ventas/:id" element={<VentasDetail/>} />
-        <Route path="/updateProduct/:id" element={<UpdateProduct />} />
+        <Route path="/updateProduct/:id" element={<UpdateProduct />} /> 
+        <Route path="/usuarios" element={<Users />} /> 
+        <Route path="/cropImage" element={<CropProfileImage />} /> 
+        <Route path="/ordenes" element={<Orders />} />
+        <Route path="/process/:id" element={<Process />} />
       </Routes>
     </div>
   );

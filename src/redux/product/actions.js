@@ -14,14 +14,20 @@ export const getProducts = () => {
       .catch((error) => console.log(error));
 };
 
-export const sortByTimePreparation = (time, categoryPrep) => {
+///-------------Henry´s code--------------------
+export const sortByTimePreparation = (time, categoryPrep, rangePrep) => {
   return (dispatch) =>
     axios
       .get(`${import.meta.env.VITE_URL}/api/v1/products/filter/timePreparationOrder`)
       .then((response) => {
         dispatch({
           type: types.SORT_BY_TIME_PREPARATION,
-          payload: { responsePrep: response.data, time, categoryPrep },
+          payload: {
+            responsePrep: response.data,
+            time,
+            categoryPrep,
+            rangePrep,
+          },
         });
       });
 };
@@ -55,32 +61,18 @@ export const filterByCategory = (category) => {
 };
 //--------------------------- CODIGO PREVIO ---------------------------------------------
 
-// export const sortProductsByPrice = (price, category) => {
-//   return (dispatch) =>
-//     axios
-//       .get(`${import.meta.env.VITE_URL}/api/v1/products/filter/priceOrder`)
-//       .then((response) => {
-//         dispatch({
-//           type: types.SORT_PRODUCTS_BY_PRICE,
-//           payload: { response: response.data, price, category },
-//         });
-//         supportPrice = [];
-//       })
-//       .catch((error) => console.log(error));
-// };
-//
-//--------------------------- CODIGO LILA ---------------------------------------------
-export const sortProductsByPrice = (category, order) => {
+///-------------Henry´s code---------------------
+export const sortProductsByPrice = (price, category, range) => {
   return (dispatch) =>
     axios
       .get(
-        `${import.meta.env.VITE_URL}/api/v1/products/filter/priceOrder?category=${category}&order=${order}`
+        `${import.meta.env.VITE_URL}/api/v1/products/filter/priceOrder/?price=${price}`
       )
-      .then((response) => {
-        console.log("respuestaaaa", response.data);
+      .then((response) => {        
+        localStorage.setItem('supportPrice', JSON.stringify(response.data))
         dispatch({
           type: types.SORT_PRODUCTS_BY_PRICE,
-          payload: response.data,
+          payload: { response: response.data, category, range },
         });
       })
       .catch((error) => console.log(error));

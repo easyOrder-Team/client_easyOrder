@@ -16,7 +16,8 @@ export const NavBar = () => {
     !location.includes("/cards") &&
     location !== "/profile" &&
     location !== "/scannQR" &&
-    location !== "/selectPayMethod" 
+    location !== "/selectPayMethod" &&
+    location !== "/usuarios"
   ) {
     return (
       <div>
@@ -70,28 +71,54 @@ export const NavBar = () => {
         </div>
         <div className={s.navbar__container}>
           <div className={s.navbar__content}>
-            <div className={s.logo}>
+            <div className={s.lightLogo}>
               <Link to={"/home"}>
                 <img
-                  src="https://res.cloudinary.com/dypjcpbis/image/upload/v1670886694/EasyOrder_BD/Recurso_1_l9yefi.svg"
+                  src="https://res.cloudinary.com/dbvh03usi/image/upload/v1673154193/logoLight.svg"
+                  alt="logo_EasyOrder.svg"
+                />
+              </Link>
+            </div>
+            <div className={s.darkLogo}>
+              <Link to={"/home"}>
+                <img
+                  src="https://res.cloudinary.com/dbvh03usi/image/upload/v1673154201/logoDark.svg"
                   alt="logo_EasyOrder.svg"
                 />
               </Link>
             </div>
             <div className={s.navbar__allicons}>
-              <span className="material-symbols-outlined">notifications</span>
-              <Link to={"/cart"}>
-                <span className="material-symbols-outlined">shopping_cart</span>
-              </Link>
-              <span
-                onClick={() =>
-                  isAuthenticated ? navigate("/profile") : loginWithRedirect()
-                }
-                className="material-symbols-outlined"
-              >
-                account_circle
-              </span>
-
+              <abbr title="Reservar una mesa">
+                <span
+                  className="material-symbols-outlined"
+                  id="icon"
+                  onClick={() =>
+                    isAuthenticated
+                      ? navigate("/createReservation")
+                      : loginWithRedirect()
+                  }
+                >
+                  calendar_today
+                </span>
+              </abbr>
+              <abbr title="Carrito de compras">
+                <Link to={"/cart"}>
+                  <span className="material-symbols-outlined" id="icon">
+                    shopping_cart
+                  </span>
+                </Link>
+              </abbr>
+              <abbr title="Perfil">
+                <span
+                  onClick={() =>
+                    isAuthenticated ? navigate("/profile") : loginWithRedirect()
+                  }
+                  className="material-symbols-outlined"
+                  id="icon"
+                >
+                  account_circle
+                </span>
+              </abbr>
               <a
                 id={s.menuButton}
                 className="material-symbols-outlined"
@@ -155,16 +182,34 @@ export const NavBar = () => {
         </div>
         <div className={s.navbar__container}>
           <div className={s.navbar__content}>
-            <div className={s.logo}>
+            <div className={s.lightLogo}>
               <Link to={"/home"}>
                 <img
-                  src="https://res.cloudinary.com/dypjcpbis/image/upload/v1670886694/EasyOrder_BD/Recurso_1_l9yefi.svg"
+                  src="https://res.cloudinary.com/dbvh03usi/image/upload/v1673154193/logoLight.svg"
                   alt="logo_EasyOrder.svg"
                 />
               </Link>
             </div>
+            <div className={s.darkLogo}>
+              <Link to={"/home"}>
+                <img
+                  src="https://res.cloudinary.com/dbvh03usi/image/upload/v1673154201/logoDark.svg"
+                  alt="logo_EasyOrder.svg"
+                />
+              </Link>
+            </div>
+
             <div className={s.navbar__allicons}>
-              <span className="material-symbols-outlined">notifications</span>
+              <span
+                className="material-symbols-outlined"
+                onClick={() =>
+                  isAuthenticated
+                    ? navigate("/createReservation")
+                    : loginWithRedirect()
+                }
+              >
+                calendar_today
+              </span>
               <Link to={"/cart"}>
                 <span className="material-symbols-outlined">shopping_cart</span>
               </Link>

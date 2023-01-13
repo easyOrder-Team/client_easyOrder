@@ -23,8 +23,11 @@
 .cards__select {
   padding: 0.5rem;
   border-radius: 1.5rem;
-  width: 20rem;
+  /* width: 20rem; */
+  width: 13.5rem;
+  font-size: 10px;
   font-family: "Comfortaa", cursive;
+  margin-bottom: 1rem;
 }
 
 .cards__button {
@@ -33,4 +36,14 @@
   border: solid 0.5px rgb(70, 69, 69);
   padding: 0.6rem;
   border-radius: 1.5rem;
+}
+
+.div_error {
+  margin: 3rem;
+}
+
+.orden_filter {
+  display: flex;
+  margin: 0.7rem;
+  justify-content: space-around;
 }

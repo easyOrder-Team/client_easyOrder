@@ -10,7 +10,7 @@ import { NavBar, Mensaje } from ".";
 export const Details = () => {
   const { id } = useParams();
   const navegate = useNavigate();
-  const { detailProduct } = useSelector((state) => state.productReducer);
+  const { detailProduct } = useSelector((state) => state.productsList);
   const profile = JSON.parse(localStorage.getItem("profile"));
   const [count, setCount] = useState(1);
   const [mensaje, setMensaje] = useState("");
@@ -62,10 +62,7 @@ export const Details = () => {
       setMensaje("");
     }, 2000);
     dispatch(actions.addProductCart(productSelected));
-    setTimeout(() => {
-      window.history.back();
-      setCount(1);
-    }, 1000);
+    setCount(1);
   };
 
   const handleToCart = (e) => {
@@ -97,7 +94,7 @@ export const Details = () => {
             </div>
             <div>
               <p className={style.description}>
-                Description: {detailProduct[0].description}
+                Descripción: {detailProduct[0].description}
               </p>
             </div>
             <div>
@@ -131,7 +128,7 @@ export const Details = () => {
         {isAdmin ? (
           <div className={style.conteiner_buttons}>
             <button className={style.btn1} onClick={handleEdit}>
-              Edit Product
+              Editar producto
             </button>
             <button className={style.btn2}>Delete Product</button>
           </div>

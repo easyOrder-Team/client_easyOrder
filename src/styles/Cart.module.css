@@ -1,4 +1,3 @@
-
 .globalContainerCart{
     min-height: 100%;
     gap: 2rem;
@@ -78,19 +77,11 @@
     margin-right: auto;
     margin-left: auto;
     align-items: center;
-    width: 100%;
-    bottom: 0;
-}
-.Carts{
-    min-height: 50vh;
-}
-.containerCartsButtons{
-    min-height: 100%;
-    display: flex;
-    flex-direction: column;
     justify-content:center;
     text-align: center;
+    width: 25%;
 }
+
 .btnDelete {
     border-color: transparent;
     background-color: transparent;
@@ -104,7 +95,6 @@
 
 .btn {
     color:var(--main-color);
-
 }
 
 .btn1, .btn2{
@@ -144,6 +134,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    font-family: "Comfortaa", cursive;
     font-size: 1.15rem;
     font-weight: 500;
     color: var(--main-color);
@@ -163,11 +154,14 @@
 }
 
 .payBtn{
-    width: 100%;
-    padding: 1rem;
-   
-    bottom: 0px;
-    
+    display:block;
+    margin-right: auto;
+    margin-left: auto;
+    align-items: center;
+    justify-content:center;
+    text-align: center;
+    width: 25%;
+    cursor: pointer;
 }
 
 .logos{
@@ -193,6 +187,23 @@
     }
 
     .payBtn{
-        width: 100%;
+        margin-top: 4rem;
+        width: 95%;
     }
+}
+
+.btnAtras{
+    border: none;
+    background-color: white;
+    margin: 0 0 2rem 2rem;
+    display: flex;
+    flex-direction: column;
+    align-self: flex-start;
+}
+
+.p{
+    display: flex;
+    align-self: flex-end;
+    flex-direction: column;
+
 }

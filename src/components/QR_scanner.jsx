@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import scann from "../styles/QR_scanner.module.css";
 import { NavBar } from "./index";
 export const Scanner = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const [result, setResult] = useState({
     delay: 100,
     result: "Sin resultado",
@@ -35,6 +35,11 @@ export const Scanner = () => {
             className={scann.qr}
             onError={handleError}
             onScan={handleScan}
+            constraints={{
+              video: {
+                facingMode: "environment",
+              },
+            }}
           />
           <p>
             Por favor escannea el codigo QR que esta sobre la mesa, de esta
@@ -46,6 +51,6 @@ export const Scanner = () => {
     );
   } else {
     localStorage.setItem("site", JSON.stringify(parseInt(result.result)));
-    navigate("/cart")
+    navigate("/cart");
   }
 };

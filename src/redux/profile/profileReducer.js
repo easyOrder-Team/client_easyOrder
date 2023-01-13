@@ -2,7 +2,8 @@ import * as types from "../types";
 
 const initialState = {
   profile: {},
-  site: ''
+  site: '',
+  profiles:[]
 };
 
 export const profileReducer = (state = initialState, action) => {
@@ -11,6 +12,11 @@ export const profileReducer = (state = initialState, action) => {
       return {
         ...state,
         profile: action.payload,
+      };
+    case types.GET_ALL_PROFILES:
+      return {
+        ...state,
+        profiles: action.payload,
       };
     case types.SAVESITE:
       return{

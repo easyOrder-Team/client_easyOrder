@@ -14,9 +14,9 @@ export function Landing() {
   const { loginWithRedirect, isAuthenticated, isLoading } = useAuth0();
   const navigate = useNavigate();
 
-  useEffect(()=>{
-    localStorage.clear()
-  })
+  useEffect(() => {
+    localStorage.clear();
+  });
   // useEffect(() => {
   //   const getLS = () => {
   //     const tableLS = JSON.parse(localStorage.getItem('site')) ?? '';
@@ -112,6 +112,11 @@ export function Landing() {
 
           <div className="container">
             <div>
+              <img
+                className="logo"
+                src="https://res.cloudinary.com/dbvh03usi/image/upload/v1673154193/logoLight.svg"
+                alt="logo_EasyOrder.svg"
+              />
               <h1 className="title">¡BIENVENIDOS!</h1>
               <h3 className="text">
                 Aquí podrás hacer tus pedidos de una manera rápida y fácil.

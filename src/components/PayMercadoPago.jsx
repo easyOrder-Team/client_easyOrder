@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import { useAuth0 } from "@auth0/auth0-react";
 
 export const PasarelaMercadoPago = () => {
-  const { productsCart } = useSelector((state) => state.productReducer);
+  const { productsCart } = useSelector((state) => state.productsList);
   const { user, isLoading } = useAuth0();
 
   useEffect(() => {

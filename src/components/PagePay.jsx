@@ -12,7 +12,7 @@ export const PagePay = () => {
   let total = 0;
   const dispatch = useDispatch();
   const [price, setPrice] = useState(0);
-  const { productsCart } = useSelector((state) => state.productReducer);
+  const { productsCart } = useSelector((state) => state.productsList);
   const { order } = useSelector((state) => state.orderReducer);
   const navigate = useNavigate();
 
@@ -39,7 +39,6 @@ export const PagePay = () => {
     });
   };
 
- 
   const handleClick = (e) => {
     e.preventDefault();
     console.log("regresar al cart");
@@ -57,6 +56,9 @@ export const PagePay = () => {
       <NavBar />
       <div className={s.containerCartsButtons}>
         <div className={s.link} onClick={handleClick}>
+          <span className={`material-symbols-outlined ${s.icon}`}>
+            arrow_back
+          </span>
           Regresar al carrito de compras
         </div>
         {productsCart.map((p) => (
@@ -83,7 +85,7 @@ export const PagePay = () => {
             <span>${total}</span>
           </div>
         </div>
-        
+
         <div className={s.payBtn}>
           <button
             className={s.payBtnMercadopago}
@@ -104,4 +106,3 @@ export const PagePay = () => {
     </div>
   );
 };
-
