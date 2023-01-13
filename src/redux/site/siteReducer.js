@@ -26,6 +26,18 @@ export const siteReducer = (state = initialState, action) => {
         siteDetail: action.payload,
       };
 
+    case types.UPDATE_TABLE:
+      return {
+        ...state,
+        siteDetail: action.payload,
+      };
+
+    case types.DELETE_SITE:
+      return {
+        ...state,
+        allSites: state.allSites.filter((s) => s.id_site !== action.payload),
+      };
+
     default:
       return state;
   }

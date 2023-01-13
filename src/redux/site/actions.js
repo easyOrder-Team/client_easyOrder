@@ -44,10 +44,10 @@ export const deleteSite = (id) => {
   return (dispatch) =>
     axios
       .delete(`${import.meta.env.VITE_URL}/api/v1/site/${id}`)
-      .then((response) => {
+      .then((id) => {
         dispatch({
           type: types.DELETE_TABLE,
-          payload: response.data,
+          payload: id,
         });
       })
       .catch((error) => console.log(error));
@@ -60,6 +60,19 @@ export const createSite = (data) => {
       .then((response) => {
         dispatch({
           type: types.CREATE_TABLE,
+          payload: response.data,
+        });
+      })
+      .catch((error) => console.log(error));
+};
+
+export const updateSite = (id, data) => {
+  return (dispatch) =>
+    axios
+      .put(`${import.meta.env.VITE_URL}/api/v1/site/update/${id}`, data)
+      .then((response) => {
+        dispatch({
+          type: types.UPDATE_TABLE,
           payload: response.data,
         });
       })

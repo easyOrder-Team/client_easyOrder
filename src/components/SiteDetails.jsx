@@ -10,13 +10,11 @@ export const SiteDetails = () => {
   const navegate = useNavigate();
   const dispatch = useDispatch();
   const { siteDetail } = useSelector((state) => state.siteReducer);
-  const [mensaje, setMensaje] = useState("");
+  // const [mensaje, setMensaje] = useState("");
 
   useEffect(() => {
     dispatch(actions.getNumTable(id));
   }, []);
-
-  console.log(siteDetail);
 
   const handleEdit = (e) => {
     e.preventDefault();
@@ -25,11 +23,8 @@ export const SiteDetails = () => {
 
   const handleDelete = (e) => {
     e.preventDefault();
-    dispatch(actions.deleteSite(e));
-
-    setMensaje("Mesa eliminada correctamente");
+    dispatch(actions.deleteSite(id));
     setTimeout(() => {
-      setMensaje("");
       navegate("/sites");
     }, 1500);
   };
@@ -67,7 +62,7 @@ export const SiteDetails = () => {
             <button className={style.btn1} onClick={handleDelete}>
               Eliminar Mesa
             </button>
-            {mensaje && <Mensaje tipo="success">{mensaje}</Mensaje>}
+            {/* {mensaje && <Mensaje tipo="success">{mensaje}</Mensaje>} */}
           </div>
         </div>
       ) : (

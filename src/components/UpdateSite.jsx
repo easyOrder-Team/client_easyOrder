@@ -9,26 +9,45 @@ export const UpdateSite = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { siteDetail } = useSelector((state) => state.siteReducer);
+  const [data, setData] = useState({
+    amount_persons: siteDetail[0].amount_persons,
+    avalible: true,
+    num_table: siteDetail[0].num_table,
+  });
 
   useEffect(() => {
     dispatch(actions.getNumTable(id));
   }, []);
+  const { siteDetail } = useSelector((state) => state.siteReducer);
 
-  console.log("siteDetail", siteDetail);
+  const handleChange = (e) => {
+    console.log("data 1", data);
 
-  const [newData, setNewData] = useState({
-    amount_persons: "",
-    avalible: "",
-    num_table: "",
-  });
-  let state;
-
-  const available = (siteDetail) => {
-    if (siteDetail.avalible === false) {
-      state = false;
+    if (e.target.name !== "avalible") {
+      setData({
+        ...data,
+        [e.target.name]: Number(e.target.value),
+      });
+    } else {
+      setData({
+        ...data,
+        [e.target.name]: Boolean(e.target.value === "true"),
+      });
     }
+    console.log("data 1", data);
   };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(data);
+    dispatch(actions.updateSite(id, data));
+    setData({
+      amount_persons: "",
+      avalible: "",
+      num_table: "",
+    });
+  };
+
   return (
     <div>
       {siteDetail.length !== 0 ? (
@@ -38,10 +57,10 @@ export const UpdateSite = () => {
               <div>
                 <label>Numero de mesa:</label>
                 <input
-                  type="text"
+                  type="number"
                   name="num_table"
                   defaultValue={siteDetail[0].num_table}
-                  onChange={(e) => checkNumber(e)}
+                  onChange={handleChange}
                 ></input>
               </div>
 
@@ -49,21 +68,23 @@ export const UpdateSite = () => {
                 <label>Comensales:</label>
                 <input
                   type="number"
-                  name="amount"
+                  name="amount_persons"
                   defaultValue={siteDetail[0].amount_persons}
-                  onChange={(e) => checkAmount(e)}
+                  onChange={handleChange}
                 ></input>
               </div>
 
               <div>
                 <div>
                   <label>Disponible:</label>
-                  <input
-                    type="checkbox"
-                    name="Disponible"
-                    defaultChecked={siteDetail[0].amount_persons}
-                    onChange={(e) => checkState(e)}
-                  ></input>
+                  <select
+                    name="avalible"
+                    defaultValue={siteDetail[0].avalible}
+                    onChange={handleChange}
+                  >
+                    <option value={"true"}>Si</option>
+                    <option value={"false"}>No</option>
+                  </select>
                 </div>
               </div>
             </div>

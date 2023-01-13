@@ -26,12 +26,13 @@ export const AdminSites = () => {
       </div>
       <div className={style.conteiner_Name}> Administrador de mesas </div>
       <button className={style.btn1} onClick={handleCreate}>
-        {" "}
-        Nueva mesa +{" "}
+        Nueva mesa +
       </button>
       {allSites.length !== 0 ? (
         allSites.map((s) => {
-          return <Site id_site={s.id_site} num_table={s.num_table} />;
+          return (
+            <Site key={s.id_site} id_site={s.id_site} num_table={s.num_table} />
+          );
         })
       ) : (
         <div>No existen mesas disponibles</div>

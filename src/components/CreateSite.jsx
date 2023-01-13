@@ -31,16 +31,6 @@ export const CreateSite = () => {
       return;
     });
   };
-  const validate = (data) => {
-    // console.log("daata", data);
-    if (!data.num_table) {
-      setMensaje("Debe ingresar un numero de mesa");
-    } else if (!data.amount_persons) {
-      setMensaje("Debe ingresar la capacidad de la mesa");
-    } else {
-      setMensaje("");
-    }
-  };
 
   const handleInputChange = (e) => {
     setData({
@@ -48,12 +38,8 @@ export const CreateSite = () => {
       [e.target.name]: e.target.value,
     });
   };
-  setTimeout(() => {
-    validate(data);
-  }, 2000);
 
   const handleSubmit = (e) => {
-    validate(data);
     e.preventDefault();
     existentSite(allSites, data);
     if (exist === true) {
@@ -107,7 +93,6 @@ export const CreateSite = () => {
                 </div>
               </div>
             </div>
-            {mensaje && <Mensaje tipo="error">{mensaje}</Mensaje>}
             <div>
               <button type="submit">Crear Mesa</button>
             </div>
