@@ -39,7 +39,7 @@ h2 {
 }
 
 .card:hover {
-  filter: brightness(1.75);
+  filter: brightness(1.5);
   scale: 1.0375;
   animation-duration: 6s
 }
@@ -105,8 +105,6 @@ h2 {
 
   .card {
     width: 100%;
-    justify-content: end;
-    align-items: flex-end;
     height: 12rem;
     margin: 0.25rem;
   }

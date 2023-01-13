@@ -82,11 +82,12 @@ export const CreateReservation = () => {
     return (
       <div>
         <NavBar />
+        {/* <div className={style.img}></div> */}
         <div className={style.conteiner}>
           <div className={style.modal}>
-            <h2 className={style.title}>Hace tu reservacion</h2>
-            <div>
-              <label>N° de comensales: </label>
+            <h2 className={style.title}>Registra tu reservación</h2>
+            <div class>
+              <label className={style.label}>N° de comensales:</label>
               <input
                 className={style.comensales}
                 type={"text"}
@@ -106,8 +107,10 @@ export const CreateReservation = () => {
                       name={s.num_table}
                       value={s.id_site}
                     />
-                    <h4>Mesa</h4>
-                    <h4>{s.amount_persons}px</h4>
+                    <div className={style.content}>
+                      <h5>Mesa</h5>
+                      <h5>{s.amount_persons}</h5>
+                    </div>
                   </div>
                 );
               })}
