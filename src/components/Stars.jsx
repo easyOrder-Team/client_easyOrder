@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import * as actions from "../redux/review/actions";
 import s from "../styles/Review.module.css";
 export const Stars = (props) => {
+  const btnEnviar = document.getElementById("btnEnviar");
   const dispatch = useDispatch();
   const [rating, setRating] = useState(0);
   const [review, setReview] = useState({
@@ -32,6 +33,7 @@ export const Stars = (props) => {
     });
     console.log(review);
     dispatch(actions.createReview(review));
+    btnEnviar.disabled = true;
   };
   // Optinal callback functions
   return (
@@ -51,7 +53,7 @@ export const Stars = (props) => {
         className={s.textarea}
         placeholder="Ingrese su comentario aquí..."
       ></textarea>
-      <button onClick={handleClick} className={s.btn1}>
+      <button onClick={handleClick} className={s.btn1} id="btnEnviar">
         Enviar
       </button>
     </div>

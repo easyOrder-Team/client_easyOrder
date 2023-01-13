@@ -153,6 +153,12 @@
     filter: brightness(1.1);
 }
 
+.btn1::before{
+    cursor: not-allowed;
+    background-color:red;
+    pointer-events: none;
+}
+
 .btn2:hover{
     cursor: pointer;
     filter: brightness(1.1);
