@@ -49,10 +49,10 @@ export const Process = () => {
     }, 1000);
   };
 
-  /* const handleAtras = () => {
+  const handleAtras = () => {
     navigate("/ordenes");
     console.log("atras");
-  }; */
+  };
   if (isLoading) {
     <div className="containerSpin">
       <div className="spinner"></div>
@@ -175,11 +175,12 @@ export const Process = () => {
             {/* ---- Ordenes Process ---- */}
             {orderById.length !== 0 ? (
               <div className={h.homecontainer}>
-                {/*<button className={n.btnAtras} onClick={handleAtras}>
+                <button className={n.btnAtras} onClick={handleAtras}>
                   <span className="material-symbols-outlined">
                     arrow_back_ios
                   </span>
-            </button> */}
+                  <p className={n.p}>Volver</p>
+                </button>
                 <h3>{`Orden Mesa No. ${orderById[0].id_mesa}`}</h3>
                 {orderById[0].products.map((p) => (
                   <CardOrder
