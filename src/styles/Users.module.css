@@ -24,7 +24,7 @@
 }
 .cardUser {
   width: 95%;
-  min-height: 67.5px;
+  min-height: 90px;
   display: flex;
   flex-direction: row;
   margin-top: 5%;
@@ -41,34 +41,38 @@
    
 }
 .divInfo select{
-   font-family: "Comfortaa", cursive;;
+   font-family: "Comfortaa", cursive;
+   font-size: small;
+   border-radius: 10px;
    
 }
 .btnAceptar{
     width: 40%;
     background-color: var(--main-color);
-    height: 20px;
+    height: 5%;
     border: transparent;
     color: white;
     border-radius: 20px;
     font-family: "Comfortaa", cursive; ;
 }
 .cardUser img {
-  width: 25%;
+  width: 30%;
 }
 
 .cardsUsersInfo {
   background-color: var(--light-color);
-  width: 65%;
+  width: 60%;
   text-align: left;
   padding: 3%;
 }
 
 .cardsUsersInfo h1 {
   font-size: large;
+  margin: 0;
 }
 .cardsUsersInfo p {
   font-size: x-small;
+  margin: 0;
 }
 .cardsUsersInfo span {
   font-weight: bold;

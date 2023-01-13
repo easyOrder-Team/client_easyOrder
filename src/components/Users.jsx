@@ -2,11 +2,11 @@ import React from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import * as actions from "../redux/profile/actions";
-import { NavBar } from "./NavBar";
 import users from "../styles/Users.module.css";
 import { useState } from "react";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router";
+import { NavBarAdmin } from "./NavBarAdmin";
 
 export const Users = () => {
   const navigate = useNavigate();
@@ -73,7 +73,7 @@ export const Users = () => {
   if (profiles.length > 0) {
     return (
       <div>
-        <NavBar />
+        <NavBarAdmin />
         <div className={users.containerGlobalUsers}>
           <h1 className={users.tituloUsuarios}>Gestion de usuarios</h1>
           <div className={users.containerCardsUsers}>

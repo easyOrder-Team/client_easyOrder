@@ -27,3 +27,4 @@ export * from "./UpdateProduct";
 export * from "./Stars"
 export * from "./Users"
 export* from "./CropProfileImage"
+export * from "./NavBarAdmin"
