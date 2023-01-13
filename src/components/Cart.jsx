@@ -15,7 +15,7 @@ export const Cart = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   var aux = 0;
-
+  console.log(parseInt(localStorage.getItem("site")))
   
   const state = useSelector((state) => state.profileReducer);
   const created = useSelector((state) => state.orderReducer.order);
@@ -27,23 +27,15 @@ export const Cart = () => {
   const [tipoMensaje, setTipoMensaje] = useState("success");
   const [mensajeButton, setMensajeBoton] = useState("Realizar pedido");
   const profile = JSON.parse(localStorage.getItem("profile"));
+ 
   const [order, setOrder] = useState({
-    id_mesa: "",
-    id_profile: "",
-    total: "",
-    products: "",
-  });
-
-  useEffect(() => {
-    if (profile != null) {
-      setOrder({
-        id_mesa: parseInt(localStorage.getItem("site")),
+      id_mesa: parseInt(localStorage.getItem("site")),
         id_profile: JSON.parse(localStorage.getItem("profile")).id_profile,
         total: total,
         products: product,
-      });
-    }
-  }, [profile]);
+  });
+
+  
 
   const [count, setCount] = useState(
     JSON.parse(localStorage.getItem("contador")) ?? []
@@ -161,7 +153,8 @@ export const Cart = () => {
       setTemTotal(total);
       console.log(tempTotal);
       setMensaje("Se ha realizado su pedido");
-      dispatch(orderActions.createOrder(order));
+        dispatch(orderActions.createOrder(order));
+      
     } else if (total === tempTotal && count !== 0) {
       setMensaje("Pedido ya realizado, agrege nuevos productos");
       setTipoMensaje("error");
@@ -189,8 +182,10 @@ export const Cart = () => {
     const site = localStorage.getItem("site");
     if (site === null) {
       navigate("/scannQR");
+    }else{
+      confirmAlert(options);
     }
-    confirmAlert(options);
+    
   };
 
   useEffect(() => {

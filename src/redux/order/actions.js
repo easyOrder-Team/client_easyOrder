@@ -6,13 +6,14 @@ export const saveOrder = (order) => {
   return { type: types.SAVE_ORDER, payload: order };
 };
 export const createOrder = (order) => {
+  console.log('pilas');
   console.log(order);
   return (dispatch) =>
     axios
       .post(`${import.meta.env.VITE_URL}/api/v1/orders`, order)
       .then((response) => {
           console.log('response de la orden')
-          localStorage.setItem('vas', 2)
+          console.log(order)
           let idO = response.data.id_orders
           localStorage.setItem('idOrder', idO)
           console.log(idO)
@@ -111,3 +112,17 @@ export const deleteOrderActive = () => {
     type: types.DELETE_ACTIVE,
   };
 };
+export const updateOrder = (id, order) => {
+  return () =>
+    axios
+      .put(
+        `${
+          import.meta.env.VITE_URL
+        }/api/v1/orders//update/${id}`, order
+      )
+      .then((response) => {
+        console.log(response.data);
+        
+      })
+      .catch((error) => console.log(error));
+}
