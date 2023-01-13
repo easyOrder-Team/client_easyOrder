@@ -15,6 +15,7 @@ export const CreateProduct = () => {
   const navigate = useNavigate();
   const [localCategories, setLocalCategories] = useState([]);
   const [options, setOptions] = useState([]);
+  const [mensaje, setMensaje] = useState("");
   const [data, setData] = useState({
     name: "",
     description: "",

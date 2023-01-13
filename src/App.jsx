@@ -37,6 +37,7 @@ import { CreateReservation } from "./components/CreateReservation";
 import { AdminSites } from "./components/AdminSites";
 import { SiteDetails } from "./components/SiteDetails";
 import { UpdateSite } from "./components/UpdateSite";
+import { CreateSite } from "./components/CreateSite";
 
 function App() {
   const { user, isAuthenticated, isLoading } = useAuth0();
@@ -85,6 +86,7 @@ function App() {
         <Route path="/sites" element={<AdminSites />} />
         <Route path="/siteDetails/:id" element={<SiteDetails />} />
         <Route path="/updateSite/:id" element={<UpdateSite />} />
+        <Route path="/createSite" element={<CreateSite />} />
       </Routes>
     </div>
   );

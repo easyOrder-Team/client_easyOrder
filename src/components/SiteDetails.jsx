@@ -41,7 +41,7 @@ export const SiteDetails = () => {
         <div>
           <div className={style.container_Name}>
             <h1> Numero de mesa:</h1>
-            <h2> {siteDetail[0].id_site}</h2>
+            <h2> {siteDetail[0].num_table}</h2>
           </div>
           <div>
             <div className={style.container_Name}>

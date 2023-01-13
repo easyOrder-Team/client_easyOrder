@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { Rating } from "react-simple-star-rating";
 import { useDispatch } from "react-redux";
-import * as actions from '../redux/review/actions'
+import * as actions from "../redux/review/actions";
 export const Stars = (props) => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const [rating, setRating] = useState(0);
   const [review, setReview] = useState({
     stars: 0,
@@ -14,7 +14,7 @@ export const Stars = (props) => {
   // Catch Rating value
   const handleRating = (rate) => {
     setRating(rate);
-    setReview({...review, stars: rate})
+    setReview({ ...review, stars: rate });
     console.log(rate);
     // other logic
   };
@@ -29,8 +29,8 @@ export const Stars = (props) => {
       id_profile: props.id_profile,
       products: props.products,
     });
-    console.log(review)
-    dispatch(actions.createReview(review))
+    console.log(review);
+    dispatch(actions.createReview(review));
   };
   // Optinal callback functions
   return (
@@ -43,7 +43,7 @@ export const Stars = (props) => {
         value={review.comment}
         onChange={handleChange}
       ></textarea>
-      <button onClick = {handleClick}>Enviar</button>
+      <button onClick={handleClick}>Enviar</button>
     </div>
   );
 };

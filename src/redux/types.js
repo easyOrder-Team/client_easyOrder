@@ -56,3 +56,4 @@ export const GET_SITE_ACTIVAS = "GET_SITE_ACTIVAS";
 export const GET_SITES = "GET_SITES";
 export const GET_NUM_TABLE = "GET_NUM_TABLE";
 export const DELETE_TABLE = "DELETE_TABLE";
+export const CREATE_TABLE = "CREATE_TABLE";

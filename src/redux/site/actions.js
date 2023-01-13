@@ -52,3 +52,16 @@ export const deleteSite = (id) => {
       })
       .catch((error) => console.log(error));
 };
+
+export const createSite = (data) => {
+  return (dispatch) =>
+    axios
+      .post(`${import.meta.env.VITE_URL}/api/v1/site`, data)
+      .then((response) => {
+        dispatch({
+          type: types.CREATE_TABLE,
+          payload: response.data,
+        });
+      })
+      .catch((error) => console.log(error));
+};
