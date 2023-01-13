@@ -44,7 +44,9 @@ export const Process = () => {
 
   const handleCancel = (id) => {
     dispatch(orderActions.changeStateOrder(id, true));
-    navigate("/ordenes");
+    setTimeout(() => {
+      navigate("/ordenes");
+    }, 3000);
   };
 
   /* const handleAtras = () => {

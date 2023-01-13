@@ -20,12 +20,16 @@ export const Orders = () => {
     localStorage.setItem("profile", JSON.stringify(profile));
   });
   /* orders */
-  const { activeOrders } = useSelector((state) => state.orderReducer);
+  const { activeOrders, changes } = useSelector((state) => state.orderReducer);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(orderActions.getActiveOrders());
-  }, []);
+    if (changes === true || activeOrders.length === 0) {
+      dispatch(orderActions.getActiveOrders());
+    } else {
+      console.log("funciona por favor!!!!");
+    }
+  }, [changes]);
 
   if (isLoading) {
     <div className="containerSpin">

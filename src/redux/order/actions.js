@@ -1,5 +1,6 @@
 import * as types from "../types";
 import axios from "axios";
+import { actionTypes } from "redux-localstorage";
 
 export const saveOrder = (order) => {
   return { type: types.SAVE_ORDER, payload: order };
@@ -93,4 +94,14 @@ export const changeStateOrder = (id, cancel) => {
         });
       })
       .catch((error) => console.log(error));
+};
+
+export const changeStateOrderFalse = () => {
+  return { type: types.CHANGE_STATE_ORDER_FALSE };
+};
+
+export const deleteOrderActive = () => {
+  return {
+    type: types.DELETE_ACTIVE,
+  };
 };

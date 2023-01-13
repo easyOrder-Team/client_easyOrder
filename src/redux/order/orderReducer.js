@@ -46,11 +46,26 @@ export const orderReducer = (state = initialState, action) => {
       };
     }
     case types.GET_ACTIVE_ORDERS:
-      console.log(action.payload);
       return {
         ...state,
         activeOrders: action.payload,
       };
+    case types.CHANGE_STATE_ORDER:
+      return {
+        ...state,
+        changes: true,
+      };
+    case types.CHANGE_STATE_ORDER_FALSE:
+      return {
+        ...state,
+        changes: false,
+      };
+    case types.DELETE_ACTIVE:
+      return {
+        ...state,
+        activeOrders: [],
+      };
+
     default:
       return state;
   }
