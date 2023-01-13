@@ -24,12 +24,8 @@ export const Orders = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (changes === true || activeOrders.length === 0) {
       dispatch(orderActions.getActiveOrders());
-    } else {
-      console.log("funciona por favor!!!!");
-    }
-  }, [changes]);
+  }, []);
 
   if (isLoading) {
     <div className="containerSpin">

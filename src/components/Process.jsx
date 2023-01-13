@@ -46,7 +46,7 @@ export const Process = () => {
     dispatch(orderActions.changeStateOrder(id, true));
     setTimeout(() => {
       navigate("/ordenes");
-    }, 3000);
+    }, 1000);
   };
 
   /* const handleAtras = () => {
