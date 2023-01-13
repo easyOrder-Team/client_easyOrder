@@ -14,6 +14,7 @@ export const orderReducer = (state = initialState, action) => {
         order: action.payload
     }
     case types.CREATE_ORDER:
+          
       return {
         ...state, 
         order: action.payload

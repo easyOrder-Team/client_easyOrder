@@ -6,15 +6,19 @@ import s from "../styles/Cart.module.css";
 import st from "../styles/ItemCount.module.css";
 import { useNavigate } from "react-router-dom";
 import * as orderActions from "../redux/order/actions";
-
+import { confirmAlert } from 'react-confirm-alert'; // Import
+import 'react-confirm-alert/src/react-confirm-alert.css'; // Import css
 import * as actions from "../redux/product/actions";
+
 
 export const Cart = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   var aux = 0;
 
+  
   const state = useSelector((state) => state.profileReducer);
+  const created = useSelector((state) => state.orderReducer.order);
   const { productsCart } = useSelector((state) => state.productReducer);
   const [total, setTotal] = useState(0);
   const [product, setProduct] = useState(productsCart);
@@ -104,13 +108,38 @@ export const Cart = () => {
     return setTotal(aux);
   };
 
-  const handleClick = (e) => {
+  const options = {
+    title: 'Advertencia',
+    message: 'Estas seguro que quieres hacer esta orden',
+    buttons: [
+      {
+        label: 'Yes',
+        onClick: () => handleConfirmation()
+      },
+      {
+        label: 'No',
+        
+      }
+    ],
+    closeOnEscape: true,
+    closeOnClickOutside: true,
+    keyCodeForClose: [8, 32],
+    willUnmount: () => {},
+    afterClose: () => {},
+    onClickOutside: () => {},
+    onKeypress: () => {},
+    onKeypressEscape: () => {},
+    overlayClassName: "overlay-custom-class-name"
+  };
+  
+  
+  const handleConfirmation = () => {
     const site = localStorage.getItem("site");
     if (site === null) {
       navigate("/scannQR");
     }
     
-    e.preventDefault();
+    
     dispatch(orderActions.saveOrder(order));
     if (product.length === 0) {
       setMensaje("No hay productos en el carrito");
@@ -120,12 +149,15 @@ export const Cart = () => {
       setTemTotal(total);
       console.log(tempTotal);
       setMensaje("Se ha realizado su pedido");
+      dispatch(orderActions.createOrder(order));
     } else if (total === tempTotal && count !== 0) {
       setMensaje("Pedido ya realizado");
       console.log(tempTotal, total, count);
     } else if (total !== tempTotal && count >= 0) {
       setMensaje("Pedido Actualizado");
       setTemTotal(total);
+      dispatch(orderActions.updateOrder(parseInt(localStorage.getItem('idOrder')), {products: product, priceTotal: total}))
+      console.log(parseInt(localStorage.getItem('idOrder')))
       console.log(tempTotal, total, count);
     } else if (total === 0 && tempTotal === 0) {
       setCount(0);
@@ -136,6 +168,11 @@ export const Cart = () => {
       setMensaje("");
     }, 2000);
     setCount(parseInt(count + 1));
+  }
+  
+  const handleClick = (e) => {
+    e.preventDefault()
+    confirmAlert(options);
   };
 
   useEffect(() => {
@@ -147,7 +184,6 @@ export const Cart = () => {
 
   const handleToPay = (e) => {
     e.preventDefault();
-    dispatch(orderActions.createOrder(order));
     navigate("/pagepay");
     localStorage.setItem("contador", JSON.stringify(parseInt(0)));
     setCount(0);
