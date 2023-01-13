@@ -1,4 +1,4 @@
-import { useNavigate} from "react-router";
+import { useNavigate } from "react-router";
 import s from "../styles/NavBar.module.css";
 import { useState } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
@@ -21,20 +21,6 @@ export const NavBarAdmin = () => {
         >
           close
         </a>
-
-        <div className={s.modalDiv}>
-          <span className={`material-symbols-outlined ${s.modalSpan}`}>
-            manage_accounts
-          </span>
-          <button
-            className={s.modalButton}
-            onClick={() =>
-              isAuthenticated ? navigate("/profile") : loginWithRedirect()
-            }
-          >
-            Perfil
-          </button>
-        </div>
 
         <div className={s.modalDiv}>
           <span
@@ -76,15 +62,7 @@ export const NavBarAdmin = () => {
             </Link>
           </div>
           <div className={s.navbar__allicons__admin}>
-            <span
-              onClick={() =>
-                isAuthenticated ? navigate("/profile") : loginWithRedirect()
-              }
-              className="material-symbols-outlined"
-            >
-              account_circle
-            </span>
-
+           
             <a
               id={s.menuButton}
               className="material-symbols-outlined"

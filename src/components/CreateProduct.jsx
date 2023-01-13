@@ -6,7 +6,7 @@ import { getCategories } from "../redux/categories/actions";
 import styleForm from "../styles/Form.module.css";
 import tableroFood from "../images/tablero_food.jpg";
 import { selectStyle } from "../styles/StyleSelectForm";
-import { NavBar } from "../components";
+import { NavBarAdmin } from "../components";
 import { useNavigate } from "react-router-dom";
 import * as actionProducts from "../redux/product/actions";
 
@@ -131,7 +131,7 @@ export const CreateProduct = () => {
   return (
     <div id={styleForm.containerGlobalForm}>
       <div className={styleForm.containerNav}>
-        <NavBar />
+        <NavBarAdmin />
       </div>
       <div className={styleForm.containerForm}>
         <form className={styleForm.form} onSubmit={(e) => submit(e)}>

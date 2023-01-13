@@ -28,7 +28,6 @@
 .navbar__allicons__admin{
   display: flex;
   flex-direction: row;
-  width: 20%;
   justify-content: space-between;
 }
 span {
