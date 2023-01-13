@@ -29,22 +29,27 @@ export const Cart = () => {
     total: "",
     products: "",
   });
+
+  if(site && order.id_mesa===""){
+    setOrder({
+      ...order,
+      id_mesa:site
+    })
+  }
+
+  if(profile && order.id_profile===""){
+    setOrder({
+      ...order,
+      id_profile:profile.id_profile
+    })
+  }
+
   useEffect(()=>{
     if(site === null){
       setMensajeBoton("Escanear Mesa")
     }
     
-  },[])
-  useEffect(() => {
-    if (profile != null) {
-      setOrder({
-        id_mesa: parseInt(localStorage.getItem("site")),
-        id_profile: JSON.parse(localStorage.getItem("profile")).id_profile,
-        total: total,
-        products: product,
-      });
-    }
-  }, []);
+  },[])  
 
   const [count, setCount] = useState(
     JSON.parse(localStorage.getItem("contador")) ?? []
