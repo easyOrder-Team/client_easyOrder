@@ -24,7 +24,7 @@ export const Orders = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-      dispatch(orderActions.getActiveOrders());
+    dispatch(orderActions.getActiveOrders());
   }, []);
 
   if (isLoading) {
@@ -44,7 +44,7 @@ export const Orders = () => {
       ) {
         return (
           <div>
-           <NavBarAdmin/>
+            <NavBarAdmin />
             <div>
               <span className={h.imageProfile}>
                 <img src={profile.picture} alt="" />
@@ -54,7 +54,7 @@ export const Orders = () => {
             </div>
 
             {/* ---- Ordenes activas ---- */}
-            <div className={h.homecontainer}>
+            <div className={h.cardAdmin}>
               {activeOrders.length !== 0 ? (
                 activeOrders.map((order) => (
                   <Link to={`/process/${order.id}`} key={order.id}>

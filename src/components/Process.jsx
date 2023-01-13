@@ -71,7 +71,7 @@ export const Process = () => {
       ) {
         return (
           <div>
-            <NavBarAdmin/>
+            <NavBarAdmin />
             <div>
               <span className={h.imageProfile}>
                 <img src={profile.picture} alt="" />
@@ -112,12 +112,12 @@ export const Process = () => {
                   </button>
 
                   <button className={n.btn2} onClick={() => handleCancel(id)}>
-                    cancelar
+                    Cancelar
                   </button>
                 </div>
               </div>
             ) : (
-              <h2>Loading</h2>
+              <h2>Cargando...</h2>
             )}
           </div>
         );
