@@ -44,10 +44,10 @@ export const Cart = () => {
         products: product,
       });
     }
-  }, [profile]);
+  }, []);
 
   const [count, setCount] = useState(
-    JSON.parse(localStorage.getItem("contador")) ?? 0
+    JSON.parse(localStorage.getItem("contador")) ?? []
   );
   const [tempTotal, setTemTotal] = useState(0);
 
@@ -129,6 +129,7 @@ export const Cart = () => {
    
     if (site === null) {
       navigate("/scannQR");
+    return
     }
     setTipoMensaje("success");
     e.preventDefault();
@@ -156,14 +157,14 @@ export const Cart = () => {
       setMensaje("");
     }
 
+    setTimeout(() => {
+      setMensaje("");
+    }, 2000);
     if (product.length !== 0 && site !== null) {
       
         setCount(parseInt(count + 1));
       
     }
-    setTimeout(() => {
-      setMensaje("");
-    }, 2000);
   };
 
   useEffect(() => {
