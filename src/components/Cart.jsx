@@ -23,6 +23,7 @@ export const Cart = () => {
   const [tipoMensaje, setTipoMensaje] = useState("success");
   const [mensajeButton, setMensajeBoton] = useState("Realizar pedido");
   const profile = JSON.parse(localStorage.getItem("profile"));
+  const { isAuthenticated, loginWithRedirect, isLoading } = useAuth0();
   const [order, setOrder] = useState({
     id_mesa: "",
     id_profile: "",
@@ -30,26 +31,29 @@ export const Cart = () => {
     products: "",
   });
 
-  if(site && order.id_mesa===""){
-    setOrder({
-      ...order,
-      id_mesa:site
-    })
-  }
+  useEffect(() => {
+    if (isAuthenticated) {
+      if (site && order.id_mesa === "") {
+        setOrder({
+          ...order,
+          id_mesa: site,
+        });
+      }
 
-  if(profile && order.id_profile===""){
-    setOrder({
-      ...order,
-      id_profile:profile.id_profile
-    })
-  }
-
-  useEffect(()=>{
-    if(site === null){
-      setMensajeBoton("Escanear Mesa")
+      if (profile && order.id_profile === "") {
+        setOrder({
+          ...order,
+          id_profile: profile.id_profile,
+        });
+      }
     }
-    
-  },[])  
+  }, [profile]);
+
+  useEffect(() => {
+    if (site === null) {
+      setMensajeBoton("Escanear Mesa");
+    }
+  }, []);
 
   const [count, setCount] = useState(
     JSON.parse(localStorage.getItem("contador")) ?? []
@@ -131,44 +135,45 @@ export const Cart = () => {
   };
 
   const handleClick = (e) => {
-   
-    if (site === null) {
-      navigate("/scannQR");
-    return
-    }
-    setTipoMensaje("success");
-    e.preventDefault();
-    dispatch(orderActions.saveOrder(order));
-    if (product.length === 0) {
-      setTipoMensaje("error");
-      setMensaje("No hay productos en el carrito");
-      setCount(0);
-    } else if (count === 0) {
-      localStorage.setItem("tempTotal", JSON.stringify(total));
-      setTemTotal(total);
-      console.log(tempTotal);
-      setMensaje("Se ha realizado su pedido");
-    } else if (total === tempTotal && count !== 0) {
-      setMensaje("Pedido ya realizado, agrege nuevos productos");
-      setTipoMensaje("error");
-      console.log(tempTotal, total, count);
-    } else if (total !== tempTotal && count >= 0) {
-      setMensaje("Pedido Actualizado");
-      setTemTotal(total);
-      console.log(tempTotal, total, count);
-    } else if (total === 0 && tempTotal === 0) {
-      setCount(0);
+    if (!isAuthenticated) {
+      loginWithRedirect();
     } else {
-      setMensaje("");
-    }
+      if (site === null) {
+        navigate("/scannQR");
+        return;
+      }
+      setTipoMensaje("success");
+      e.preventDefault();
+      dispatch(orderActions.saveOrder(order));
+      if (product.length === 0) {
+        setTipoMensaje("error");
+        setMensaje("No hay productos en el carrito");
+        setCount(0);
+      } else if (count === 0) {
+        localStorage.setItem("tempTotal", JSON.stringify(total));
+        setTemTotal(total);
+        console.log(tempTotal);
+        setMensaje("Se ha realizado su pedido");
+      } else if (total === tempTotal && count !== 0) {
+        setMensaje("Pedido ya realizado, agrege nuevos productos");
+        setTipoMensaje("error");
+        console.log(tempTotal, total, count);
+      } else if (total !== tempTotal && count >= 0) {
+        setMensaje("Pedido Actualizado");
+        setTemTotal(total);
+        console.log(tempTotal, total, count);
+      } else if (total === 0 && tempTotal === 0) {
+        setCount(0);
+      } else {
+        setMensaje("");
+      }
 
-    setTimeout(() => {
-      setMensaje("");
-    }, 2000);
-    if (product.length !== 0 && site !== null) {
-      
+      setTimeout(() => {
+        setMensaje("");
+      }, 2000);
+      if (product.length !== 0 && site !== null) {
         setCount(parseInt(count + 1));
-      
+      }
     }
   };
 
@@ -246,7 +251,13 @@ export const Cart = () => {
 
         <div className={s.conteiner_buttons}>
           <button
-            className={site === null ? s.btn1Disabled : product.length === 0 ? s.btn1Disabled : s.btn1}
+            className={
+              site === null
+                ? s.btn1Disabled
+                : product.length === 0
+                ? s.btn1Disabled
+                : s.btn1
+            }
             onClick={handleClick}
           >
             {mensajeButton}
