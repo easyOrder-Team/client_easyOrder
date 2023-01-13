@@ -139,7 +139,7 @@ export const Details = () => {
             </button>
 
             <button className={style.btn2} onClick={handleToCart}>
-              Ir a pagar
+              Ir al carrito
             </button>
           </div>
         )}

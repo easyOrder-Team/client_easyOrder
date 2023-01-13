@@ -287,7 +287,7 @@
     margin-right: auto;
     margin-left: auto;
     align-items: center;
-    width: 100%;
+    width: 30%;
     bottom: 0;
 }
 .Carts{
@@ -389,9 +389,7 @@
 .payBtn{
     width: 100%;
     padding: 1rem;
-   
     bottom: 0px;
-    
 }
 
 .logos{
@@ -410,6 +408,18 @@
     filter:brightness(1.1)
 }
 
+.btnAtras{
+    border: none;
+    background-color: white;
+    margin: 0 0 2rem 2rem;
+    display: flex;
+    flex-direction: column;
+    align-self: flex-start;    
+}
+
+.btnAtras:hover {
+    filter: brightness(1.1);
+}
 
 @media (max-width: 900px) {
     .conteiner_buttons{
