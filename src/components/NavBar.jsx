@@ -79,7 +79,9 @@ export const NavBar = () => {
                 />
               </Link>
             </div>
-            <span
+            
+            <div className={s.navbar__allicons}>
+             <span
               className="material-symbols-outlined"
               onClick={() =>
                 isAuthenticated
@@ -89,8 +91,6 @@ export const NavBar = () => {
             >
               calendar_today
             </span>
-            <div className={s.navbar__allicons}>
-              <span className="material-symbols-outlined">notifications</span>
               <Link to={"/cart"}>
                 <span className="material-symbols-outlined">shopping_cart</span>
               </Link>
@@ -174,6 +174,8 @@ export const NavBar = () => {
                 />
               </Link>
             </div>
+            
+            <div className={s.navbar__allicons}>
             <span
               className="material-symbols-outlined"
               onClick={() =>
@@ -184,8 +186,6 @@ export const NavBar = () => {
             >
               calendar_today
             </span>
-            <div className={s.navbar__allicons}>
-              <span className="material-symbols-outlined">notifications</span>
               <Link to={"/cart"}>
                 <span className="material-symbols-outlined">shopping_cart</span>
               </Link>

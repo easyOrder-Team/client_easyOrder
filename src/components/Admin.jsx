@@ -97,15 +97,7 @@ export const Admin = () => {
                     />
                   </Link>
                 </div>
-                <div className={s.navbar__allicons}>
-                  <span className="material-symbols-outlined">
-                    notifications
-                  </span>
-                  <Link to={"/cart"}>
-                    <span className="material-symbols-outlined">
-                      shopping_cart
-                    </span>
-                  </Link>
+                <div className={s.navbar__allicons__admin}>
                   <span
                     onClick={() =>
                       isAuthenticated
