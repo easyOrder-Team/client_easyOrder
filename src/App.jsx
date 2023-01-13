@@ -21,7 +21,8 @@ import {
   // OrderDetail
   UpdateProduct,
   Users,
-  CropProfileImage
+  CropProfileImage,
+  Process,
 } from "./components";
 
 import { PagePay } from "./components/PagePay";
@@ -36,6 +37,7 @@ import ReviewDetail from "./components/ReviewDetails";
 import { Ventas } from "./components/Ventas";
 import { VentasDetail } from "./components/VentasDetail";
 import { useAuth0 } from "@auth0/auth0-react";
+import { Orders } from "./components/Orders";
 import { CreateReservation } from "./components/CreateReservation";
 
 function App() {
@@ -84,6 +86,8 @@ function App() {
         <Route path="/updateProduct/:id" element={<UpdateProduct />} /> 
         <Route path="/usuarios" element={<Users />} /> 
         <Route path="/cropImage" element={<CropProfileImage />} /> 
+        <Route path="/ordenes" element={<Orders />} />
+        <Route path="/process/:id" element={<Process />} />
       </Routes>
     </div>
   );
