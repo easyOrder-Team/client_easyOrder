@@ -194,7 +194,9 @@ export const Process = () => {
                     {orderById[0].state === "created"
                       ? "Procesar"
                       : orderById[0].state === "finished"
-                      ? navigate("/ordenes")
+                      ? setTimeout(() => {
+                          navigate("/ordenes");
+                        }, 1000)
                       : "Finalizar"}
                   </button>
 
