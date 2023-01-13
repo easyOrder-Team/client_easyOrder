@@ -88,11 +88,6 @@ export const NavBar = () => {
               </Link>
             </div>
             <div className={s.navbar__allicons}>
-              <abbr title="Solicitar ayuda">
-                <span className="material-symbols-outlined" id="icon">
-                  notifications
-                </span>
-              </abbr>
               <abbr title="Reservar una mesa">
                 <span
                   className="material-symbols-outlined"
