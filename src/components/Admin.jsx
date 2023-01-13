@@ -134,7 +134,7 @@ export const Admin = () => {
               <h4>Admin</h4>
               <h2>{`${profile.name} ${profile.lastname}`}</h2>
             </div>
-            <div className={h.homecontainer}>
+            <div className={h.container}>
               <Link to={"/products"}>
                 <div className={`${h.card} ${h.card__productos}`}>
                   <h2>Productos</h2>
