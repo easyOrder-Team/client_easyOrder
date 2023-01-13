@@ -134,11 +134,6 @@ export const Cart = () => {
   
   
   const handleConfirmation = () => {
-    const site = localStorage.getItem("site");
-    if (site === null) {
-      navigate("/scannQR");
-    }
-    
     
     dispatch(orderActions.saveOrder(order));
     if (product.length === 0) {
@@ -172,6 +167,10 @@ export const Cart = () => {
   
   const handleClick = (e) => {
     e.preventDefault()
+    const site = localStorage.getItem("site");
+    if (site === null) {
+      navigate("/scannQR");
+    }
     confirmAlert(options);
   };
 
