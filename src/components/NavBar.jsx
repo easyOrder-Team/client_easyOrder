@@ -63,7 +63,7 @@ export const NavBar = () => {
             </span>
             <button
               className={s.modalButton}
-              onClick={() => (isAuthenticated ? logout() : loginWithRedirect())}
+              onClick={() => (isAuthenticated ? logout({returnTo:import.meta.env.VITE_RUTA}) : loginWithRedirect())}
             >
               {isAuthenticated ? "Salir" : "Entrar"}
             </button>
@@ -174,7 +174,7 @@ export const NavBar = () => {
             </span>
             <button
               className={s.modalButton}
-              onClick={() => (isAuthenticated ? logout() : loginWithRedirect())}
+              onClick={() => (isAuthenticated ? logout({returnTo:import.meta.env.VITE_RUTA}) : loginWithRedirect())}
             >
               {isAuthenticated ? "Salir" : "Entrar"}
             </button>
