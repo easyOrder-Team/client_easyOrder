@@ -52,8 +52,9 @@
 }
 
 ::-webkit-scrollbar {
-  background-color: var(--secondary-color);
+  background-color: transparent;
   width: 0.5rem;
+  height: 0.5rem;
 }
 
 ::-webkit-scrollbar-thumb {
@@ -67,6 +68,7 @@
 
 ::selection {
   background-color: var(--secondary-color);
+  color: var(--main-color);
 }
 
 a {
