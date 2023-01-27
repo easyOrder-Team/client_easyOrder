@@ -5,7 +5,7 @@
   /* background-image: url("https://images.unsplash.com/photo-1590846406792-0adc7f938f1d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=685&q=80"); */
 }
 
-.carrousel {
+.carousel {
   left: 0;
   width: 70%;
   max-width: 100em;
@@ -32,8 +32,13 @@
 .img {
   width: 100%;
   height: 100%;
+  filter: brightness(0.75);
 }
 
+#arrow {
+  color: white;
+  font-size: 3rem;
+}
 .arrows {
   position: absolute;
   top: 0;
@@ -42,11 +47,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 1rem;
-}
-
-span {
-  color: var(--light-color);
+  padding: 5rem;
 }
 
 #img1 {
@@ -70,7 +71,7 @@ span {
   background-repeat: no-repeat;
 }
 
-.points {
+/* .points {
   width: 70%;
   height: 5%;
   display: flex;
@@ -94,7 +95,7 @@ span {
 .points a button:active {
   background-color: var(--light-color);
 }
-
+ */
 .container {
   display: flex;
   float: right;
@@ -139,7 +140,7 @@ span {
   align-items: center;
   text-align: center;
   justify-content: center;
-  font-size: 1rem;
+  font-size: 1.5rem;
   color: var(--text-color);
   font-weight: 100;
   margin: 3rem;
@@ -235,15 +236,15 @@ span {
   padding: 1rem;
 }
 
-@media (max-width: 1080px) {
-  .carrousel {
+@media (max-width: 960px) {
+  .carousel {
     width: 100%;
   }
   .container {
     display: flex;
     float: none;
     width: 100%;
-    height: 15vh;
+    height: 25vh;
     justify-content: center;
     align-self: center;
     padding-bottom: 1rem;
@@ -269,7 +270,7 @@ span {
     padding-top: 1rem;
   }
 
-  .logo {
-    display: none;
+  .arrows {
+    padding: 2rem;
   }
 }

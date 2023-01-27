@@ -48,17 +48,17 @@ export function Landing() {
       localStorage.removeItem("site");
       return (
         <div className="root">
-          <div className="carrousel">
+          <div className="carousel">
             <div className="item" id="item1">
               <div className="img" id="img1"></div>
               <div className="arrows">
                 <a href="#item3">
-                  <span className="material-symbols-outlined">
+                  <span className="material-symbols-outlined" id="arrow">
                     arrow_back_ios
                   </span>
                 </a>
                 <a href="#item2">
-                  <span className="material-symbols-outlined">
+                  <span className="material-symbols-outlined" id="arrow">
                     arrow_forward_ios
                   </span>
                 </a>
@@ -69,13 +69,13 @@ export function Landing() {
               <div className="img" id="img2"></div>
               <div className="arrows">
                 <a href="#item1">
-                  <span className="material-symbols-outlined">
-                    arrow_back_ios
+                  <span className="material-symbols-outlined" id="arrow">
+                  arrow_back_ios
                   </span>
                 </a>
                 <a href="#item3">
-                  <span className="material-symbols-outlined">
-                    arrow_forward_ios
+                  <span className="material-symbols-outlined" id="arrow">
+                  arrow_forward_ios
                   </span>
                 </a>
               </div>
@@ -85,20 +85,19 @@ export function Landing() {
               <div className="img" id="img3"></div>
               <div className="arrows">
                 <a href="#item2">
-                  <span className="material-symbols-outlined">
+                  <span className="material-symbols-outlined" id="arrow">
                     arrow_back_ios
                   </span>
                 </a>
                 <a href="#item1">
-                  <span className="material-symbols-outlined">
+                  <span className="material-symbols-outlined" id="arrow">
                     arrow_forward_ios
                   </span>
                 </a>
               </div>
             </div>
           </div>
-
-          <div className="points">
+{/*           <div className="points">
             <a href="#item1">
               <button className="point" state="active"></button>
             </a>
@@ -108,7 +107,7 @@ export function Landing() {
             <a href="#item3">
               <button className="point"></button>
             </a>
-          </div>
+          </div> */}
 
           <div className="container">
             <div>
@@ -119,7 +118,7 @@ export function Landing() {
               />
               <h1 className="title">¡BIENVENIDOS!</h1>
               <h3 className="text">
-                Aquí podrás hacer tus pedidos de una manera rápida y fácil.
+                Aquí podrás hacer tus pedidos de una manera <b>rápida y fácil</b>.
               </h3>
             </div>
             <div className="buttons">
