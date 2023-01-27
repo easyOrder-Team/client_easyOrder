@@ -27,6 +27,7 @@
   margin: 0;
   box-sizing: border-box;
 }
+
 :root {
   font-family: "Comfortaa", cursive;
   font-size: 12px;
@@ -62,6 +63,10 @@
 
 ::-webkit-scrollbar-thumb:hover {
   background-color: #db8904;
+}
+
+::selection {
+  background-color: var(--secondary-color);
 }
 
 a {
