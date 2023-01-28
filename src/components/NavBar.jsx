@@ -1,5 +1,5 @@
 import React from "react";
-import { SearchBar } from ".";
+import { Profile, SearchBar } from ".";
 import s from "../styles/NavBar.module.css";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useState } from "react";
@@ -8,7 +8,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 export const NavBar = () => {
   const [modalVisivility, setmodalVisivility] = useState("modalMenu");
   const { logout, isAuthenticated, loginWithRedirect } = useAuth0();
-
+  const profile = JSON.parse(localStorage.getItem("profile"));
   const navigate = useNavigate();
   let location = useLocation().pathname;
   if (
@@ -63,7 +63,11 @@ export const NavBar = () => {
             </span>
             <button
               className={s.modalButton}
-              onClick={() => (isAuthenticated ? logout({returnTo:import.meta.env.VITE_RUTA}) : loginWithRedirect())}
+              onClick={() =>
+                isAuthenticated
+                  ? logout({ returnTo: import.meta.env.VITE_RUTA })
+                  : loginWithRedirect()
+              }
             >
               {isAuthenticated ? "Salir" : "Entrar"}
             </button>
@@ -88,6 +92,29 @@ export const NavBar = () => {
               </Link>
             </div>
             <div className={s.navbar__allicons}>
+              <abbr title="Perfil">
+                {isAuthenticated ? (
+                  <span
+                    onClick={() => navigate("/profile")}
+                    className={s.profileImage}
+                    id="icon"
+                  >
+                    <img
+                      onClick={() => navigate("/profile")}
+                      src={profile.picture}
+                      alt="profile.jpg"
+                    />
+                  </span>
+                ) : (
+                  <span
+                    onClick={() => loginWithRedirect()}
+                    className="material-symbols-outlined"
+                    id="icon"
+                  >
+                    account_circle
+                  </span>
+                )}
+              </abbr>
               <abbr title="Reservar una mesa">
                 <span
                   className="material-symbols-outlined"
@@ -107,17 +134,6 @@ export const NavBar = () => {
                     shopping_cart
                   </span>
                 </Link>
-              </abbr>
-              <abbr title="Perfil">
-                <span
-                  onClick={() =>
-                    isAuthenticated ? navigate("/profile") : loginWithRedirect()
-                  }
-                  className="material-symbols-outlined"
-                  id="icon"
-                >
-                  account_circle
-                </span>
               </abbr>
               <a
                 id={s.menuButton}
@@ -174,7 +190,11 @@ export const NavBar = () => {
             </span>
             <button
               className={s.modalButton}
-              onClick={() => (isAuthenticated ? logout({returnTo:import.meta.env.VITE_RUTA}) : loginWithRedirect())}
+              onClick={() =>
+                isAuthenticated
+                  ? logout({ returnTo: import.meta.env.VITE_RUTA })
+                  : loginWithRedirect()
+              }
             >
               {isAuthenticated ? "Salir" : "Entrar"}
             </button>
@@ -200,6 +220,26 @@ export const NavBar = () => {
             </div>
 
             <div className={s.navbar__allicons}>
+              {isAuthenticated ? (
+                <span
+                  onClick={() => navigate("/profile")}
+                  className={s.profileImage}
+                >
+                  <img
+                    onClick={() => navigate("/profile")}
+                    src={profile.picture}
+                    alt="profile.jpg"
+                  />
+                </span>
+              ) : (
+                <span
+                  onClick={() => loginWithRedirect()}
+                  className="material-symbols-outlined"
+                  id="icon"
+                >
+                  account_circle
+                </span>
+              )}
               <span
                 className="material-symbols-outlined"
                 onClick={() =>
@@ -213,14 +253,6 @@ export const NavBar = () => {
               <Link to={"/cart"}>
                 <span className="material-symbols-outlined">shopping_cart</span>
               </Link>
-              <span
-                onClick={() =>
-                  isAuthenticated ? navigate("/profile") : loginWithRedirect()
-                }
-                className="material-symbols-outlined"
-              >
-                account_circle
-              </span>
 
               <a
                 id={s.menuButton}

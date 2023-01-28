@@ -31,3 +31,4 @@ export * from "./Process";
 export * from "./Users"
 export* from "./CropProfileImage"
 export * from "./NavBarAdmin"
+export * from "./SearchBarAdmin"

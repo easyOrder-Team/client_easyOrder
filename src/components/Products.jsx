@@ -2,7 +2,7 @@ import s from "../styles/NavBar.module.css";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
-import { SearchBar } from "./SearchBar";
+import { SearchBarAdmin } from "./SearchBarAdmin";
 import style from "../styles/Details.module.css";
 import c from "../styles/Card.module.css";
 import { useEffect } from "react";
@@ -50,7 +50,7 @@ export const Products = () => {
           <h2>{`${profile.name} ${profile.lastname}`}</h2>
         </div>
         <div className={style.container_search}>
-          <SearchBar />
+          <SearchBarAdmin />
         </div>
         <div>
           <div className={style.conteiner_buttons}>

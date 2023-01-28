@@ -113,6 +113,13 @@ span {
   text-align: left;
 }
 
+.profileImage{
+  height: 24px;
+}
+.profileImage img{
+  width: 24px;
+  border-radius: 50%;
+}
 
 @media (prefers-color-scheme: light) {
   .lightLogo img{

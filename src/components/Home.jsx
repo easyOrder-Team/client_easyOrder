@@ -42,7 +42,7 @@ export const Home = () => {
           icon: "error",
         }).then((response) => {
           if (response.isConfirmed) {
-            logout();
+            logout({returnTo:import.meta.env.VITE_RUTA});
           }
         });
       }

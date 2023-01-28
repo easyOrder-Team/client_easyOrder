@@ -21,6 +21,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin-bottom: 5%;
 }
 .cardUser {
   width: 95%;
@@ -29,6 +30,11 @@
   flex-direction: row;
   margin-top: 5%;
   background-color: var(--light-color);
+  border-radius:  0.5rem;
+}
+.cardUser img{
+  border-top-left-radius: 0.5rem;
+  border-bottom-left-radius: 0.5rem;
 }
 .divInfo{
     display: none;
